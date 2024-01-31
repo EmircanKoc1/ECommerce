@@ -6,7 +6,7 @@ namespace DataAccessLayer.Entities
     {
         public string Title { get; set; }
         public string Text { get; set; }
-        public short Score { get; set; }
+        public byte Score { get; set; }
 
         public long? ProductId { get; set; }
         public Product Product { get; set; }

@@ -6,7 +6,7 @@ namespace DataAccessLayer.Entities
     {
         public string City { get; set; }
         public string Street { get; set; }
-        public string ZipCode { get; set; }
+        public string Zipcode { get; set; }
         public string AdressDescription { get; set; }
 
         public long? UserId { get; set; }
