@@ -13,7 +13,7 @@ namespace DataAccessLayer.Entities
         public User User { get; set; }
 
 
-        public long OrderStatusId { get; set; }
+     
         public OrderStatus OrderStatus { get; set; }
 
         public long AddressId { get; set; }

@@ -1,11 +1,6 @@
 ﻿using DataAccessLayer.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccessLayer.EntityConfigurations
 {
@@ -13,7 +8,16 @@ namespace DataAccessLayer.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<Coupon> builder)
         {
-            throw new NotImplementedException();
+            builder
+                .HasKey(x => x.Id);
+
+            builder
+                .HasMany(x => x.Orders)
+                .WithOne(x => x.Coupon)
+                .HasForeignKey(x => x.CouponId);
+
+
+
         }
     }
 }

@@ -7,7 +7,7 @@ namespace DataAccessLayer.Entities
         public string ClaimType { get; set; }
         public string ClaimName { get; set; }
 
-
+       
         public ICollection<User> Users { get; set; }
 
     }
