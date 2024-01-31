@@ -2,7 +2,7 @@
 
 namespace DataAccessLayer.Entities
 {
-    public class BrandDetail : ModifiableBaseEntity
+    public class BrandDetail : BaseEntity
     {
         public string Description { get; set; }
         public string LogoPath { get; set; }

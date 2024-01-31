@@ -2,7 +2,7 @@
 
 namespace DataAccessLayer.Entities
 {
-    public class ProductImage : ModifiableBaseEntity
+    public class ProductImage : BaseEntity
     {
         public string ImagePath { get; set; }
         public long ProductId { get; set; }

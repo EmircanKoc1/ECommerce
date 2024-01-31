@@ -5,7 +5,7 @@ namespace DataAccessLayer.Context
 {
     public class ECommerceDbContext : DbContext
     {
-        public ECommerceDbContext(DbContextOptions<ECommerceDbContext> options)
+        public ECommerceDbContext(DbContextOptions<ECommerceDbContext> options) : base(options)
         {
 
         }
@@ -27,14 +27,17 @@ namespace DataAccessLayer.Context
         public DbSet<ProductImage> ProductImages { get; set; }
         public DbSet<Question> Questions { get; set; }
         public DbSet<ShipmentCompany> ShipmentCompanies { get; set; }
-        public DbSet<ShipmentDetail> ShipmentDetails { get; set; }
+        public DbSet<ShipmentCompanyDetail> ShipmentDetails { get; set; }
         public DbSet<SubCategory> SubCategories { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<Token> Tokens { get; set; }
         public DbSet<User> Users { get; set; }
 
 
-
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(ECommerceDbContext).Assembly);
+        }
 
 
     }

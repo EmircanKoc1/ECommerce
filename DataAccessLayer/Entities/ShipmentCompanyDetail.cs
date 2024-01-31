@@ -2,7 +2,7 @@
 
 namespace DataAccessLayer.Entities
 {
-    public class ShipmentDetail : BaseEntity
+    public class ShipmentCompanyDetail : BaseEntity
     {
         public int TotalShipmentCount { get; set; }
         public int TotalFailedShipmentCount { get; set; }

@@ -2,7 +2,7 @@
 
 namespace DataAccessLayer.Entities
 {
-    public class SubCategory : ModifiableBaseEntity
+    public class SubCategory : BaseEntity
     {
         public string Name { get; set; }
         public string Description { get; set; }

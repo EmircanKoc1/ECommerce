@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Entities
 {
-    public class PaymentCard : ModifiableBaseEntity
+    public class PaymentCard : BaseEntity
     {
         public string Company { get; set; }
         public string Number { get; set; }

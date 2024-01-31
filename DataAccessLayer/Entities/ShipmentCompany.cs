@@ -2,11 +2,11 @@
 
 namespace DataAccessLayer.Entities
 {
-    public class ShipmentCompany : ModifiableBaseEntity
+    public class ShipmentCompany : BaseEntity
     {
         public string Name { get; set; }
 
-        public ShipmentDetail ShipmentDetail { get; set; }
+        public ShipmentCompanyDetail ShipmentDetail { get; set; }
 
         public ICollection<Order> Orders { get; set; }
 

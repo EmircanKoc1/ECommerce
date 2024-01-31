@@ -2,7 +2,7 @@
 
 namespace DataAccessLayer.Entities
 {
-    public class ProductFeature : ModifiableBaseEntity
+    public class ProductFeature : BaseEntity
     {
         public string Key { get; set; }
         public string Value { get; set; }

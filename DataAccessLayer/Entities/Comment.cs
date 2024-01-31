@@ -2,7 +2,7 @@
 
 namespace DataAccessLayer.Entities
 {
-    public class Comment : ModifiableBaseEntity
+    public class Comment : BaseEntity
     {
         public string Title { get; set; }
         public string Text { get; set; }

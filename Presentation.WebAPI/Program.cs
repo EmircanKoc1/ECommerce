@@ -1,3 +1,5 @@
+using DataAccessLayer.ServiceRegistrations;
+
 namespace Presentation.WebAPI
 {
     public class Program
@@ -6,6 +8,7 @@ namespace Presentation.WebAPI
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            builder.Services.ConfigureDbContext(builder.Configuration);
 
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();

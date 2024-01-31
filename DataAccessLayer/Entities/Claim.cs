@@ -2,7 +2,7 @@
 
 namespace DataAccessLayer.Entities
 {
-    public class Claim : ModifiableBaseEntity
+    public class Claim : BaseEntity
     {
         public string ClaimType { get; set; }
         public string ClaimName { get; set; }

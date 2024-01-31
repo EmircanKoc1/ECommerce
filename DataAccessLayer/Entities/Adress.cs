@@ -2,7 +2,7 @@
 
 namespace DataAccessLayer.Entities
 {
-    public class Address : ModifiableBaseEntity 
+    public class Address : BaseEntity 
     {
         public string City { get; set; }
         public string Street { get; set; }

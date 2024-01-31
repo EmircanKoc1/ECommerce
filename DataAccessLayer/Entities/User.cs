@@ -2,7 +2,7 @@
 
 namespace DataAccessLayer.Entities
 {
-    public class User : ModifiableBaseEntity
+    public class User : BaseEntity
     {
         public string Username { get; set; }
         public string Name { get; set; }

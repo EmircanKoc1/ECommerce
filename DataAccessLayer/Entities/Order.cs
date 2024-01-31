@@ -2,7 +2,7 @@
 
 namespace DataAccessLayer.Entities
 {
-    public class Order : ModifiableBaseEntity
+    public class Order : BaseEntity
     {
 
         public DateTime OrderDate { get; set; }

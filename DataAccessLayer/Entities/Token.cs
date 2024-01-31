@@ -2,7 +2,7 @@
 
 namespace DataAccessLayer.Entities
 {
-    public class Token : ModifiableBaseEntity
+    public class Token : BaseEntity
     {
         public string TokenType { get; set; }
         public string AccessToken { get; set; }
