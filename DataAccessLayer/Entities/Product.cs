@@ -10,20 +10,19 @@ namespace DataAccessLayer.Entities
         public int StockQuantity { get; set; }
 
 
-        public long CategoryId { get; set; }
+        public long? CategoryId { get; set; }
         public Category Category { get; set; }
 
 
-        public long SubCategoryId { get; set; }
+        public long? SubCategoryId { get; set; }
         public SubCategory SubCategory { get; set; }
 
 
-        public long BrandId { get; set; }
+        public long? BrandId { get; set; }
         public Brand Brand { get; set; }
 
 
-
-
+        public ICollection<OrderItem> OrderItems { get; set; }
         public ICollection<Product> LikedUsers { get; set; }
         public ICollection<Comment> Comments { get; set; }
         public ICollection<ProductFeature> Features { get; set; }

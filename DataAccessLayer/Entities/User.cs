@@ -14,9 +14,9 @@ namespace DataAccessLayer.Entities
         public bool EmailConfirmed { get; set; }
 
         public Token Token { get; set; }
-        public PaymentCard PaymentCard { get; set; }
 
 
+        public ICollection<PaymentCard> PaymentCard { get; set; }
         public ICollection<Address> Address { get; set; }
         public ICollection<Product> FavoriteProducts { get; set; }
         public ICollection<Order> Orders { get; set; }
@@ -24,6 +24,7 @@ namespace DataAccessLayer.Entities
         public ICollection<Claim> Claims { get; set; }
         public ICollection<Question> Questions { get; set; }
         public ICollection<Answer> Answers { get; set; }
+
 
 
     }

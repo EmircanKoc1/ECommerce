@@ -8,12 +8,12 @@ namespace DataAccessLayer.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<Claim> builder)
         {
-            builder
-                .HasKey(x => x.Id);
+            //builder
+            //    .HasKey(x => x.Id);
 
-            builder
-                .HasMany(x => x.Users)
-                .WithMany(x => x.Claims);
+            //builder
+            //    .HasMany(x => x.Users)
+            //    .WithMany(x => x.Claims);
 
 
         }

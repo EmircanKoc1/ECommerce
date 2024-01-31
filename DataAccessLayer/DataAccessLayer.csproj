@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Entities\CrossTables\" />
     <Folder Include="Extensions\" />
     <Folder Include="Repositories\Abstracts\Base\" />
     <Folder Include="Repositories\Concretes\Base\" />

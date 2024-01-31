@@ -8,18 +8,18 @@ namespace DataAccessLayer.EntityDatabaseConfigurations
     {
         public void Configure(EntityTypeBuilder<Address> builder)
         {
-            builder
-                .HasKey(x => x.Id);
+            //builder
+            //    .HasKey(x => x.Id);
 
-            builder
-                .HasOne(x => x.User)
-                .WithMany(x => x.Address)
-                .HasForeignKey(x => x.UserId);
+            //builder
+            //    .HasOne(x => x.User)
+            //    .WithMany(x => x.Address)
+            //    .HasForeignKey(x => x.UserId);
 
-            builder
-                .HasMany(x => x.Orders)
-                .WithOne(x => x.Address)
-                .HasForeignKey(x => x.AddressId);
+            //builder
+            //    .HasMany(x => x.Orders)
+            //    .WithOne(x => x.Address)
+            //    .HasForeignKey(x => x.AddressId);
 
 
         }

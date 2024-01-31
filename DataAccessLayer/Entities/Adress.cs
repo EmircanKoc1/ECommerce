@@ -9,7 +9,7 @@ namespace DataAccessLayer.Entities
         public string ZipCode { get; set; }
         public string AdressDescription { get; set; }
 
-        public long UserId { get; set; }
+        public long? UserId { get; set; }
         public User User { get; set; }
 
         public ICollection<Order> Orders { get; set; }

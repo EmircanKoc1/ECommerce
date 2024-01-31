@@ -1,11 +1,6 @@
 ﻿using DataAccessLayer.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccessLayer.EntityConfigurations
 {
@@ -13,7 +8,29 @@ namespace DataAccessLayer.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<Product> builder)
         {
-            throw new NotImplementedException();
+            //builder
+            //    .HasKey(x => x.Id);
+
+            //builder
+            //    .HasOne(x => x.Category)
+            //    .WithMany(x => x.Products)
+            //    .HasForeignKey(x => x.CategoryId);
+
+            //builder
+            //    .HasOne(x => x.SubCategory)
+            //    .WithMany(x => x.Products)
+            //    .HasForeignKey(x => x.SubCategoryId);
+
+            //builder
+            //    .HasOne(x => x.Brand)
+            //    .WithMany(x => x.Products)
+            //    .HasForeignKey(x => x.BrandId);
+
+            //builder
+            //    .HasMany(x => x.OrderItems)
+            //    .WithOne(x => x.Product)
+            //    .HasForeignKey(x => x.ProductId);
+
         }
     }
 }

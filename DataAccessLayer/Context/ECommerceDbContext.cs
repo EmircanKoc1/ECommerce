@@ -36,7 +36,10 @@ namespace DataAccessLayer.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(ECommerceDbContext).Assembly);
+            //modelBuilder.ApplyConfigurationsFromAssembly(typeof(ECommerceDbContext).Assembly);
+
+            //modelBuilder.UsePropertyAccessMode(PropertyAccessMode.)
+
         }
 
 

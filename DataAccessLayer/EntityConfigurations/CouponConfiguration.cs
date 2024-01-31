@@ -8,13 +8,13 @@ namespace DataAccessLayer.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<Coupon> builder)
         {
-            builder
-                .HasKey(x => x.Id);
+            //builder
+            //    .HasKey(x => x.Id);
 
-            builder
-                .HasMany(x => x.Orders)
-                .WithOne(x => x.Coupon)
-                .HasForeignKey(x => x.CouponId);
+            //builder
+            //    .HasMany(x => x.Orders)
+            //    .WithOne(x => x.Coupon)
+            //    .HasForeignKey(x => x.CouponId);
 
 
 

@@ -9,7 +9,7 @@ namespace DataAccessLayer.Entities
         public string RefreshToken { get; set; }
         public string TokenExpireDate { get; set; }
 
-        public long UserId { get; set; }
+        public long? UserId { get; set; }
         public User User { get; set; }
 
     }

@@ -13,7 +13,17 @@ namespace DataAccessLayer.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<PaymentCard> builder)
         {
-            throw new NotImplementedException();
+
+            //builder
+            //    .HasKey(x => x.Id);
+
+            //builder
+            //    .HasOne(x => x.User)
+            //    .WithMany(x => x.PaymentCard)
+            //    .HasForeignKey(x => x.UserId);
+
+
+
         }
     }
 }

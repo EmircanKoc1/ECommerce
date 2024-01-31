@@ -8,7 +8,20 @@ namespace DataAccessLayer.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<OrderItem> builder)
         {
-            throw new NotImplementedException();
+
+            //builder
+            //    .HasKey(e => e.Id);
+
+            //builder
+            //    .HasOne(x => x.Order)
+            //    .WithMany(x => x.OrderItems)
+            //    .HasForeignKey(x => x.OrderId);
+
+            //builder
+            //    .HasOne(x => x.Product)
+            //    .WithMany(x => x.OrderItems)
+            //    .HasForeignKey(x => x.ProductId);
+
         }
     }
 }

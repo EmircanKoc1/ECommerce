@@ -8,10 +8,10 @@ namespace DataAccessLayer.Entities
         public string Text { get; set; }
         public short Score { get; set; }
 
-        public long ProductId { get; set; }
+        public long? ProductId { get; set; }
         public Product Product { get; set; }
 
-        public long UserId { get; set; }
+        public long? UserId { get; set; }
         public User User { get; set; }
 
     }

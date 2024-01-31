@@ -7,10 +7,10 @@ namespace DataAccessLayer.Entities
         public string Content { get; set; }
         public DateTime DataAsked { get; set; }
 
-        public long UserId { get; set; }
+        public long? UserId { get; set; }
         public User User { get; set; }
 
-        public long ProductId { get; set; }
+        public long? ProductId { get; set; }
         public Product Product { get; set; }
 
         public bool IsAnswered { get; set; }

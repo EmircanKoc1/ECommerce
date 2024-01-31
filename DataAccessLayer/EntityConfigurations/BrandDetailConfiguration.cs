@@ -8,13 +8,13 @@ namespace DataAccessLayer.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<BrandDetail> builder)
         {
-            builder
-                .HasKey(x => x.Id);
+            //builder
+            //    .HasKey(x => x.Id);
 
-            builder
-                .HasOne(x => x.Brand)
-                .WithOne(x => x.BrandDetail)
-                .HasForeignKey<BrandDetail>(x => x.BrandId);
+            //builder
+            //    .HasOne(x => x.Brand)
+            //    .WithOne(x => x.BrandDetail)
+            //    .HasForeignKey<BrandDetail>(x => x.BrandId);
 
 
         }
