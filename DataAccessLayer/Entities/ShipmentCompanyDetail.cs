@@ -11,6 +11,9 @@ namespace DataAccessLayer.Entities
         public string Description { get; set; }
         public DateTime FoundedYear { get; set; }
 
+        public long? ShipmentCompanyId { get; set; }
+        public ShipmentCompany ShipmentCompany { get; set; }
+       
 
     }
 }

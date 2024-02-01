@@ -27,12 +27,26 @@ namespace DataAccessLayer.EntityDatabaseConfigurations
                 .ToTable("Address");
 
             builder
+               .Property(x => x.Id)
+               .IsRequired(true)
+               .HasColumnName("Id")
+               .HasColumnType("bigint")
+               .HasColumnOrder(1);
+
+            builder
+                .Property(x => x.UserId)
+                .IsRequired(false)
+                .HasColumnName("UserId")
+                .HasColumnType("bigint")
+                .HasColumnOrder(2);
+
+            builder
                 .Property(x => x.City)
                 .IsRequired(false)
                 .HasColumnName("City")
                 .HasMaxLength(100)
                 .HasColumnType("nvarchar")
-                .HasColumnOrder(1);
+                .HasColumnOrder(3);
 
             builder
                 .Property(x => x.Street)
@@ -40,7 +54,7 @@ namespace DataAccessLayer.EntityDatabaseConfigurations
                 .HasColumnName("Street")
                 .HasColumnType("nvarchar")
                 .HasMaxLength(100)
-                .HasColumnOrder(3);
+                .HasColumnOrder(4);
 
             builder
                 .Property(x => x.Zipcode)
@@ -48,7 +62,7 @@ namespace DataAccessLayer.EntityDatabaseConfigurations
                 .HasColumnName("Zipcode")
                 .HasColumnType("nvarchar")
                 .HasMaxLength(30)
-                .HasColumnOrder(4);
+                .HasColumnOrder(5);
 
             builder
                 .Property(x => x.AdressDescription)
@@ -56,14 +70,9 @@ namespace DataAccessLayer.EntityDatabaseConfigurations
                 .HasColumnName("AddressDescription")
                 .HasColumnType("nvarchar")
                 .HasMaxLength(300)
-                .HasColumnOrder(5);
+                .HasColumnOrder(6);
 
-            builder
-                .Property(x=>x.UserId)
-                .IsRequired(false)
-                .HasColumnName("UserId")
-                .HasColumnType("bigint")
-                .HasColumnOrder(2);
+            
                 
 
         }

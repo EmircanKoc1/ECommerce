@@ -7,6 +7,7 @@ namespace DataAccessLayer.Entities
 
         public long? OrderId { get; set; }
         public Order Order { get; set; }
+
         public string Description { get; set; }
         public bool IsPreparing { get; set; }
         public bool IsCancel { get; set; }
