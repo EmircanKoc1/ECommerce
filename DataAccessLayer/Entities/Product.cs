@@ -23,7 +23,7 @@ namespace DataAccessLayer.Entities
 
 
         public ICollection<OrderItem> OrderItems { get; set; }
-        public ICollection<Product> LikedUsers { get; set; }
+        public ICollection<Product> LikedUsers { get; set; } //todo gel bak buraya
         public ICollection<Comment> Comments { get; set; }
         public ICollection<ProductFeature> Features { get; set; }
         public ICollection<ProductImage> Images { get; set; }
