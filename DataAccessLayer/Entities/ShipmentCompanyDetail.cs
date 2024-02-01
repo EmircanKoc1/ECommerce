@@ -9,7 +9,7 @@ namespace DataAccessLayer.Entities
         public int TotalSuccessfulShipmentCount { get; set; }
 
         public string Description { get; set; }
-        public DateTime FoundedYear { get; set; }
+        public DateTime? FoundedYear { get; set; }
 
         public long? ShipmentCompanyId { get; set; }
         public ShipmentCompany ShipmentCompany { get; set; }

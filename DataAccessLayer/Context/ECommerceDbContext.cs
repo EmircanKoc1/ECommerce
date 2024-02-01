@@ -1,5 +1,6 @@
 ﻿using DataAccessLayer.Entities;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 namespace DataAccessLayer.Context
 {
@@ -11,7 +12,6 @@ namespace DataAccessLayer.Context
         }
 
         public DbSet<Address> Addresses { get; set; }
-        public DbSet<Answer> Answers { get; set; }
         public DbSet<Brand> Brands { get; set; }
         public DbSet<BrandDetail> BrandDetails { get; set; }
         public DbSet<Category> Categories { get; set; }
@@ -25,7 +25,6 @@ namespace DataAccessLayer.Context
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductFeature> ProductFeatures { get; set; }
         public DbSet<ProductImage> ProductImages { get; set; }
-        public DbSet<Question> Questions { get; set; }
         public DbSet<ShipmentCompany> ShipmentCompanies { get; set; }
         public DbSet<ShipmentCompanyDetail> ShipmentDetails { get; set; }
         public DbSet<SubCategory> SubCategories { get; set; }
@@ -36,7 +35,7 @@ namespace DataAccessLayer.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.ApplyConfigurationsFromAssembly(typeof(ECommerceDbContext).Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
             //modelBuilder.UsePropertyAccessMode(PropertyAccessMode.)
 

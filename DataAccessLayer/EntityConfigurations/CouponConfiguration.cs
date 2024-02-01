@@ -70,32 +70,40 @@ namespace DataAccessLayer.EntityConfigurations
               .HasColumnOrder(6);
 
             builder
-            .Property(x => x.CreatedDate)
-            .IsRequired(true)
-            .HasColumnName("CreatedDate")
+            .Property(x => x.ExpirationDate)
+            .IsRequired(false)
+            .HasColumnName("ExprationDate")
             .HasColumnType("datetime2")
             .HasColumnOrder(7);
 
+
+            builder
+            .Property(x => x.CreatedDate)
+            .IsRequired(false)
+            .HasColumnName("CreatedDate")
+            .HasColumnType("datetime2")
+            .HasColumnOrder(8);
+
             builder
                .Property(x => x.UpdatedDate)
-               .IsRequired(true)
+               .IsRequired(false)
                .HasColumnName("UpdatedDate")
                .HasColumnType("datetime2")
-               .HasColumnOrder(8);
+               .HasColumnOrder(9);
 
             builder
                .Property(x => x.DeletedDate)
-               .IsRequired(true)
+               .IsRequired(false)
                .HasColumnName("DeletedDate")
                .HasColumnType("datetime2")
-               .HasColumnOrder(9);
+               .HasColumnOrder(10);
 
             builder
                 .Property(x => x.Status)
                 .IsRequired(true)
                 .HasColumnName("Status")
                 .HasColumnType("bit")
-                .HasColumnOrder(10);
+                .HasColumnOrder(11);
         }
     }
 }

@@ -95,6 +95,7 @@ namespace DataAccessLayer.EntityConfigurations
             builder
                 .Property(x => x.TotalAmount)
                 .IsRequired(true)
+                .HasDefaultValue(0)
                 .HasColumnName("TotalAmount")
                 .HasColumnType("float")
                 .HasColumnOrder(7);
@@ -103,27 +104,27 @@ namespace DataAccessLayer.EntityConfigurations
                 .Property(x => x.DiscountAmount)
                 .IsRequired(true)
                 .HasDefaultValue(0)
-                .HasColumnName("TotalAmount")
+                .HasColumnName("DiscountAmount")
                 .HasColumnType("float")
                 .HasColumnOrder(8);
 
             builder
                .Property(x => x.CreatedDate)
-               .IsRequired(true)
+               .IsRequired(false)
                .HasColumnName("CreatedDate")
                .HasColumnType("datetime2")
                .HasColumnOrder(9);
 
             builder
                .Property(x => x.UpdatedDate)
-               .IsRequired(true)
+               .IsRequired(false)
                .HasColumnName("UpdatedDate")
                .HasColumnType("datetime2")
                .HasColumnOrder(10);
 
             builder
                .Property(x => x.DeletedDate)
-               .IsRequired(true)
+               .IsRequired(false)
                .HasColumnName("DeletedDate")
                .HasColumnType("datetime2")
                .HasColumnOrder(11);

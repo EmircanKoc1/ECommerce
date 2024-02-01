@@ -13,7 +13,7 @@ namespace DataAccessLayer.Entities
         public string Number { get; set; }
         public string PersonName { get; set; }
         public string PersonSurname { get; set; }
-        public DateTime ExpireDate { get; set; }
+        public DateTime? ExpireDate { get; set; }
         public string CCV { get; set; }
 
         public long? UserId { get; set; }

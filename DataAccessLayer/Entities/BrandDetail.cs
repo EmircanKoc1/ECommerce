@@ -6,7 +6,7 @@ namespace DataAccessLayer.Entities
     {
         public string Description { get; set; }
         public string LogoPath { get; set; }
-        public DateTime FoundedYear { get; set; }
+        public DateTime? FoundedYear { get; set; }
 
         public long? BrandId { get; set; }
         public Brand Brand { get; set; }

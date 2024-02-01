@@ -21,7 +21,7 @@ namespace DataAccessLayer.EntityConfigurations
             #endregion
 
             builder
-                .ToTable("Id");
+                .ToTable("OrderStatuses");
 
             builder
                 .Property(x => x.Id)
@@ -47,42 +47,42 @@ namespace DataAccessLayer.EntityConfigurations
 
             builder
                 .Property(x => x.IsPreparing)
-                .IsRequired(false)
+                .IsRequired(true)
                 .HasColumnName("IsPreparing")
                 .HasColumnType("bit")
                 .HasColumnOrder(4);
 
             builder
                .Property(x => x.IsCancel)
-               .IsRequired(false)
+               .IsRequired(true)
                .HasColumnName("IsCancel")
                .HasColumnType("bit")
                .HasColumnOrder(5);
 
             builder
                .Property(x => x.IsShipment)
-               .IsRequired(false)
+               .IsRequired(true)
                .HasColumnName("IsShipment")
                .HasColumnType("bit")
                .HasColumnOrder(6);
 
             builder
             .Property(x => x.CreatedDate)
-            .IsRequired(true)
+            .IsRequired(false)
             .HasColumnName("CreatedDate")
             .HasColumnType("datetime2")
             .HasColumnOrder(7);
 
             builder
                .Property(x => x.UpdatedDate)
-               .IsRequired(true)
+               .IsRequired(false)
                .HasColumnName("UpdatedDate")
                .HasColumnType("datetime2")
                .HasColumnOrder(8);
 
             builder
                .Property(x => x.DeletedDate)
-               .IsRequired(true)
+               .IsRequired(false)
                .HasColumnName("DeletedDate")
                .HasColumnType("datetime2")
                .HasColumnOrder(9);

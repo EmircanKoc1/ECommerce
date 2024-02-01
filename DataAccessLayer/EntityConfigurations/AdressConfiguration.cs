@@ -24,7 +24,7 @@ namespace DataAccessLayer.EntityDatabaseConfigurations
             #endregion
 
             builder
-                .ToTable("Address");
+                .ToTable("Addresses");
 
             builder
                .Property(x => x.Id)
@@ -73,23 +73,23 @@ namespace DataAccessLayer.EntityDatabaseConfigurations
                 .HasColumnOrder(6);
 
 
-            builder
-          .Property(x => x.CreatedDate)
-          .IsRequired(true)
-          .HasColumnName("CreatedDate")
-          .HasColumnType("datetime2")
-          .HasColumnOrder(7);
+                builder
+              .Property(x => x.CreatedDate)
+              .IsRequired(false)
+              .HasColumnName("CreatedDate")
+              .HasColumnType("datetime2")
+              .HasColumnOrder(7);
 
             builder
                .Property(x => x.UpdatedDate)
-               .IsRequired(true)
+               .IsRequired(false)
                .HasColumnName("UpdatedDate")
                .HasColumnType("datetime2")
                .HasColumnOrder(8);
 
             builder
                .Property(x => x.DeletedDate)
-               .IsRequired(true)
+               .IsRequired(false)
                .HasColumnName("DeletedDate")
                .HasColumnType("datetime2")
                .HasColumnOrder(9);

@@ -9,7 +9,7 @@ namespace DataAccessLayer.Entities
         public string Surname { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
-        public DateTime BirthDate { get; set; }
+        public DateTime? BirthDate { get; set; }
         public string Password { get; set; }
         public bool EmailConfirmed { get; set; }
 
@@ -22,8 +22,7 @@ namespace DataAccessLayer.Entities
         public ICollection<Order> Orders { get; set; }
         public ICollection<Comment> Comments { get; set; }
         public ICollection<Claim> Claims { get; set; }
-        public ICollection<Question> Questions { get; set; }
-        public ICollection<Answer> Answers { get; set; }
+       
 
 
 

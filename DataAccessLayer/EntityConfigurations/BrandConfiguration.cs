@@ -18,6 +18,8 @@ namespace DataAccessLayer.EntityConfigurations
             //    .HasForeignKey(x => x.BrandId);
             #endregion
 
+            builder
+                .ToTable("Brands");
 
             builder
                 .Property(x => x.Id)
@@ -37,7 +39,7 @@ namespace DataAccessLayer.EntityConfigurations
 
             builder
                 .Property(x => x.CreatedDate)
-                .IsRequired(true)
+                .IsRequired(false)
                 .HasColumnName("CreatedDate")
                 .HasColumnType("datetime2")
                 .HasColumnOrder(3);

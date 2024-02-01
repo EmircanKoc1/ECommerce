@@ -47,42 +47,42 @@ namespace DataAccessLayer.EntityConfigurations
             .HasColumnName("RefreshToken")
             .HasColumnType("nvarchar")
             .HasMaxLength(100)
-            .HasColumnOrder(4);
+            .HasColumnOrder(5);
 
             builder
               .Property(x => x.TokenExpireDate)
-              .IsRequired(true)
+              .IsRequired(false)
               .HasColumnName("TokenExpireDate")
-              .HasColumnType("datetime2")
-              .HasColumnOrder(5);
-
-            builder
-              .Property(x => x.CreatedDate)
-              .IsRequired(true)
-              .HasColumnName("CreatedDate")
               .HasColumnType("datetime2")
               .HasColumnOrder(6);
 
             builder
+              .Property(x => x.CreatedDate)
+              .IsRequired(false)
+              .HasColumnName("CreatedDate")
+              .HasColumnType("datetime2")
+              .HasColumnOrder(7);
+
+            builder
                .Property(x => x.UpdatedDate)
-               .IsRequired(true)
+               .IsRequired(false)
                .HasColumnName("UpdatedDate")
                .HasColumnType("datetime2")
-               .HasColumnOrder(7);
+               .HasColumnOrder(8);
 
             builder
                .Property(x => x.DeletedDate)
-               .IsRequired(true)
+               .IsRequired(false)
                .HasColumnName("DeletedDate")
                .HasColumnType("datetime2")
-               .HasColumnOrder(8);
+               .HasColumnOrder(9);
 
             builder
                 .Property(x => x.Status)
                 .IsRequired(true)
                 .HasColumnName("Status")
                 .HasColumnType("bit")
-                .HasColumnOrder(9);
+                .HasColumnOrder(10);
 
 
         }

@@ -32,35 +32,35 @@ namespace DataAccessLayer.EntityConfigurations
                .HasColumnName("Description")
                .HasColumnType("nvarchar")
                .HasMaxLength(100)
-               .HasColumnOrder(2);
-
-            builder
-               .Property(x => x.CreatedDate)
-               .IsRequired(true)
-               .HasColumnName("CreatedDate")
-               .HasColumnType("datetime2")
                .HasColumnOrder(3);
 
             builder
-               .Property(x => x.UpdatedDate)
-               .IsRequired(true)
-               .HasColumnName("UpdatedDate")
+               .Property(x => x.CreatedDate)
+               .IsRequired(false)
+               .HasColumnName("CreatedDate")
                .HasColumnType("datetime2")
                .HasColumnOrder(4);
 
             builder
-               .Property(x => x.DeletedDate)
-               .IsRequired(true)
-               .HasColumnName("DeletedDate")
+               .Property(x => x.UpdatedDate)
+               .IsRequired(false)
+               .HasColumnName("UpdatedDate")
                .HasColumnType("datetime2")
                .HasColumnOrder(5);
+
+            builder
+               .Property(x => x.DeletedDate)
+               .IsRequired(false)
+               .HasColumnName("DeletedDate")
+               .HasColumnType("datetime2")
+               .HasColumnOrder(6);
 
             builder
                 .Property(x => x.Status)
                 .IsRequired(true)
                 .HasColumnName("Status")
                 .HasColumnType("bit")
-                .HasColumnOrder(6);
+                .HasColumnOrder(7);
 
         }
     }

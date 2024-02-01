@@ -27,8 +27,7 @@ namespace DataAccessLayer.Entities
         public ICollection<Comment> Comments { get; set; }
         public ICollection<ProductFeature> Features { get; set; }
         public ICollection<ProductImage> Images { get; set; }
-        public ICollection<Question> Questions { get; set; }
-        public ICollection<Answer> Answers { get; set; }
+       
         public ICollection<Tag> Tags { get; set; }
 
     }
