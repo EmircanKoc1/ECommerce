@@ -8,8 +8,6 @@
 
   <ItemGroup>
     <Folder Include="Extensions\" />
-    <Folder Include="Repositories\Abstracts\Base\" />
-    <Folder Include="Repositories\Concretes\Base\" />
     <Folder Include="SeedDatas\" />
   </ItemGroup>
 

@@ -4,7 +4,10 @@ namespace DataAccessLayer.Entities
 {
     public class Order : BaseEntity
     {
-
+        public Order()
+        {
+            OrderItems = new HashSet<OrderItem>();
+        }
         public DateTime OrderDate { get; set; }
         public float TotalAmount { get; set; }
         public float DiscountAmount { get; set; }

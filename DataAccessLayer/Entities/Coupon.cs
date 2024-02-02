@@ -4,6 +4,12 @@ namespace DataAccessLayer.Entities
 {
     public class Coupon : BaseEntity
     {
+        public Coupon()
+        {
+            Orders = new HashSet<Order>();
+        }
+
+
         public string Name { get; set; }
         public string Description { get; set; }
         public string Code { get; set; }

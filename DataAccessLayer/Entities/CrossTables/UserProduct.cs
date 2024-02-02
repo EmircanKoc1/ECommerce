@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Entities.CrossTables
 {
-    public class TagProduct
+    internal class UserProduct
     {
     }
 }

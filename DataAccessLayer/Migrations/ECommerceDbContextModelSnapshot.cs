@@ -573,9 +573,11 @@ namespace DataAccessLayer.Migrations
                         .HasColumnOrder(10);
 
                     b.Property<double>("TotalPrice")
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("float")
                         .HasColumnName("TotalPrice")
-                        .HasColumnOrder(6);
+                        .HasColumnOrder(6)
+                        .HasComputedColumnSql("[Price]*[Quantity]");
 
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2")
@@ -785,9 +787,6 @@ namespace DataAccessLayer.Migrations
                         .HasColumnName("Price")
                         .HasColumnOrder(7);
 
-                    b.Property<long?>("ProductId")
-                        .HasColumnType("bigint");
-
                     b.Property<bool>("Status")
                         .HasColumnType("bit")
                         .HasColumnName("Status")
@@ -808,20 +807,13 @@ namespace DataAccessLayer.Migrations
                         .HasColumnName("UpdatedDate")
                         .HasColumnOrder(10);
 
-                    b.Property<long?>("UserId")
-                        .HasColumnType("bigint");
-
                     b.HasKey("Id");
 
                     b.HasIndex("BrandId");
 
                     b.HasIndex("CategoryId");
 
-                    b.HasIndex("ProductId");
-
                     b.HasIndex("SubCategoryId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Products", (string)null);
                 });
@@ -1312,6 +1304,21 @@ namespace DataAccessLayer.Migrations
                     b.ToTable("ProductTag");
                 });
 
+            modelBuilder.Entity("ProductUser", b =>
+                {
+                    b.Property<long>("LikedProductsId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("LikedUsersId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("LikedProductsId", "LikedUsersId");
+
+                    b.HasIndex("LikedUsersId");
+
+                    b.ToTable("ProductUser");
+                });
+
             modelBuilder.Entity("ClaimUser", b =>
                 {
                     b.HasOne("DataAccessLayer.Entities.Claim", null)
@@ -1414,7 +1421,7 @@ namespace DataAccessLayer.Migrations
             modelBuilder.Entity("DataAccessLayer.Entities.PaymentCard", b =>
                 {
                     b.HasOne("DataAccessLayer.Entities.User", "User")
-                        .WithMany("PaymentCard")
+                        .WithMany("PaymentCards")
                         .HasForeignKey("UserId");
 
                     b.Navigation("User");
@@ -1430,17 +1437,9 @@ namespace DataAccessLayer.Migrations
                         .WithMany("Products")
                         .HasForeignKey("CategoryId");
 
-                    b.HasOne("DataAccessLayer.Entities.Product", null)
-                        .WithMany("LikedUsers")
-                        .HasForeignKey("ProductId");
-
                     b.HasOne("DataAccessLayer.Entities.SubCategory", "SubCategory")
                         .WithMany("Products")
                         .HasForeignKey("SubCategoryId");
-
-                    b.HasOne("DataAccessLayer.Entities.User", null)
-                        .WithMany("FavoriteProducts")
-                        .HasForeignKey("UserId");
 
                     b.Navigation("Brand");
 
@@ -1513,6 +1512,21 @@ namespace DataAccessLayer.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("ProductUser", b =>
+                {
+                    b.HasOne("DataAccessLayer.Entities.Product", null)
+                        .WithMany()
+                        .HasForeignKey("LikedProductsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DataAccessLayer.Entities.User", null)
+                        .WithMany()
+                        .HasForeignKey("LikedUsersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("DataAccessLayer.Entities.Address", b =>
                 {
                     b.Navigation("Orders");
@@ -1554,8 +1568,6 @@ namespace DataAccessLayer.Migrations
 
                     b.Navigation("Images");
 
-                    b.Navigation("LikedUsers");
-
                     b.Navigation("OrderItems");
                 });
 
@@ -1578,11 +1590,9 @@ namespace DataAccessLayer.Migrations
 
                     b.Navigation("Comments");
 
-                    b.Navigation("FavoriteProducts");
-
                     b.Navigation("Orders");
 
-                    b.Navigation("PaymentCard");
+                    b.Navigation("PaymentCards");
 
                     b.Navigation("Token")
                         .IsRequired();

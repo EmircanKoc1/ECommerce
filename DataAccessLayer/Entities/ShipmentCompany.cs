@@ -4,6 +4,12 @@ namespace DataAccessLayer.Entities
 {
     public class ShipmentCompany : BaseEntity
     {
+        public ShipmentCompany()
+        {
+            Orders = new HashSet<Order>();
+        }
+
+
         public string Name { get; set; }
 
         public ShipmentCompanyDetail ShipmentDetail { get; set; }

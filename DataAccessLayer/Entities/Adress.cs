@@ -2,8 +2,14 @@
 
 namespace DataAccessLayer.Entities
 {
-    public class Address : BaseEntity 
+    public class Address : BaseEntity
     {
+
+        public Address()
+        {
+            Orders = new HashSet<Order>();
+        }
+
         public string City { get; set; }
         public string Street { get; set; }
         public string Zipcode { get; set; }

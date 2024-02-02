@@ -68,7 +68,8 @@ namespace DataAccessLayer.EntityConfigurations
                .IsRequired(true)
                .HasColumnName("TotalPrice")
                .HasColumnType("float")
-               .HasColumnOrder(6);
+               .HasColumnOrder(6)
+               .HasComputedColumnSql("[Price]*[Quantity]");
 
             builder
             .Property(x => x.CreatedDate)

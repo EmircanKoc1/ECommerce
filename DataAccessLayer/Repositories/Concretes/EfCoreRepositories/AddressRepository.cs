@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccessLayer.Entities.CrossTables
+namespace DataAccessLayer.Repositories.Concretes.EfCoreRepositories
 {
-    public class TagProduct
+    public class AddressRepository : 
     {
     }
 }
