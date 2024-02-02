@@ -5,9 +5,9 @@ using DataAccessLayer.Repositories.Concretes.Base;
 
 namespace DataAccessLayer.Repositories.Concretes.EfCoreRepositories
 {
-    public class AddressRepository : GenericRepository<Address>, IAddressRepository
+    public class CategoryRepository : GenericRepository<Category>, ICategoryRepository
     {
-        public AddressRepository(ECommerceDbContext context) : base(context)
+        public CategoryRepository(ECommerceDbContext context) : base(context)
         {
         }
     }
