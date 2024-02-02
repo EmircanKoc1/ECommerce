@@ -3,6 +3,7 @@ using DataAccessLayer.Context;
 using DataAccessLayer.Entities.Base.Concretes;
 using DataAccessLayer.Repositories.Abstracts.Base;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace DataAccessLayer.Repositories.Concretes.Base
 {
@@ -10,16 +11,12 @@ namespace DataAccessLayer.Repositories.Concretes.Base
     where T : BaseEntity
     {
         ECommerceDbContext _context;
-        DbSet<T> _table;
+        DbSet<T> _table => _context.Set<T>();
         public GenericRepository(ECommerceDbContext context)
-        {
-            _context = context ?? throw new DbContextNotRegisteredException(nameof(ECommerceDbContext));
-            _table = _context.Set<T>();
-        }
+            => _context = context ?? throw new DbContextNotRegisteredException(nameof(ECommerceDbContext));
 
+        void x()=>_context.Set<T>();
        
-
-
 
     }
 }
