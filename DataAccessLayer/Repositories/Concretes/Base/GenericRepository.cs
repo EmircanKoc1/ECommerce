@@ -1,4 +1,5 @@
-﻿using DataAccessLayer.Context;
+﻿using CoreLayer.Exceptions;
+using DataAccessLayer.Context;
 using DataAccessLayer.Entities.Base.Concretes;
 using DataAccessLayer.Repositories.Abstracts.Base;
 using Microsoft.EntityFrameworkCore;
@@ -12,14 +13,11 @@ namespace DataAccessLayer.Repositories.Concretes.Base
         DbSet<T> _table;
         public GenericRepository(ECommerceDbContext context)
         {
-            _context = context;
+            _context = context ?? throw new DbContextNotRegisteredException(nameof(ECommerceDbContext));
             _table = _context.Set<T>();
         }
 
-        void f()
-        {
-            _context.
-        }
+       
 
 
 

@@ -2,14 +2,9 @@
 
 namespace DataAccessLayer.Repositories.Abstracts.Base
 {
-    public interface IGenericRepository<T> : IWriteRepository<T>, IReadRepository<T>
+    public interface IReadRepository<T>
     where T : BaseEntity
     {
-
-
-
-
-
 
     }
 }

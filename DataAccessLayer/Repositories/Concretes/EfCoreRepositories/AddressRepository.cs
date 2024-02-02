@@ -13,10 +13,4 @@ namespace DataAccessLayer.Repositories.Concretes.EfCoreRepositories
     }
    
 
-
-
-
-
-
-
 }
