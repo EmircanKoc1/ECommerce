@@ -1,4 +1,6 @@
-﻿using CoreLayer.Exceptions;
+﻿using CoreLayer.Enums;
+using CoreLayer.Exceptions;
+using CoreLayer.Model;
 using DataAccessLayer.Context;
 using DataAccessLayer.Entities.Base.Concretes;
 using DataAccessLayer.Repositories.Abstracts.Base;
@@ -15,8 +17,233 @@ namespace DataAccessLayer.Repositories.Concretes.Base
         public GenericRepository(ECommerceDbContext context)
             => _context = context ?? throw new DbContextNotRegisteredException(nameof(ECommerceDbContext));
 
-        void x()=>_context.Set<T>();
-       
+        public bool Add(T entity)
+        {
+            var entry = _table.Add(entity);
+            return entry.State == EntityState.Added;
+        }
+        public async Task<bool> AddAsync(T entity)
+        {
+            var entry = await _table.AddAsync(entity);
+            return _context.Entry(entry).State == EntityState.Added;
+        }
+        public void AddRange(IEnumerable<T> entities)
+            => _table.AddRange(entities);
+        public async Task AddRangeAsync(IEnumerable<T> entities)
+            => await _table.AddRangeAsync(entities);
 
+        public void DeleteRange(IEnumerable<T> entities)
+        {
+            _table.AttachRange(entities);
+            var deletedDate = DateTime.Now;
+
+            foreach (var entity in entities)
+            {
+                entity.DeletedDate = deletedDate;
+                entity.Status = false;
+            }
+
+        }
+
+        public bool Update(T entity)
+        {
+            var entry = _table.Update(entity);
+
+            //var entry = _table.Attach(entity);
+            //entry.State = EntityState.Modified;
+
+            return entry.State == EntityState.Modified;
+        }
+
+        public T GetById(bool tracking = false, params object[] keyValues)
+        {
+            var entity = _table.Find(keyValues);
+            if (entity is null)
+                return null;
+
+            if (!tracking)
+                _context.Entry(entity).State = EntityState.Detached;
+
+            return entity;
+        }
+
+        public async Task<T> GetByIdAsync(bool tracking = false, params object[] keyValues)
+        {
+            var entity = await _table.FindAsync(keyValues);
+
+            if (entity is null)
+                return null;
+
+            if (!tracking)
+                _context.Entry(entity).State = EntityState.Detached;
+
+            return entity;
+
+        }
+
+        public async Task<T> GetFirstOrDefaultAsync(Expression<Func<T, bool>> predicate, bool tracking = false)
+        {
+            var entity = await _table.FirstOrDefaultAsync(predicate);
+
+            if (entity is null)
+                return null;
+
+            if (!tracking)
+                _context.Entry(entity).State = EntityState.Detached;
+
+            return entity;
+
+        }
+
+        public T GetFirstOrDefault(Expression<Func<T, bool>> predicate, bool tracking = false)
+        {
+            var entity = _table.FirstOrDefault(predicate);
+
+            if (entity is null)
+                return null;
+
+            if (!tracking)
+                _context.Entry(entity).State = EntityState.Detached;
+
+            return entity;
+        }
+
+        public IEnumerable<T> GetAll(PaginationModel paginationModel, bool tracking = false)
+        {
+            if (paginationModel is null)
+                paginationModel = new();
+
+            var query = _table.AsQueryable();
+
+            if (!tracking)
+                query = query.AsNoTracking();
+
+            query = query
+                .Take(paginationModel.PageSize)
+                .Skip((paginationModel.PageNumber - 1) * paginationModel.PageSize);
+
+            return query.AsEnumerable();
+        }
+
+        public IQueryable<T> GetAll(bool tracking = false)
+        {
+            if (!tracking)
+                return _table.AsNoTracking();
+
+            return _table.AsQueryable();
+
+        }
+
+        public IEnumerable<T> GetAll(PaginationModel paginationModel, Expression<Func<T, bool>> predicate, Expression<Func<T, long>> orderByKeySelector, OrderByDirection direction, bool tracking = false, params Expression<Func<T, long>>[] thenByKeySelector)
+        {
+            IOrderedQueryable<T> orderedQueryable;
+
+            var query = GetAll(tracking);
+
+            if (predicate is not null)
+                query = query.Where(predicate);
+
+            query = query
+               .Take(paginationModel.PageSize)
+               .Skip((paginationModel.PageNumber - 1) * paginationModel.PageSize);
+
+            if (orderByKeySelector is not null)
+            {
+                orderedQueryable = direction switch
+                {
+                    OrderByDirection.Ascending => query.OrderBy(orderByKeySelector),
+                    OrderByDirection.Descending => query.OrderByDescending(orderByKeySelector),
+                    _ => query.OrderBy(orderByKeySelector)
+                };
+
+                foreach (var keySelector in thenByKeySelector)
+                    orderedQueryable = orderedQueryable.ThenBy(keySelector);
+
+
+                return orderedQueryable.AsEnumerable();
+            }
+
+            return query.AsEnumerable();
+
+        }
+
+        public async Task<IEnumerable<T>> GetAllAsync(PaginationModel paginationModel, Expression<Func<T, bool>> predicate, Expression<Func<T, long>> orderByKeySelector, OrderByDirection direction, bool tracking = false, params Expression<Func<T, long>>[] thenByKeySelector)
+        {
+            IOrderedQueryable<T> orderedQueryable;
+
+            var query = GetAll(tracking);
+
+            if (predicate is not null)
+                query = query.Where(predicate);
+
+            query = query
+               .Take(paginationModel.PageSize)
+               .Skip((paginationModel.PageNumber - 1) * paginationModel.PageSize);
+
+            if (orderByKeySelector is not null)
+            {
+                orderedQueryable = direction switch
+                {
+                    OrderByDirection.Ascending => query.OrderBy(orderByKeySelector),
+                    OrderByDirection.Descending => query.OrderByDescending(orderByKeySelector),
+                    _ => query.OrderBy(orderByKeySelector)
+                };
+
+                foreach (var keySelector in thenByKeySelector)
+                    orderedQueryable = orderedQueryable.ThenBy(keySelector);
+
+
+                return await orderedQueryable.ToListAsync();
+            }
+
+            return await query.ToListAsync();
+        }
+
+        public bool DeleteAsync(T entity)
+        {
+            var entry = _table.Attach(entity);
+            entity.DeletedDate = DateTime.Now;
+            entity.Status = false;
+
+            return entry.State == EntityState.Modified;
+        }
+
+        public async Task<bool> DeleteAsync(long id)
+        {
+            var entity = await GetByIdAsync(true, id);
+
+            entity.DeletedDate = DateTime.Now;
+            entity.Status = false;
+
+            return _context.Entry(entity).State == EntityState.Modified;
+        }
+
+        public bool Delete(long id)
+        {
+            var entity = GetById(true, id);
+
+            entity.DeletedDate = DateTime.Now;
+            entity.Status = false;
+
+            return _context.Entry(entity).State == EntityState.Modified;
+
+        }
+
+        public void DeleteRange(Expression<Func<T, bool>> predicate)
+        {
+            var entities = GetAll(true).Where(predicate).AsEnumerable();
+            DeleteRange(entities);
+        }
+       
+        public Task<T> GetByWithIncludes(long id, bool tracking = false, params Expression<Func<T, object>>[] includes)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int SaveChanges()
+           => _context.SaveChanges();
+
+        public async Task<int> SaveChangesAsync()
+            => await _context.SaveChangesAsync();
     }
 }

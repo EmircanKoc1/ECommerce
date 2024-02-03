@@ -8,7 +8,7 @@ namespace DataAccessLayer.Repositories.Abstracts.Base
     where T : BaseEntity
     {
         Task<T> GetByIdAsync(bool tracking = false, params object[] keyValues);
-        T GetById(bool tracking = false, params object[] keyValues);
+        T GetByIdAsync(bool tracking = false, params object[] keyValues);
         Task<T> GetFirstOrDefaultAsync(Expression<Func<T, bool>> predicate, bool tracking = false);
         T GetFirstOrDefault(Expression<Func<T, bool>> predicate, bool tracking = false);
         IEnumerable<T> GetAll(PaginationModel paginationModel, bool tracking = false);
@@ -28,7 +28,7 @@ namespace DataAccessLayer.Repositories.Abstracts.Base
            bool tracking = false,
            params Expression<Func<T, long>>[] thenByKeySelector);
 
-
+        Task<T> GetByWithIncludes(long id, bool tracking = false, params Expression<Func<T, object>>[] includes);
 
 
 
