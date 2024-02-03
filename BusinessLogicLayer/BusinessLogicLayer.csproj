@@ -10,8 +10,6 @@
     <Folder Include="Mappings\" />
     <Folder Include="Extensions\" />
     <Folder Include="ServiceRegistrations\" />
-    <Folder Include="Services\Abstracts\" />
-    <Folder Include="Services\Concretes\" />
     <Folder Include="Validations\" />
   </ItemGroup>
 
