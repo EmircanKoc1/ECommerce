@@ -10,12 +10,10 @@ namespace DataAccessLayer.Repositories.Concretes.EfCoreRepositories
         public UserRepository(ECommerceDbContext context) : base(context)
         {
         }
+
+       
+
     }
-   
-
-
-
-
 
 
 

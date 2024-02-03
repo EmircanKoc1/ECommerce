@@ -77,7 +77,6 @@ namespace DataAccessLayer.Repositories.Concretes.Base
             DeleteRange(entities);
         }
 
-
         public bool Update(T entity)
         {
             var entry = _table.Update(entity);
@@ -232,9 +231,6 @@ namespace DataAccessLayer.Repositories.Concretes.Base
         {
             throw new NotImplementedException();
         }
-
-        
-        
 
         public int SaveChanges()
            => _context.SaveChanges();

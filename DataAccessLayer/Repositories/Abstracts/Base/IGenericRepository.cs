@@ -6,10 +6,5 @@ namespace DataAccessLayer.Repositories.Abstracts.Base
     where T : BaseEntity
     {
 
-
-
-
-
-
     }
 }

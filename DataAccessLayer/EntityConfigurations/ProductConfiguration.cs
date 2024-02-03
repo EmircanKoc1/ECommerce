@@ -58,19 +58,19 @@ namespace DataAccessLayer.EntityConfigurations
                .HasColumnOrder(3);
 
             builder
-             .Property(x => x.BrandId)
-             .IsRequired(false)
-             .HasColumnName("BrandId")
-             .HasColumnType("bigint")
-             .HasColumnOrder(4);
+               .Property(x => x.BrandId)
+               .IsRequired(false)
+               .HasColumnName("BrandId")
+               .HasColumnType("bigint")
+               .HasColumnOrder(4);
 
             builder
-                .Property(x => x.Name)
-                .IsRequired(true)
-                .HasColumnName("Name")
-                .HasColumnType("nvarchar")
-                .HasMaxLength(100)
-                .HasColumnOrder(5);
+               .Property(x => x.Name)
+               .IsRequired(true)
+               .HasColumnName("Name")
+               .HasColumnType("nvarchar")
+               .HasMaxLength(100)
+               .HasColumnOrder(5);
 
             builder
                .Property(x => x.Description)
@@ -81,32 +81,32 @@ namespace DataAccessLayer.EntityConfigurations
                .HasColumnOrder(6);
 
             builder
-                .Property(x => x.Price)
-                .IsRequired(true)
-                .HasColumnName("Price")
-                .HasColumnType("float")
-                .HasColumnOrder(7);
+               .Property(x => x.Price)
+               .IsRequired(true)
+               .HasColumnName("Price")
+               .HasColumnType("float")
+               .HasColumnOrder(7);
 
             builder
-              .Property(x => x.StockQuantity)
-              .IsRequired(true)
-              .HasColumnName("StockQuantity")
-              .HasColumnType("int")
-              .HasColumnOrder(8);
+               .Property(x => x.StockQuantity)
+               .IsRequired(true)
+               .HasColumnName("StockQuantity")
+               .HasColumnType("int")
+               .HasColumnOrder(8);
 
             builder
-            .Property(x => x.CreatedDate)
-            .IsRequired(false)
-            .HasColumnName("CreatedDate")
-            .HasColumnType("datetime2")
-            .HasColumnOrder(9);
+               .Property(x => x.CreatedDate)
+               .IsRequired(false)
+               .HasColumnName("CreatedDate")
+               .HasColumnType("datetime2")
+               .HasColumnOrder(9);
 
             builder
-             .Property(x => x.UpdatedDate)
-             .IsRequired(false)
-             .HasColumnName("UpdatedDate")
-             .HasColumnType("datetime2")
-             .HasColumnOrder(10);
+               .Property(x => x.UpdatedDate)
+               .IsRequired(false)
+               .HasColumnName("UpdatedDate")
+               .HasColumnType("datetime2")
+               .HasColumnOrder(10);
 
             builder
                .Property(x => x.DeletedDate)
@@ -116,11 +116,11 @@ namespace DataAccessLayer.EntityConfigurations
                .HasColumnOrder(11);
 
             builder
-                .Property(x => x.Status)
-                .IsRequired(true)
-                .HasColumnName("Status")
-                .HasColumnType("bit")
-                .HasColumnOrder(12);
+               .Property(x => x.Status)
+               .IsRequired(true)
+               .HasColumnName("Status")
+               .HasColumnType("bit")
+               .HasColumnOrder(12);
 
 
 
