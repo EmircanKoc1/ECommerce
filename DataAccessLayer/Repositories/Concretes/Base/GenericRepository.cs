@@ -32,6 +32,16 @@ namespace DataAccessLayer.Repositories.Concretes.Base
         public async Task AddRangeAsync(IEnumerable<T> entities)
             => await _table.AddRangeAsync(entities);
 
+        public bool Delete(long id)
+        {
+            var entity = GetById(true, id);
+
+            entity.DeletedDate = DateTime.Now;
+            entity.Status = false;
+
+            return _context.Entry(entity).State == EntityState.Modified;
+
+        }
         public void DeleteRange(IEnumerable<T> entities)
         {
             _table.AttachRange(entities);
@@ -44,6 +54,29 @@ namespace DataAccessLayer.Repositories.Concretes.Base
             }
 
         }
+        public bool Delete(T entity)
+        {
+            var entry = _table.Attach(entity);
+            entity.DeletedDate = DateTime.Now;
+            entity.Status = false;
+
+            return entry.State == EntityState.Modified;
+        }
+        public async Task<bool> DeleteAsync(long id)
+        {
+            var entity = await GetByIdAsync(true, id);
+
+            entity.DeletedDate = DateTime.Now;
+            entity.Status = false;
+
+            return _context.Entry(entity).State == EntityState.Modified;
+        }
+        public void DeleteRange(Expression<Func<T, bool>> predicate)
+        {
+            var entities = GetAll(true).Where(predicate).AsEnumerable();
+            DeleteRange(entities);
+        }
+
 
         public bool Update(T entity)
         {
@@ -66,7 +99,6 @@ namespace DataAccessLayer.Repositories.Concretes.Base
 
             return entity;
         }
-
         public async Task<T> GetByIdAsync(bool tracking = false, params object[] keyValues)
         {
             var entity = await _table.FindAsync(keyValues);
@@ -80,7 +112,6 @@ namespace DataAccessLayer.Repositories.Concretes.Base
             return entity;
 
         }
-
         public async Task<T> GetFirstOrDefaultAsync(Expression<Func<T, bool>> predicate, bool tracking = false)
         {
             var entity = await _table.FirstOrDefaultAsync(predicate);
@@ -94,7 +125,6 @@ namespace DataAccessLayer.Repositories.Concretes.Base
             return entity;
 
         }
-
         public T GetFirstOrDefault(Expression<Func<T, bool>> predicate, bool tracking = false)
         {
             var entity = _table.FirstOrDefault(predicate);
@@ -198,47 +228,13 @@ namespace DataAccessLayer.Repositories.Concretes.Base
 
             return await query.ToListAsync();
         }
-
-        public bool DeleteAsync(T entity)
-        {
-            var entry = _table.Attach(entity);
-            entity.DeletedDate = DateTime.Now;
-            entity.Status = false;
-
-            return entry.State == EntityState.Modified;
-        }
-
-        public async Task<bool> DeleteAsync(long id)
-        {
-            var entity = await GetByIdAsync(true, id);
-
-            entity.DeletedDate = DateTime.Now;
-            entity.Status = false;
-
-            return _context.Entry(entity).State == EntityState.Modified;
-        }
-
-        public bool Delete(long id)
-        {
-            var entity = GetById(true, id);
-
-            entity.DeletedDate = DateTime.Now;
-            entity.Status = false;
-
-            return _context.Entry(entity).State == EntityState.Modified;
-
-        }
-
-        public void DeleteRange(Expression<Func<T, bool>> predicate)
-        {
-            var entities = GetAll(true).Where(predicate).AsEnumerable();
-            DeleteRange(entities);
-        }
-       
         public Task<T> GetByWithIncludes(long id, bool tracking = false, params Expression<Func<T, object>>[] includes)
         {
             throw new NotImplementedException();
         }
+
+        
+        
 
         public int SaveChanges()
            => _context.SaveChanges();
