@@ -1,6 +1,8 @@
-﻿namespace CoreLayer.DataTransferObjects.Claim
+﻿using CoreLayer.DataTransferObjects.Base;
+
+namespace CoreLayer.DataTransferObjects.Claim
 {
-    public record ClaimForUpdateDto
+    public record ClaimForUpdateDto : BaseDtoForUpdate
     {
     }
 }

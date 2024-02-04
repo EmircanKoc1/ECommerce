@@ -1,6 +1,8 @@
 ﻿namespace BusinessLogicLayer.Services.Abstracts
 {
-    public interface IAddressService
+    public interface IAddressService 
     {
+
+
     }
 }

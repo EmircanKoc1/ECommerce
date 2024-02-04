@@ -1,6 +1,8 @@
-﻿namespace CoreLayer.DataTransferObjects.Product
+﻿using CoreLayer.DataTransferObjects.Base;
+
+namespace CoreLayer.DataTransferObjects.Product
 {
-    public record ProductForAddDto
+    public record ProductForAddDto : BaseDtoForAdd
     {
     }
 }

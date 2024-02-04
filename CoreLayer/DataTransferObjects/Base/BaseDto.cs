@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace CoreLayer.DataTransferObjects.Base
 {
-    public record BaseDtoForAdd : BaseDto
+    public record BaseDto
     {
+
     }
 }

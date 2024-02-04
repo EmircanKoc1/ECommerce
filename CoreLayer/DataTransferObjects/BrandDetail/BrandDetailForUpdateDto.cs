@@ -1,11 +1,8 @@
-﻿namespace CoreLayer.DataTransferObjects.BrandDetail
+﻿using CoreLayer.DataTransferObjects.Base;
+
+namespace CoreLayer.DataTransferObjects.BrandDetail
 {
-    public record BrandDetailForUpdateDto
+    public record BrandDetailForUpdateDto : BaseDtoForUpdate
     {
     }
-    
-
-
-
-
 }

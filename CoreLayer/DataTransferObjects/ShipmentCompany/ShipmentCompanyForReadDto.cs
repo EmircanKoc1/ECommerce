@@ -1,6 +1,8 @@
-﻿namespace CoreLayer.DataTransferObjects.ShipmentCompany
+﻿using CoreLayer.DataTransferObjects.Base;
+
+namespace CoreLayer.DataTransferObjects.ShipmentCompany
 {
-    public record ShipmentCompanyForReadDto
+    public record ShipmentCompanyForReadDto : BaseDtoForRead
     {
     }
 }

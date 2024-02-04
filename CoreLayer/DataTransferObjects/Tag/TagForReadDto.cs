@@ -1,6 +1,8 @@
-﻿namespace CoreLayer.DataTransferObjects.Tag
+﻿using CoreLayer.DataTransferObjects.Base;
+
+namespace CoreLayer.DataTransferObjects.Tag
 {
-    public record TagForReadDto
+    public record TagForReadDto : BaseDtoForRead
     {
 
     }

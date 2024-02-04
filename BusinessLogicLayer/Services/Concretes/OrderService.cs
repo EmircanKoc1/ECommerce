@@ -1,6 +1,8 @@
-﻿namespace BusinessLogicLayer.Services.Concretes
+﻿using BusinessLogicLayer.Services.Abstracts;
+
+namespace BusinessLogicLayer.Services.Concretes
 {
-    public class OrderService
+    public class OrderService : IOrderService
     {
     }
     

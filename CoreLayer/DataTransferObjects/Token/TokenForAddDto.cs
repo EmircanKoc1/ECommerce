@@ -1,6 +1,8 @@
-﻿namespace CoreLayer.DataTransferObjects.Token
+﻿using CoreLayer.DataTransferObjects.Base;
+
+namespace CoreLayer.DataTransferObjects.Token
 {
-    public record TokenForAddDto
+    public record TokenForAddDto : BaseDtoForAdd
     {
     }
 }

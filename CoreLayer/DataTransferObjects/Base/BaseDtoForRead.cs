@@ -1,6 +1,6 @@
 ﻿namespace CoreLayer.DataTransferObjects.Base
 {
-    public record BaseDtoForRead
+    public record BaseDtoForRead : BaseDto
     {
     }
 }

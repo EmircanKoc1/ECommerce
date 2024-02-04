@@ -1,6 +1,8 @@
-﻿namespace CoreLayer.DataTransferObjects.OrderStatus
+﻿using CoreLayer.DataTransferObjects.Base;
+
+namespace CoreLayer.DataTransferObjects.OrderStatus
 {
-    public record OrderStatusForDeleteDto
+    public record OrderStatusForDeleteDto : BaseDtoForDelete
     {
     }
 

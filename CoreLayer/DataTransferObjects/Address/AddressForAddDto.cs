@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CoreLayer.DataTransferObjects.Address
+﻿namespace CoreLayer.DataTransferObjects.Address
 {
     public record AddressForAddDto
     {
+        public string City { get; init; }
+        public string Street { get; init; }
+        public string Zipcode { get; init; }
+        public string AddresDescription { get; init; }
+        public long? UserId { get; init; }
+     
     }
 }

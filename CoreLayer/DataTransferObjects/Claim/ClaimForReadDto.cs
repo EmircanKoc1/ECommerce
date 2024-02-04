@@ -1,6 +1,8 @@
-﻿namespace CoreLayer.DataTransferObjects.Claim
+﻿using CoreLayer.DataTransferObjects.Base;
+
+namespace CoreLayer.DataTransferObjects.Claim
 {
-    public record ClaimForReadDto
+    public record ClaimForReadDto : BaseDtoForRead
     {
     }
 }

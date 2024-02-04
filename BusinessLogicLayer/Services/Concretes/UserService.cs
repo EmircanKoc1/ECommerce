@@ -1,6 +1,8 @@
-﻿namespace BusinessLogicLayer.Services.Concretes
+﻿using BusinessLogicLayer.Services.Abstracts;
+
+namespace BusinessLogicLayer.Services.Concretes
 {
-    public class UserService
+    public class UserService : IUserService
     {
     }
     

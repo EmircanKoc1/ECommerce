@@ -1,6 +1,8 @@
-﻿namespace CoreLayer.DataTransferObjects.ProductImage
+﻿using CoreLayer.DataTransferObjects.Base;
+
+namespace CoreLayer.DataTransferObjects.ProductImage
 {
-    public record ProductImageForReadDto
+    public record ProductImageForReadDto : BaseDtoForRead
     {
     }
 }

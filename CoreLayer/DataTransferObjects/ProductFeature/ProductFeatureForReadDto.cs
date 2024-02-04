@@ -1,6 +1,8 @@
-﻿namespace CoreLayer.DataTransferObjects.ProductFeature
+﻿using CoreLayer.DataTransferObjects.Base;
+
+namespace CoreLayer.DataTransferObjects.ProductFeature
 {
-    public record ProductFeatureForReadDto
+    public record ProductFeatureForReadDto : BaseDtoForRead
     {
 
     }

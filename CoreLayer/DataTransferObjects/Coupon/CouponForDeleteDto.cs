@@ -1,6 +1,8 @@
-﻿namespace CoreLayer.DataTransferObjects.Coupon
+﻿using CoreLayer.DataTransferObjects.Base;
+
+namespace CoreLayer.DataTransferObjects.Coupon
 {
-    public record CouponForDeleteDto
+    public record CouponForDeleteDto : BaseDtoForDelete
     {
     }
 }

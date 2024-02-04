@@ -1,6 +1,8 @@
-﻿namespace CoreLayer.DataTransferObjects.OrderItem
+﻿using CoreLayer.DataTransferObjects.Base;
+
+namespace CoreLayer.DataTransferObjects.OrderItem
 {
-    public record OrderItemForUpdateDto
+    public record OrderItemForUpdateDto : BaseDtoForUpdate
     {
     }
 }

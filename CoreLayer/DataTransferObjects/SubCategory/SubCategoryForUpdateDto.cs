@@ -1,6 +1,8 @@
-﻿namespace CoreLayer.DataTransferObjects.SubCategory
+﻿using CoreLayer.DataTransferObjects.Base;
+
+namespace CoreLayer.DataTransferObjects.SubCategory
 {
-    public record SubCategoryForUpdateDto
+    public record SubCategoryForUpdateDto : BaseDtoForUpdate
     {
     }
 }

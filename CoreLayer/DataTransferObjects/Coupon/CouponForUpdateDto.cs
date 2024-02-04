@@ -2,7 +2,7 @@
 
 namespace CoreLayer.DataTransferObjects.Coupon
 {
-    public record CouponForReadDto : BaseDtoForRead
+    public record CouponForUpdateDto : BaseDtoForUpdate
     {
     }
 }

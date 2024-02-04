@@ -1,6 +1,8 @@
-﻿namespace CoreLayer.DataTransferObjects.User
+﻿using CoreLayer.DataTransferObjects.Base;
+
+namespace CoreLayer.DataTransferObjects.User
 {
-    public record UserForUpdateDto
+    public record UserForUpdateDto : BaseDtoForUpdate
     {
     }
    

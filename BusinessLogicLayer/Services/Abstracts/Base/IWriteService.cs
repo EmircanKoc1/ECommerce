@@ -5,9 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CoreLayer.DataTransferObjects.ProductImage
+namespace BusinessLogicLayer.Services.Abstracts.Base
 {
-    public record ProductImageForAddDto : BaseDtoForAdd
+    public interface IWriteService<T> 
+    where T : BaseDto
     {
+
     }
 }

@@ -1,6 +1,7 @@
 ﻿namespace CoreLayer.DataTransferObjects.Base
 {
-    public record BaseDtoForUpdate
+    public record BaseDtoForUpdate : BaseDto
     {
+        public long Id { get; set; }
     }
 }

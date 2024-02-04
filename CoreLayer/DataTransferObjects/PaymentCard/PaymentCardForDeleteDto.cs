@@ -1,6 +1,8 @@
-﻿namespace CoreLayer.DataTransferObjects.PaymentCard
+﻿using CoreLayer.DataTransferObjects.Base;
+
+namespace CoreLayer.DataTransferObjects.PaymentCard
 {
-    public record PaymentCardForDeleteDto
+    public record PaymentCardForDeleteDto : BaseDtoForDelete
     {
     }
 }

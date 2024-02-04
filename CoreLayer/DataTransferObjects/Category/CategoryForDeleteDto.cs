@@ -1,6 +1,8 @@
-﻿namespace CoreLayer.DataTransferObjects.Category
+﻿using CoreLayer.DataTransferObjects.Base;
+
+namespace CoreLayer.DataTransferObjects.Category
 {
-    public record CategoryForDeleteDto
+    public record CategoryForDeleteDto : BaseDtoForDelete
     {
 
     }

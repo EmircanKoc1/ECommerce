@@ -1,6 +1,8 @@
-﻿namespace BusinessLogicLayer.Services.Concretes
+﻿using BusinessLogicLayer.Services.Abstracts;
+
+namespace BusinessLogicLayer.Services.Concretes
 {
-    public class BrandService
+    public class BrandService : IBrandService
     {
     }
     
