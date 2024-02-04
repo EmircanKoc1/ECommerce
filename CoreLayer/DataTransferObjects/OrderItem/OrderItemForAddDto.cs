@@ -9,5 +9,10 @@ namespace CoreLayer.DataTransferObjects.OrderItem
 {
     public record OrderItemForAddDto : BaseDtoForAdd
     {
+        public int Quantity { get; init; }
+        public float Price { get; init; }
+        public float TotalPrice { get; init; }
+        public long? OrderId { get; init; }
+        public long? ProductId { get; init; }
     }
 }

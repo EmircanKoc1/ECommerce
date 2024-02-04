@@ -4,7 +4,8 @@ namespace CoreLayer.DataTransferObjects.Category
 {
     public record CategoryForReadDto : BaseDtoForRead
     {
-
+        public string Name { get; init; }
+        public string Description { get; init; }
     }
 
 

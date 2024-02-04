@@ -2,5 +2,7 @@
 {
     public record BaseDtoForRead : BaseDto
     {
+
+
     }
 }

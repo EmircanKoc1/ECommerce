@@ -9,5 +9,7 @@ namespace CoreLayer.DataTransferObjects.ShipmentCompany
 {
     public record ShipmentCompanyForAddDto : BaseDtoForAdd
     {
+        public string Name { get; init; }
+
     }
 }

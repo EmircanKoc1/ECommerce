@@ -4,5 +4,6 @@ namespace CoreLayer.DataTransferObjects.Brand
 {
     public record BrandForReadDto : BaseDtoForRead
     {
+        public string Name { get; init; }
     }
 }

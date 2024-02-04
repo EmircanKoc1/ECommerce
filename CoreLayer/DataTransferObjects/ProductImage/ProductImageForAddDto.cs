@@ -9,5 +9,8 @@ namespace CoreLayer.DataTransferObjects.ProductImage
 {
     public record ProductImageForAddDto : BaseDtoForAdd
     {
+        public string ImagePath { get; init; }
+        public long? ProductId { get; init; }
+
     }
 }
