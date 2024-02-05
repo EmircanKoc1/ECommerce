@@ -1,6 +1,7 @@
-﻿namespace BusinessLogicLayer.Services.Abstracts.Read
+﻿namespace BusinessLogicLayer.Services.Abstracts.Write
 {
     public interface IProductFeatureService
     {
     }
+
 }

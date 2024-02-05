@@ -1,6 +1,6 @@
 ﻿namespace BusinessLogicLayer.Services.Abstracts.Read
 {
-    public interface IProductFeatureService
+    public interface ICouponReadService
     {
     }
 }
