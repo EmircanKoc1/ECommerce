@@ -13,10 +13,10 @@ namespace DataAccessLayer.Repositories.Concretes.Base
     where T : BaseEntity
     {
         ECommerceDbContext _context;
-        DbSet<T> _table => _context.Set<T>();
+        DbSet<T> _table => _context.Set<T>().;
         public GenericRepository(ECommerceDbContext context)
             => _context = context ?? throw new DbContextNotRegisteredException(nameof(ECommerceDbContext));
-
+        //todo Add methods
         public bool Add(T entity)
         {
             var entry = _table.Add(entity);
@@ -31,7 +31,7 @@ namespace DataAccessLayer.Repositories.Concretes.Base
             => _table.AddRange(entities);
         public async Task AddRangeAsync(IEnumerable<T> entities)
             => await _table.AddRangeAsync(entities);
-
+        //todo Delete repositories 
         public bool Delete(long id)
         {
             var entity = GetById(true, id);
@@ -77,6 +77,7 @@ namespace DataAccessLayer.Repositories.Concretes.Base
             DeleteRange(entities);
         }
 
+        //todo update repositories
         public bool Update(T entity)
         {
             var entry = _table.Update(entity);
@@ -87,6 +88,7 @@ namespace DataAccessLayer.Repositories.Concretes.Base
             return entry.State == EntityState.Modified;
         }
 
+        //todo get repositories
         public T GetById(bool tracking = false, params object[] keyValues)
         {
             var entity = _table.Find(keyValues);
@@ -227,14 +229,14 @@ namespace DataAccessLayer.Repositories.Concretes.Base
 
             return await query.ToListAsync();
         }
-        public Task<T> GetByWithIncludes(long id, bool tracking = false, params Expression<Func<T, object>>[] includes)
+        public Task<T> GetByWithIncludesAsync(long id, bool tracking = false, params Expression<Func<T, object>>[] includes)
         {
             throw new NotImplementedException();
         }
 
+        //todo savechanges metots
         public int SaveChanges()
            => _context.SaveChanges();
-
         public async Task<int> SaveChangesAsync()
             => await _context.SaveChangesAsync();
     }
