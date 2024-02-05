@@ -1,6 +1,10 @@
-﻿namespace BusinessLogicLayer.Services.Abstracts.Read
+﻿using BusinessLogicLayer.Services.Abstracts.Base;
+using CoreLayer.DataTransferObjects.Product;
+using DataAccessLayer.Entities;
+
+namespace BusinessLogicLayer.Services.Abstracts.Read
 {
-    public interface IProductImageReadService
+    public interface IProductImageReadService : IReadService<ProductForReadDto,Product>
     {
     }
 }

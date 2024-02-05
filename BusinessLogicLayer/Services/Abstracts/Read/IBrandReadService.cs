@@ -1,6 +1,10 @@
-﻿namespace BusinessLogicLayer.Services.Abstracts.Read
+﻿using BusinessLogicLayer.Services.Abstracts.Base;
+using CoreLayer.DataTransferObjects.BrandDetail;
+using DataAccessLayer.Entities;
+
+namespace BusinessLogicLayer.Services.Abstracts.Read
 {
-    public interface IBrandReadService
+    public interface IBrandReadService : IReadService<BrandDetailForReadDto,Brand>
     {
     }
 }
