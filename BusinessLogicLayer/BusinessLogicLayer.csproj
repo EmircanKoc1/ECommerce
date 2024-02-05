@@ -11,8 +11,6 @@
     <Folder Include="Extensions\" />
     <Folder Include="ServiceRegistrations\" />
     <Folder Include="Services\Concretes\Base\" />
-    <Folder Include="Services\Concretes\Write\" />
-    <Folder Include="Services\Concretes\Read\" />
     <Folder Include="Validations\" />
   </ItemGroup>
 
