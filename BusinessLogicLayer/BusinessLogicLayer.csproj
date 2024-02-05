@@ -11,7 +11,30 @@
     <Folder Include="Extensions\" />
     <Folder Include="ServiceRegistrations\" />
     <Folder Include="Services\Concretes\Base\" />
-    <Folder Include="Validations\" />
+    <Folder Include="Validations\ValidationRules\AddressDtos\" />
+    <Folder Include="Validations\ValidationRules\BrandDtos\" />
+    <Folder Include="Validations\ValidationRules\BrandDetailDtos\" />
+    <Folder Include="Validations\ValidationRules\CategoryDtos\" />
+    <Folder Include="Validations\ValidationRules\ClaimDtos\" />
+    <Folder Include="Validations\ValidationRules\CommentDtos\" />
+    <Folder Include="Validations\ValidationRules\CouponDtos\" />
+    <Folder Include="Validations\ValidationRules\UserDtos\" />
+    <Folder Include="Validations\ValidationRules\TokenDtos\" />
+    <Folder Include="Validations\ValidationRules\TagDtos\" />
+    <Folder Include="Validations\ValidationRules\SubCategoryDtos\" />
+    <Folder Include="Validations\ValidationRules\ShipmentCompanyDetailDtos\" />
+    <Folder Include="Validations\ValidationRules\ShipmentCompanyDtos\" />
+    <Folder Include="Validations\ValidationRules\ProductFeaturesDtos\" />
+    <Folder Include="Validations\ValidationRules\ProductImageDtos\" />
+    <Folder Include="Validations\ValidationRules\PaymentCardDtos\" />
+    <Folder Include="Validations\ValidationRules\OrderStatusDtos\" />
+    <Folder Include="Validations\ValidationRules\OrderItemDtos\" />
+    <Folder Include="Validations\ValidationRules\OrderDtos\" />
+    <Folder Include="Validations\ValidationRules\ProductDtos\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
   </ItemGroup>
 
   <ItemGroup>

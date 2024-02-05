@@ -2,7 +2,7 @@
 
 namespace BusinessLogicLayer.Services.Concretes.Read
 {
-    public class TokenReadService : ITokenReadService
+    public class OrderReadService : IOrderReadService
     {
     }
 

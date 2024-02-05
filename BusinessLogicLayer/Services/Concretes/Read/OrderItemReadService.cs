@@ -1,6 +1,8 @@
-﻿namespace BusinessLogicLayer.Services.Concretes.Read
+﻿using BusinessLogicLayer.Services.Abstracts.Read;
+
+namespace BusinessLogicLayer.Services.Concretes.Read
 {
-    public class OrderItemReadService
+    public class OrderItemReadService : IOrderItemReadService
     {
     }
 

@@ -1,6 +1,8 @@
-﻿namespace CoreLayer.DataTransferObjects.Address
+﻿using CoreLayer.DataTransferObjects.Base;
+
+namespace CoreLayer.DataTransferObjects.Address
 {
-    public record AddressForAddDto
+    public record AddressForAddDto : BaseDtoForAdd
     {
         public string City { get; init; }
         public string Street { get; init; }

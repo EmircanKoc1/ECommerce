@@ -1,6 +1,8 @@
-﻿namespace BusinessLogicLayer.Services.Concretes.Write
+﻿using BusinessLogicLayer.Services.Abstracts.Write;
+
+namespace BusinessLogicLayer.Services.Concretes.Write
 {
-    public class TokenWriteService
+    public class TokenWriteService : ITokenWriteService
     {
     }
 

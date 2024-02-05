@@ -2,7 +2,7 @@
 
 namespace BusinessLogicLayer.Services.Concretes.Write
 {
-    public class SubCategoryWriteService : ISubCategoryWriteService
+    public class OrderStatusWriteService : IOrderStatusWriteService
     {
     }
 

@@ -2,7 +2,7 @@
 {
     public record BaseDtoForRead : BaseDto
     {
-
+        public long Id { get; init; }
 
     }
 }

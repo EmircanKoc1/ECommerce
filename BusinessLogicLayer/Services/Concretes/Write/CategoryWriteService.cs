@@ -1,6 +1,8 @@
-﻿namespace BusinessLogicLayer.Services.Concretes.Write
+﻿using BusinessLogicLayer.Services.Abstracts.Write;
+
+namespace BusinessLogicLayer.Services.Concretes.Write
 {
-    public class CategoryWriteService
+    public class CategoryWriteService : ICategoryWriteService
     {
     }
 

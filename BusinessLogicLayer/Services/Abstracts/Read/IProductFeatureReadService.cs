@@ -4,7 +4,7 @@ using DataAccessLayer.Entities;
 
 namespace BusinessLogicLayer.Services.Abstracts.Read
 {
-    public interface IProductFeatureService : IReadService<ProductFeatureForReadDto,ProductFeature>
+    public interface IProductFeatureReadService : IReadService<ProductFeatureForReadDto,ProductFeature>
     {
     }
 }
