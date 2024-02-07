@@ -10,7 +10,7 @@ namespace CoreLayer.Exceptions
 
     public class DbContextNotRegisteredException : Exception
     {
-        public DbContextNotRegisteredException()
+        public DbContextNotRegisteredException() : base("Not defined error message")
         {
         }
 

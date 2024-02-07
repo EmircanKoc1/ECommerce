@@ -11,18 +11,18 @@ namespace BusinessLogicLayer.Services.Abstracts.Base
     where TAddForDto : BaseDtoForAdd
     where TEntity : BaseEntity
     {
-        public bool Add(TAddForDto entity);
-        public  Task<bool> AddAsync(TAddForDto entity);
-        public void AddRange(IEnumerable<TAddForDto> entities);
-        public  Task AddRangeAsync(IEnumerable<TAddForDto> entities);
+        public bool Add(TAddForDto dto);
+        public  Task<bool> AddAsync(TAddForDto dto);
+        public void AddRange(IEnumerable<TAddForDto> dtos);
+        public  Task AddRangeAsync(IEnumerable<TAddForDto> dtos);
 
         public bool Delete(long id);
-        public void DeleteRange(IEnumerable<TDeleteForDto> entities);
-        public bool Delete(TDeleteForDto entity);
+        public void DeleteRange(IEnumerable<TDeleteForDto> dtos);
+        public bool Delete(TDeleteForDto dtos);
         public  Task<bool> DeleteAsync(long id);
         public void DeleteRange(Expression<Func<TDeleteForDto, bool>> predicate);
 
-        public bool Update(TUpdateForDto entity);
+        public bool Update(TUpdateForDto dtos);
        
 
 

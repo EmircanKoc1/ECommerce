@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace Presentation.WebAPI.Controllers
 {
@@ -7,8 +6,13 @@ namespace Presentation.WebAPI.Controllers
     [ApiController]
     public class HomeController : ControllerBase
     {
-        
+        [HttpGet]
+        public IActionResult add()
+        {
 
+
+            return Ok();
+        }
 
     }
 }

@@ -9,7 +9,6 @@
   <ItemGroup>
     <Folder Include="Mappings\" />
     <Folder Include="Extensions\" />
-    <Folder Include="ServiceRegistrations\" />
     <Folder Include="Services\Concretes\Base\" />
   </ItemGroup>
 
