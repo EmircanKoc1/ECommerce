@@ -1,11 +1,7 @@
 ﻿using BusinessLogicLayer.Services.Abstracts.Write;
 using CoreLayer.DataTransferObjects.Address;
 using DataAccessLayer.Repositories.Abstracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 
 namespace BusinessLogicLayer.Services.Concretes.Write
 {
@@ -69,3 +65,4 @@ namespace BusinessLogicLayer.Services.Concretes.Write
             throw new NotImplementedException();
         }
     }
+}
