@@ -2,6 +2,7 @@
 using CoreLayer.Enums;
 using CoreLayer.Model;
 using DataAccessLayer.Entities.Base.Concretes;
+using DataAccessLayer.Repositories.Abstracts.Base;
 using System.Linq.Expressions;
 
 namespace BusinessLogicLayer.Services.Abstracts.Base
@@ -10,7 +11,7 @@ namespace BusinessLogicLayer.Services.Abstracts.Base
     where TDto : BaseDto
     where TEntity : BaseEntity
     {
-
+        
         Task<TDto> GetByIdAsync(bool tracking = false, params object[] keyValues);
         TDto GetById(bool tracking = false, params object[] keyValues);
         Task<TDto> GetFirstOrDefaultAsync(Expression<Func<TEntity, bool>> predicate, bool tracking = false);

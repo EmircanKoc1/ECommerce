@@ -1,5 +1,5 @@
 using DataAccessLayer.ServiceRegistrations;
-
+using BusinessLogicLayer.ServiceRegistrations;
 namespace Presentation.WebAPI
 {
     public class Program
@@ -8,7 +8,13 @@ namespace Presentation.WebAPI
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            builder.Services.ConfigureDbContext(builder.Configuration);
+       
+            builder.Services.DbContextConfig(builder.Configuration);
+            builder.Services.AutoMapperConfig();
+            builder.Services.AddValidationRules();
+            
+
+
 
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
