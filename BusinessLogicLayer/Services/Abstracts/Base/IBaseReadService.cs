@@ -17,7 +17,7 @@ namespace BusinessLogicLayer.Services.Abstracts.Base
         Task<TDto> GetFirstOrDefaultAsync(Expression<Func<TEntity, bool>> predicate, bool tracking = false);
         TDto GetFirstOrDefault(Expression<Func<TEntity, bool>> predicate, bool tracking = false);
         IEnumerable<TDto> GetAll(PaginationModel paginationModel, bool tracking = false);
-        IQueryable<TDto> GetAll(bool tracking = false);
+      //  IQueryable<TDto> GetAll(bool tracking = false);
 
         IEnumerable<TDto> GetAll(
             PaginationModel paginationModel,
@@ -35,6 +35,6 @@ namespace BusinessLogicLayer.Services.Abstracts.Base
            bool tracking = false,
            params Expression<Func<TEntity, long>>[] thenByKeySelector);
 
-        Task<TDto> GetByWithIncludesAsync(long id, bool tracking = false, params Expression<Func<TEntity, object>>[] includes);
+      //  Task<TDto> GetByWithIncludesAsync(long id, bool tracking = false, params Expression<Func<TEntity, object>>[] includes);
     }
 }

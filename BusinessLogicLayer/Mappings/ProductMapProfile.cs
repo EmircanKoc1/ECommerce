@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using CoreLayer.DTOs;
+using DataAccessLayer.Entities;
 
 namespace BusinessLogicLayer.Mappings
 {
@@ -7,7 +9,7 @@ namespace BusinessLogicLayer.Mappings
 
         public ProductMapProfile()
         {
-            
+            CreateMap<Product,ProductDto>().ReverseMap();
         }
     }
 

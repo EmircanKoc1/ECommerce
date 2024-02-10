@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using CoreLayer.DTOs;
+using DataAccessLayer.Entities;
 
 namespace BusinessLogicLayer.Mappings
 {
@@ -6,6 +8,11 @@ namespace BusinessLogicLayer.Mappings
     {
         public AddressMapProfile()
         {
+            CreateMap<Address, AddressDto>()
+                //.ForMember(dest => dest.User, opt => opt.MapFrom(source => source.User))
+                .ReverseMap();
+
+
 
         }
 

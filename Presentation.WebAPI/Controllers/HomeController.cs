@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BusinessLogicLayer.Services.Abstracts;
+using CoreLayer.DTOs;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Presentation.WebAPI.Controllers
 {
@@ -6,12 +8,19 @@ namespace Presentation.WebAPI.Controllers
     [ApiController]
     public class HomeController : ControllerBase
     {
-        [HttpGet]
-        public IActionResult add()
+        private readonly IAddressService _addressService;
+
+        public HomeController(IAddressService addressService)
         {
+            _addressService = addressService;
+        }
 
+        [HttpPost]
+        public IActionResult add(AddressDto dto)
+        {
+            dto = _addressService.Add(dto);
 
-            return Ok();
+            return Ok(dto);
         }
 
     }

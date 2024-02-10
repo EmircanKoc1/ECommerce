@@ -8,7 +8,7 @@ namespace BusinessLogicLayer.Services.Abstracts.Base
     where TEntity : BaseEntity
     where TDto : BaseDto
     {
-        public bool Add(TDto dto);
+        public TDto Add(TDto dto);
         public Task<bool> AddAsync(TDto dto);
         public bool AddRange(IEnumerable<TDto> dtos);
         public Task AddRangeAsync(IEnumerable<TDto> dtos);

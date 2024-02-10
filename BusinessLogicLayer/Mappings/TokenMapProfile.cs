@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using CoreLayer.DTOs;
+using DataAccessLayer.Entities;
 
 namespace BusinessLogicLayer.Mappings
 {
@@ -6,7 +8,7 @@ namespace BusinessLogicLayer.Mappings
     {
         public TokenMapProfile()
         {
-            
+            CreateMap<Token, TokenDto>().ReverseMap();
         }
 
     }

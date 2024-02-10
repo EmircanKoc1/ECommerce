@@ -31,6 +31,5 @@ namespace BusinessLogicLayer.ServiceRegistrations
             .AddScoped<IValidator<UserDto>, UserDtoValidator>();
 
 
-
     }
 }
