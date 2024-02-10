@@ -9,10 +9,14 @@ using System.Threading.Tasks;
 
 namespace BusinessLogicLayer.ServiceRegistrations
 {
-    public static class DbContextConfiguration
+    public static class DataAccessLayerConfigurations
     {
         public static IServiceCollection DbContextConfig(this IServiceCollection services,IConfiguration configuration)
             => services.ConfigureDbContext(configuration);
+
+        public static IServiceCollection RepositoriesConfig(this IServiceCollection services)
+            => services.AddRepositories();
+
 
     }
 }

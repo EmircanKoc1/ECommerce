@@ -1,4 +1,6 @@
 using BusinessLogicLayer.ServiceRegistrations;
+using Microsoft.AspNetCore.Mvc;
+using Presentation.WebAPI.Extensions.ServiceRegistrations;
 namespace Presentation.WebAPI
 {
     public class Program
@@ -7,12 +9,15 @@ namespace Presentation.WebAPI
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            builder.Services.ConfigModelState();
 
             builder.Services.DbContextConfig(builder.Configuration);
+
             builder.Services.AutoMapperConfig();
             builder.Services.AddValidationRules();
-            builder.Services.AddBllServices();
 
+            builder.Services.AddBllServices();
+            builder.Services.RepositoriesConfig();
 
 
             builder.Services.AddControllers();

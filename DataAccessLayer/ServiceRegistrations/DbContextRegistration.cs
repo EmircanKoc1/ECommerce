@@ -9,7 +9,7 @@ namespace DataAccessLayer.ServiceRegistrations
     {
 
         public static IServiceCollection ConfigureDbContext(this IServiceCollection services, IConfiguration configuration)
-        => services.AddDbContextPool<ECommerceDbContext>(config =>
+        => services.AddDbContext<ECommerceDbContext>(config =>
         {
             config.UseSqlServer(configuration.GetConnectionString("SqlServer"));
         });
