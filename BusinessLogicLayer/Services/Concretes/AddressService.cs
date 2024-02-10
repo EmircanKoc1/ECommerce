@@ -68,7 +68,7 @@ namespace BusinessLogicLayer.Services.Concretes
             return _mapper.Map<AddressDto>(entity);
         }
 
-        public bool AddRange(IEnumerable<AddressDto> dtos)
+        public IEnumerable<AddressDto> AddRange(IEnumerable<AddressDto> dtos)
         {
             var control = dtos.EnumerableChecker(x => x.UserId is null && x.User is null);
 
@@ -80,10 +80,10 @@ namespace BusinessLogicLayer.Services.Concretes
             _repository.AddRange(entities);
             _repository.SaveChanges();
 
-            return true;
+            return _mapper.Map<IEnumerable<AddressDto>>(entities);
         }
 
-        public async Task AddRangeAsync(IEnumerable<AddressDto> dtos)
+        public async Task<IEnumerable<AddressDto>> AddRangeAsync(IEnumerable<AddressDto> dtos)
         {
             var control = dtos.EnumerableChecker(x => x.UserId is null && x.User is null);
 
@@ -95,9 +95,11 @@ namespace BusinessLogicLayer.Services.Concretes
             await _repository.AddRangeAsync(entities);
             await _repository.SaveChangesAsync();
 
+
+            return _mapper.Map<IEnumerable<AddressDto>>(entities);
         }
 
-        public bool Delete(long id)
+        public AddressDto Delete(long id)
         {
             var entity = _repository.GetById(false, id);
 
@@ -107,11 +109,11 @@ namespace BusinessLogicLayer.Services.Concretes
             _repository.Delete(entity);
             _repository.SaveChanges();
 
-            return true;
+            return _mapper.Map<AddressDto>(entity);
 
         }
 
-        public bool Delete(AddressDto dto)
+        public AddressDto Delete(AddressDto dto)
         {
 
             var entity = _repository.GetById(false, dto.Id);
@@ -121,11 +123,12 @@ namespace BusinessLogicLayer.Services.Concretes
 
             _repository.Delete(entity);
             _repository.SaveChanges();
-            return true;
+
+            return _mapper.Map<AddressDto>(entity);
 
         }
 
-        public async Task<bool> DeleteAsync(long id)
+        public async Task<AddressDto> DeleteAsync(long id)
         {
             var entity = await _repository.GetByIdAsync(false, id);
 
@@ -136,11 +139,11 @@ namespace BusinessLogicLayer.Services.Concretes
             _repository.Delete(entity);
             await _repository.SaveChangesAsync();
 
-            return true;
+            return _mapper.Map<AddressDto>(entity);
 
         }
 
-        public bool DeleteRange(IEnumerable<AddressDto> dtos)
+        public IEnumerable<AddressDto> DeleteRange(IEnumerable<AddressDto> dtos)
         {
             if (dtos is null)
                 throw new ArgumentNullException(nameof(Address));
@@ -155,10 +158,10 @@ namespace BusinessLogicLayer.Services.Concretes
 
             _repository.SaveChanges();
 
-            return true;
+            return _mapper.Map<IEnumerable<AddressDto>>(dtos);
         }
 
-        public bool DeleteRange(Expression<Func<Address, bool>> predicate)
+        public IEnumerable<AddressDto> DeleteRange(Expression<Func<Address, bool>> predicate)
         {
             var entities = _repository.GetAll().Where(predicate);
 
@@ -167,7 +170,8 @@ namespace BusinessLogicLayer.Services.Concretes
 
 
             _repository.SaveChanges();
-            return true;
+
+            return _mapper.Map<IEnumerable<AddressDto>>(entities);
 
         }
 
@@ -231,7 +235,7 @@ namespace BusinessLogicLayer.Services.Concretes
 
         }
 
-        public bool Update(AddressDto dto)
+        public (AddressDto, AddressDto) Update(AddressDto dto)
         {
             var entity = _mapper.Map<Address>(dto);
 
@@ -241,7 +245,9 @@ namespace BusinessLogicLayer.Services.Concretes
             _repository.Update(entity);
             _repository.SaveChanges();
 
-            return true;
+            var updatedDto = _mapper.Map<AddressDto>(entity);
+
+            return (dto, updatedDto);
 
         }
     }
