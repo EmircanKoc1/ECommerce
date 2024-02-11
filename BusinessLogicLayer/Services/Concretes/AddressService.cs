@@ -237,17 +237,24 @@ namespace BusinessLogicLayer.Services.Concretes
 
         public (AddressDto, AddressDto) Update(AddressDto dto)
         {
-            var entity = _mapper.Map<Address>(dto);
+            if (dto is null)
+                throw new ParameterValueNullException(nameof(Address));
 
-            if (entity is null)
+            var foundedEntity = _repository.GetById(false, dto.Id);
+
+            if (foundedEntity is null)
                 throw new EntityNotFoundException(nameof(Address));
+
+            var oldEntity = _mapper.Map<AddressDto>(foundedEntity);
+
+            var entity = _mapper.Map<Address>(dto);
 
             _repository.Update(entity);
             _repository.SaveChanges();
 
-            var updatedDto = _mapper.Map<AddressDto>(entity);
+            var newEntity = _mapper.Map<AddressDto>(entity);
 
-            return (dto, updatedDto);
+            return (oldEntity, newEntity);
 
         }
     }

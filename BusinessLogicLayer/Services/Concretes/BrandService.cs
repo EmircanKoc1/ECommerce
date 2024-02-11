@@ -1,97 +1,252 @@
-﻿using BusinessLogicLayer.Services.Abstracts;
+﻿using AutoMapper;
+using BusinessLogicLayer.Services.Abstracts;
 using CoreLayer.DTOs;
 using CoreLayer.Enums;
+using CoreLayer.Exceptions;
 using CoreLayer.Model;
 using DataAccessLayer.Entities;
+using DataAccessLayer.Repositories.Abstracts;
 using System.Linq.Expressions;
 
 namespace BusinessLogicLayer.Services.Concretes
 {
     public class BrandService : IBrandService
     {
-        public BrandDto Add(BrandDto dto)
+        IMapper _mapper;
+        IBrandRepository _repository;
+
+        public BrandService(IMapper mapper, IBrandRepository repository)
         {
-            throw new NotImplementedException();
+            _mapper = mapper;
+            _repository = repository;
         }
 
-        public Task<BrandDto> AddAsync(BrandDto dto)
+        public BrandDto Add(BrandDto dto)
         {
-            throw new NotImplementedException();
+            //var entity = default(Brand);
+            Brand entity = null;
+
+            if (dto is null)
+                throw new ParameterValueNullException(nameof(Brand));
+
+            if (dto.Id is not 0)
+                entity = _repository.GetById(false, dto.Id);
+
+            if (entity is not null)
+                throw new EntityAlreadyExistsException(nameof(Brand));
+
+            entity = _mapper.Map<Brand>(dto);
+            _repository.Add(entity);
+            _repository.SaveChanges();
+
+            return _mapper.Map<BrandDto>(entity);
+
+        }
+
+        public async Task<BrandDto> AddAsync(BrandDto dto)
+        {
+            Brand entity = null;
+
+            if (dto.Id is not 0)
+                entity = await _repository.GetByIdAsync(false, dto.Id);
+
+            if (entity is not null)
+                throw new EntityAlreadyExistsException(nameof(Brand));
+
+            entity = _mapper.Map<Brand>(dto);
+            await _repository.AddAsync(entity);
+            await _repository.SaveChangesAsync();
+
+            return _mapper.Map<BrandDto>(entity);
+
         }
 
         public IEnumerable<BrandDto> AddRange(IEnumerable<BrandDto> dtos)
         {
-            throw new NotImplementedException();
+
+            if (dtos == null)
+                throw new ParameterValueNullException(nameof(BrandDto));
+
+            var entities = _mapper.Map<IEnumerable<Brand>>(dtos);
+
+            _repository.AddRange(entities);
+            _repository.SaveChanges();
+
+            return _mapper.Map<IEnumerable<BrandDto>>(entities);
         }
 
-        public Task<IEnumerable<BrandDto>> AddRangeAsync(IEnumerable<BrandDto> dtos)
+        public async Task<IEnumerable<BrandDto>> AddRangeAsync(IEnumerable<BrandDto> dtos)
         {
-            throw new NotImplementedException();
+            if (dtos == null)
+                throw new ParameterValueNullException(nameof(BrandDto));
+
+            var entities = _mapper.Map<IEnumerable<Brand>>(dtos);
+
+            await _repository.AddRangeAsync(entities);
+            await _repository.SaveChangesAsync();
+
+            return _mapper.Map<IEnumerable<BrandDto>>(entities);
+
         }
 
         public BrandDto Delete(long id)
         {
-            throw new NotImplementedException();
+            var entity = _repository.GetById(false, id);
+
+            if (entity is null)
+                throw new EntityNotFoundException(nameof(Brand));
+
+            _repository.Delete(entity);
+            _repository.SaveChanges();
+
+            return _mapper.Map<BrandDto>(entity);
         }
 
-        public BrandDto Delete(BrandDto dtos)
+        public BrandDto Delete(BrandDto dto)
         {
-            throw new NotImplementedException();
+
+            if (dto is null)
+                throw new ParameterValueNullException(nameof(Brand));
+
+            var entity = _repository.GetById(false, dto.Id);
+
+            if (entity is null)
+                throw new EntityNotFoundException(nameof(Brand));
+
+            _repository.Delete(entity);
+            _repository.SaveChanges();
+
+            return _mapper.Map<BrandDto>(entity);
         }
 
-        public Task<BrandDto> DeleteAsync(long id)
+        public async Task<BrandDto> DeleteAsync(long id)
         {
-            throw new NotImplementedException();
+
+
+            var entity = await _repository.GetByIdAsync(false, id);
+
+            if (entity is null)
+                throw new EntityNotFoundException(nameof(Brand));
+
+            _repository.Delete(entity);
+            _repository.SaveChanges();
+
+            return _mapper.Map<BrandDto>(entity);
         }
 
         public IEnumerable<BrandDto> DeleteRange(IEnumerable<BrandDto> dtos)
         {
-            throw new NotImplementedException();
+            if (dtos is null)
+                throw new ParameterValueNullException(nameof(Brand));
+
+            var entities = _mapper.Map<IEnumerable<Brand>>(dtos);
+            _repository.DeleteRange(entities);
+            _repository.SaveChanges();
+
+            return _mapper.Map<IEnumerable<BrandDto>>(entities);
+
         }
 
         public IEnumerable<BrandDto> DeleteRange(Expression<Func<Brand, bool>> predicate)
         {
-            throw new NotImplementedException();
+            var entities = _repository.GetAll().Where(predicate);
+
+            if (entities is null)
+                throw new EntityNotFoundException("");
+
+            foreach (var entity in entities)
+                _repository.Delete(entity);
+
+
+            _repository.SaveChanges();
+
+            return _mapper.Map<IEnumerable<BrandDto>>(entities);
         }
 
         public IEnumerable<BrandDto> GetAll(PaginationModel paginationModel, bool tracking = false)
         {
-            throw new NotImplementedException();
+            var entites = _repository.GetAll(paginationModel, tracking);
+            return _mapper.Map<IEnumerable<BrandDto>>(entites);
+
         }
 
         public IEnumerable<BrandDto> GetAll(PaginationModel paginationModel, Expression<Func<Brand, bool>> predicate, Expression<Func<Brand, long>> orderByKeySelector, OrderByDirection direction, bool tracking = false, params Expression<Func<Brand, long>>[] thenByKeySelector)
         {
-            throw new NotImplementedException();
+            var entities = GetAll(paginationModel, predicate, orderByKeySelector, direction, tracking, thenByKeySelector);
+
+            return _mapper.Map<IEnumerable<BrandDto>>(entities);
+
         }
 
-        public Task<IEnumerable<BrandDto>> GetAllAsync(PaginationModel paginationModel, Expression<Func<Brand, bool>> predicate, Expression<Func<Brand, long>> orderByKeySelector, OrderByDirection direction, bool tracking = false, params Expression<Func<Brand, long>>[] thenByKeySelector)
+        public async Task<IEnumerable<BrandDto>> GetAllAsync(PaginationModel paginationModel, Expression<Func<Brand, bool>> predicate, Expression<Func<Brand, long>> orderByKeySelector, OrderByDirection direction, bool tracking = false, params Expression<Func<Brand, long>>[] thenByKeySelector)
         {
-            throw new NotImplementedException();
+            var entities = await GetAllAsync(paginationModel, predicate, orderByKeySelector, direction, tracking, thenByKeySelector);
+
+            return _mapper.Map<IEnumerable<BrandDto>>(entities);
         }
 
         public BrandDto GetById(bool tracking = false, params object[] keyValues)
         {
-            throw new NotImplementedException();
+            var entity = _repository.GetById(tracking, keyValues);
+
+            if (entity is null)
+                throw new EntityNotFoundException(nameof(entity));
+
+            return _mapper.Map<BrandDto>(entity);
+
         }
 
-        public Task<BrandDto> GetByIdAsync(bool tracking = false, params object[] keyValues)
+        public async Task<BrandDto> GetByIdAsync(bool tracking = false, params object[] keyValues)
         {
-            throw new NotImplementedException();
+            var entity = _repository.GetByIdAsync(tracking, keyValues);
+
+            if (entity is null)
+                throw new EntityNotFoundException(nameof(entity));
+
+            return _mapper.Map<BrandDto>(entity);
         }
 
         public BrandDto GetFirstOrDefault(Expression<Func<Brand, bool>> predicate, bool tracking = false)
         {
-            throw new NotImplementedException();
+            var entity = _repository.GetFirstOrDefault(predicate, tracking);
+
+            if (entity is null)
+                throw new EntityNotFoundException(nameof(entity));
+
+            return _mapper.Map<BrandDto>(entity);
+
         }
 
-        public Task<BrandDto> GetFirstOrDefaultAsync(Expression<Func<Brand, bool>> predicate, bool tracking = false)
+        public async Task<BrandDto> GetFirstOrDefaultAsync(Expression<Func<Brand, bool>> predicate, bool tracking = false)
         {
-            throw new NotImplementedException();
+
+            var entity = await _repository.GetFirstOrDefaultAsync(predicate, tracking);
+
+            return _mapper.Map<BrandDto>(entity);
         }
 
-        public (BrandDto, BrandDto) Update(BrandDto dtos)
+        public (BrandDto, BrandDto) Update(BrandDto dto)
         {
-            throw new NotImplementedException();
+            if (dto is null)
+                throw new ParameterValueNullException(nameof(Brand));
+
+            var foundedEntity = _repository.GetById(false, dto.Id);
+
+            if (foundedEntity is null)
+                throw new EntityNotFoundException(nameof(Brand));
+
+            var oldEntity = _mapper.Map<BrandDto>(foundedEntity);
+
+            var entity = _mapper.Map<Brand>(dto);
+
+            _repository.Update(entity);
+            _repository.SaveChanges();
+
+          //  var newEntity = _mapper.Map<BrandDto>(entity);
+
+
+            return (oldEntity, dto);
+
         }
     }
 

@@ -32,44 +32,20 @@ namespace DataAccessLayer.Repositories.Concretes.Base
         public async Task AddRangeAsync(IEnumerable<T> entities)
             => await _table.AddRangeAsync(entities);
         //todo Delete repositories 
-        public bool Delete(long id)
+        public void Delete(long id)
         {
             var entity = GetById(true, id);
-
-            entity.DeletedDate = DateTime.Now;
-            entity.Status = false;
-
-            return _context.Entry(entity).State == EntityState.Modified;
-
+            _context.Remove(entity);
         }
         public void DeleteRange(IEnumerable<T> entities)
-        {
-            _table.AttachRange(entities);
-            var deletedDate = DateTime.Now;
+        => _context.RemoveRange(entities);
 
-            foreach (var entity in entities)
-            {
-                entity.DeletedDate = deletedDate;
-                entity.Status = false;
-            }
-
-        }
-        public bool Delete(T entity)
-        {
-            var entry = _table.Attach(entity);
-            entity.DeletedDate = DateTime.Now;
-            entity.Status = false;
-
-            return entry.State == EntityState.Modified;
-        }
-        public async Task<bool> DeleteAsync(long id)
+        public void Delete(T entity)
+        => _context.Remove(entity);
+        public async Task DeleteAsync(long id)
         {
             var entity = await GetByIdAsync(true, id);
-
-            entity.DeletedDate = DateTime.Now;
-            entity.Status = false;
-
-            return _context.Entry(entity).State == EntityState.Modified;
+            _context.Remove(entity);
         }
         public void DeleteRange(Expression<Func<T, bool>> predicate)
         {
@@ -81,10 +57,6 @@ namespace DataAccessLayer.Repositories.Concretes.Base
         public bool Update(T entity)
         {
             var entry = _table.Update(entity);
-
-            //var entry = _table.Attach(entity);
-            //entry.State = EntityState.Modified;
-
             return entry.State == EntityState.Modified;
         }
 

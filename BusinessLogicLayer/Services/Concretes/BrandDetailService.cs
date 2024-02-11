@@ -1,6 +1,7 @@
 ﻿using BusinessLogicLayer.Services.Abstracts;
 using CoreLayer.DTOs;
 using CoreLayer.Enums;
+using CoreLayer.Exceptions;
 using CoreLayer.Model;
 using DataAccessLayer.Entities;
 using System.Linq.Expressions;
@@ -11,7 +12,15 @@ namespace BusinessLogicLayer.Services.Concretes
     {
         public BrandDetailDto Add(BrandDetailDto dto)
         {
-            throw new NotImplementedException();
+            BrandDetail brandDetail = null;
+            
+            if (dto.Brand is null && dto.BrandId is 0)
+                throw new ForeignKeyOrNavigationPropertyNullException(nameof(Brand));
+
+                                                                                                                                                                                                                                                                                                                                
+
+
+
         }
 
         public Task<BrandDetailDto> AddAsync(BrandDetailDto dto)

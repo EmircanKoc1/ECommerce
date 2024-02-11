@@ -12,9 +12,9 @@ namespace DataAccessLayer.Repositories.Abstracts.Base
         void AddRange(IEnumerable<T> entities);
 
         
-        bool Delete(long id);
+        void Delete(long id);
         void DeleteRange(IEnumerable<T> entities);
-        bool Delete(T entity);
+        void Delete(T entity);
         void DeleteRange(Expression<Func<T,bool>> predicate);
    
 

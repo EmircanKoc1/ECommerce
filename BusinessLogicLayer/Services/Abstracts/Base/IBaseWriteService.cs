@@ -14,10 +14,10 @@ namespace BusinessLogicLayer.Services.Abstracts.Base
         public Task<IEnumerable<TDto>> AddRangeAsync(IEnumerable<TDto> dtos);
         public TDto Delete(long id);
         public IEnumerable<TDto> DeleteRange(IEnumerable<TDto> dtos);
-        public TDto Delete(TDto dtos);
+        public TDto Delete(TDto dto);
         public Task<TDto> DeleteAsync(long id);
         public IEnumerable<TDto> DeleteRange(Expression<Func<TEntity, bool>> predicate);
 
-        public (TDto, TDto) Update(TDto dtos);
+        public (TDto, TDto) Update(TDto dto);
     }
 }
