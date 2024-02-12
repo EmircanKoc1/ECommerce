@@ -5,7 +5,7 @@
         public DateTime OrderDate { get; set; }
         public float TotalAmount { get; set; }
         public float DiscountAmount { get; set; }
-
+        public float FinalAmount { get; set; }
         public long? UserId { get; set; }
         public UserDto User { get; set; }
 

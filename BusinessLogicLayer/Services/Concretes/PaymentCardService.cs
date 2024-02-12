@@ -1,22 +1,59 @@
-﻿using BusinessLogicLayer.Services.Abstracts;
+﻿using AutoMapper;
+using BusinessLogicLayer.Extensions;
+using BusinessLogicLayer.Services.Abstracts;
 using CoreLayer.DTOs;
 using CoreLayer.Enums;
+using CoreLayer.Exceptions;
 using CoreLayer.Model;
 using DataAccessLayer.Entities;
+using DataAccessLayer.Repositories.Abstracts;
 using System.Linq.Expressions;
 
 namespace BusinessLogicLayer.Services.Concretes
 {
     public class PaymentCardService : IPaymentCardService
     {
-        public PaymentCardDto Add(PaymentCardDto dto)
+        IMapper _mapper;
+        IPaymentCardRepository _repository;
+
+        public PaymentCardService(IMapper mapper, IPaymentCardRepository repository)
         {
-            throw new NotImplementedException();
+            _mapper = mapper;
+            _repository = repository;
         }
 
-        public Task<PaymentCardDto> AddAsync(PaymentCardDto dto)
+        public PaymentCardDto Add(PaymentCardDto dto)
         {
-            throw new NotImplementedException();
+            dto.ThrowIfNull("", CustomException.ParameterValueNullException);
+
+            if (dto.User is null && dto.UserId is null or 0)
+                throw new ForeignKeyOrNavigationPropertyNullException("");
+
+            var entity = _repository.GetById(false, dto.Id);
+            entity.ThrowIfNull("", CustomException.EntityAlreadyExistsException);
+
+            entity = _mapper.Map<PaymentCard>(dto);
+            _repository.Add(entity);
+            _repository.SaveChanges();
+
+            return _mapper.Map<PaymentCardDto>(entity);
+        }
+
+        public async Task<PaymentCardDto> AddAsync(PaymentCardDto dto)
+        {
+            dto.ThrowIfNull("", CustomException.ParameterValueNullException);
+
+            if (dto.User is null && dto.UserId is null or 0)
+                throw new ForeignKeyOrNavigationPropertyNullException("");
+
+            var entity = await _repository.GetByIdAsync(false, dto.Id);
+            entity.ThrowIfNull("", CustomException.EntityAlreadyExistsException);
+
+            entity = _mapper.Map<PaymentCard>(dto);
+            await _repository.AddAsync(entity);
+            await _repository.SaveChangesAsync();
+
+            return _mapper.Map<PaymentCardDto>(entity);
         }
 
         public IEnumerable<PaymentCardDto> AddRange(IEnumerable<PaymentCardDto> dtos)
@@ -34,7 +71,7 @@ namespace BusinessLogicLayer.Services.Concretes
             throw new NotImplementedException();
         }
 
-        public PaymentCardDto Delete(PaymentCardDto dtos)
+        public PaymentCardDto Delete(PaymentCardDto dto)
         {
             throw new NotImplementedException();
         }
@@ -44,55 +81,75 @@ namespace BusinessLogicLayer.Services.Concretes
             throw new NotImplementedException();
         }
 
-        public IEnumerable<PaymentCardDto> DeleteRange(IEnumerable<PaymentCardDto> dtos)
+        public void DeleteRange(IEnumerable<PaymentCardDto> dtos)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<PaymentCardDto> DeleteRange(Expression<Func<PaymentCard, bool>> predicate)
+        public void DeleteRange(Expression<Func<PaymentCard, bool>> predicate)
         {
             throw new NotImplementedException();
         }
 
         public IEnumerable<PaymentCardDto> GetAll(PaginationModel paginationModel, bool tracking = false)
         {
-            throw new NotImplementedException();
+            var entities = _repository.GetAll(paginationModel, tracking);
+
+            return _mapper.Map<IEnumerable<PaymentCardDto>>(entities);
         }
 
         public IEnumerable<PaymentCardDto> GetAll(PaginationModel paginationModel, Expression<Func<PaymentCard, bool>> predicate, Expression<Func<PaymentCard, long>> orderByKeySelector, OrderByDirection direction, bool tracking = false, params Expression<Func<PaymentCard, long>>[] thenByKeySelector)
         {
-            throw new NotImplementedException();
+            var entities = _repository.GetAll(paginationModel, predicate, orderByKeySelector, direction, tracking, thenByKeySelector);
+
+
+            return _mapper.Map<IEnumerable<PaymentCardDto>>(entities);
         }
 
-        public Task<IEnumerable<PaymentCardDto>> GetAllAsync(PaginationModel paginationModel, Expression<Func<PaymentCard, bool>> predicate, Expression<Func<PaymentCard, long>> orderByKeySelector, OrderByDirection direction, bool tracking = false, params Expression<Func<PaymentCard, long>>[] thenByKeySelector)
+        public async Task<IEnumerable<PaymentCardDto>> GetAllAsync(PaginationModel paginationModel, Expression<Func<PaymentCard, bool>> predicate, Expression<Func<PaymentCard, long>> orderByKeySelector, OrderByDirection direction, bool tracking = false, params Expression<Func<PaymentCard, long>>[] thenByKeySelector)
         {
-            throw new NotImplementedException();
+            var entities = await _repository.GetAllAsync(paginationModel, predicate, orderByKeySelector, direction, tracking, thenByKeySelector);
+
+
+            return _mapper.Map<IEnumerable<PaymentCardDto>>(entities);
+
         }
 
         public PaymentCardDto GetById(bool tracking = false, params object[] keyValues)
         {
-            throw new NotImplementedException();
+            var entity = _repository.GetById(tracking, keyValues);
+            entity.ThrowIfNull("", CustomException.EntityNotFoundException);
+
+            return _mapper.Map<PaymentCardDto>(entity);
         }
 
-        public Task<PaymentCardDto> GetByIdAsync(bool tracking = false, params object[] keyValues)
+        public async Task<PaymentCardDto> GetByIdAsync(bool tracking = false, params object[] keyValues)
         {
-            throw new NotImplementedException();
+            var entity = await _repository.GetByIdAsync(tracking, keyValues);
+            entity.ThrowIfNull("", CustomException.EntityNotFoundException);
+
+            return _mapper.Map<PaymentCardDto>(entity);
         }
 
         public PaymentCardDto GetFirstOrDefault(Expression<Func<PaymentCard, bool>> predicate, bool tracking = false)
         {
-            throw new NotImplementedException();
+            var entity = _repository.GetFirstOrDefault(predicate, tracking);
+            entity.ThrowIfNull("", CustomException.EntityNotFoundException);
+
+            return _mapper.Map<PaymentCardDto>(entity);
         }
 
-        public Task<PaymentCardDto> GetFirstOrDefaultAsync(Expression<Func<PaymentCard, bool>> predicate, bool tracking = false)
+        public async Task<PaymentCardDto> GetFirstOrDefaultAsync(Expression<Func<PaymentCard, bool>> predicate, bool tracking = false)
         {
-            throw new NotImplementedException();
+            var entity = await _repository.GetFirstOrDefaultAsync(predicate, tracking);
+            entity.ThrowIfNull("", CustomException.EntityNotFoundException);
+
+            return _mapper.Map<PaymentCardDto>(entity);
         }
 
-        public (PaymentCardDto, PaymentCardDto) Update(PaymentCardDto dtos)
+        public (PaymentCardDto, PaymentCardDto) Update(PaymentCardDto dto)
         {
             throw new NotImplementedException();
         }
     }
-
 }

@@ -143,7 +143,7 @@ namespace BusinessLogicLayer.Services.Concretes
 
         }
 
-        public IEnumerable<AddressDto> DeleteRange(IEnumerable<AddressDto> dtos)
+        public void DeleteRange(IEnumerable<AddressDto> dtos)
         {
             if (dtos is null)
                 throw new ArgumentNullException(nameof(Address));
@@ -158,10 +158,10 @@ namespace BusinessLogicLayer.Services.Concretes
 
             _repository.SaveChanges();
 
-            return _mapper.Map<IEnumerable<AddressDto>>(dtos);
+          //  return _mapper.Map<IEnumerable<AddressDto>>(dtos);
         }
 
-        public IEnumerable<AddressDto> DeleteRange(Expression<Func<Address, bool>> predicate)
+        public void DeleteRange(Expression<Func<Address, bool>> predicate)
         {
             var entities = _repository.GetAll().Where(predicate);
 
@@ -171,7 +171,7 @@ namespace BusinessLogicLayer.Services.Concretes
 
             _repository.SaveChanges();
 
-            return _mapper.Map<IEnumerable<AddressDto>>(entities);
+            //return _mapper.Map<IEnumerable<AddressDto>>(entities);
 
         }
 
