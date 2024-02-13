@@ -58,37 +58,98 @@ namespace BusinessLogicLayer.Services.Concretes
 
         public IEnumerable<PaymentCardDto> AddRange(IEnumerable<PaymentCardDto> dtos)
         {
-            throw new NotImplementedException();
+            dtos.ThrowIfNull("", CustomException.ParameterValueNullException);
+
+            foreach (var dto in dtos)
+            {
+                dto.ThrowIfNull("", CustomException.ParameterValueNullException);
+                if (dto.User is null && dto.UserId is null or 0)
+                    throw new ForeignKeyOrNavigationPropertyNullException("");
+            }
+
+            var entities = _mapper.Map<IEnumerable<PaymentCard>>(dtos);
+            _repository.AddRange(entities);
+            _repository.SaveChanges();
+
+            return _mapper.Map<IEnumerable<PaymentCardDto>>(entities);
+
         }
 
-        public Task<IEnumerable<PaymentCardDto>> AddRangeAsync(IEnumerable<PaymentCardDto> dtos)
+        public async Task<IEnumerable<PaymentCardDto>> AddRangeAsync(IEnumerable<PaymentCardDto> dtos)
         {
-            throw new NotImplementedException();
+            dtos.ThrowIfNull("", CustomException.ParameterValueNullException);
+
+            foreach (var dto in dtos)
+            {
+                dto.ThrowIfNull("", CustomException.ParameterValueNullException);
+                if (dto.User is null && dto.UserId is null or 0)
+                    throw new ForeignKeyOrNavigationPropertyNullException("");
+            }
+
+            foreach (var dto in dtos)
+                dto.ThrowIfNull("", CustomException.ParameterValueNullException);
+
+            var entities = _mapper.Map<IEnumerable<PaymentCard>>(dtos);
+            await _repository.AddRangeAsync(entities);
+            await _repository.SaveChangesAsync();
+
+            return _mapper.Map<IEnumerable<PaymentCardDto>>(entities);
         }
 
         public PaymentCardDto Delete(long id)
         {
-            throw new NotImplementedException();
+            var entity = _repository.GetById(false, id);
+
+            entity.ThrowIfNull("", CustomException.EntityNotFoundException);
+
+            _repository.Delete(entity);
+            _repository.SaveChanges();
+
+            return _mapper.Map<PaymentCardDto>(entity);
         }
 
         public PaymentCardDto Delete(PaymentCardDto dto)
         {
-            throw new NotImplementedException();
+            var entity = _repository.GetById(false, dto.Id);
+
+            entity.ThrowIfNull("", CustomException.EntityNotFoundException);
+
+            _repository.Delete(entity);
+            _repository.SaveChanges();
+
+            return _mapper.Map<PaymentCardDto>(entity);
         }
 
-        public Task<PaymentCardDto> DeleteAsync(long id)
+        public async Task<PaymentCardDto> DeleteAsync(long id)
         {
-            throw new NotImplementedException();
+            var entity = await _repository.GetByIdAsync(false, id);
+
+            entity.ThrowIfNull("", CustomException.EntityNotFoundException);
+
+            _repository.Delete(entity);
+            _repository.SaveChanges();
+
+            return _mapper.Map<PaymentCardDto>(entity);
         }
 
         public void DeleteRange(IEnumerable<PaymentCardDto> dtos)
         {
-            throw new NotImplementedException();
+            dtos.ThrowIfNull("", CustomException.ParameterValueNullException);
+
+            foreach (var dto in dtos)
+                dto.ThrowIfNull("", CustomException.ParameterValueNullException);
+
+            var entities = _mapper.Map<IEnumerable<PaymentCard>>(dtos);
+
+            _repository.DeleteRange(entities);
+            _repository.SaveChanges();
+
         }
 
         public void DeleteRange(Expression<Func<PaymentCard, bool>> predicate)
         {
-            throw new NotImplementedException();
+            _repository.DeleteRange(predicate);
+            _repository.SaveChanges();
         }
 
         public IEnumerable<PaymentCardDto> GetAll(PaginationModel paginationModel, bool tracking = false)
@@ -149,7 +210,18 @@ namespace BusinessLogicLayer.Services.Concretes
 
         public (PaymentCardDto, PaymentCardDto) Update(PaymentCardDto dto)
         {
-            throw new NotImplementedException();
+            dto.ThrowIfNull("", CustomException.ParameterValueNullException);
+
+            var foundedEntity = _repository.GetById(false, dto.Id);
+            foundedEntity.ThrowIfNull("", CustomException.EntityNotFoundException);
+
+            var oldEntity = _mapper.Map<PaymentCardDto>(foundedEntity);
+            var newEntity = _mapper.Map<PaymentCard>(dto);
+
+            _repository.Update(newEntity);
+            _repository.SaveChanges();
+
+            return (oldEntity, dto);
         }
     }
 }

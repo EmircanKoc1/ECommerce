@@ -1,97 +1,215 @@
-﻿using BusinessLogicLayer.Services.Abstracts;
+﻿using AutoMapper;
+using BusinessLogicLayer.Extensions;
+using BusinessLogicLayer.Services.Abstracts;
 using CoreLayer.DTOs;
 using CoreLayer.Enums;
 using CoreLayer.Model;
 using DataAccessLayer.Entities;
+using DataAccessLayer.Repositories.Abstracts;
 using System.Linq.Expressions;
 
 namespace BusinessLogicLayer.Services.Concretes
 {
     public class SubCategoryService : ISubCategoryService
     {
-        public SubCategoryDto Add(SubCategoryDto dto)
+        IMapper _mapper;
+        ISubCategoryRepository _repository;
+
+        public SubCategoryService(IMapper mapper, ISubCategoryRepository repository)
         {
-            throw new NotImplementedException();
+            _mapper = mapper;
+            _repository = repository;
         }
 
-        public Task<SubCategoryDto> AddAsync(SubCategoryDto dto)
+        void CustomValidator(SubCategoryDto dto)
         {
-            throw new NotImplementedException();
+            dto.ThrowIfNull("", CustomException.ParameterValueNullException);
+
+            if (dto.Category is null && dto.CategoryId is null or 0)
+                dto.ThrowIfNull("", CustomException.ForeignKeyOrNavigationPropertyNullException);
+        }
+
+        public SubCategoryDto Add(SubCategoryDto dto)
+        {
+            CustomValidator(dto);
+
+            var entity = _mapper.Map<SubCategory>(dto);
+            _repository.Add(entity);
+            _repository.SaveChanges();
+
+            return _mapper.Map<SubCategoryDto>(dto);
+        }
+
+        public async Task<SubCategoryDto> AddAsync(SubCategoryDto dto)
+        {
+            CustomValidator(dto);
+
+            var entity = _mapper.Map<SubCategory>(dto);
+            await _repository.AddAsync(entity);
+            await _repository.SaveChangesAsync();
+
+            return _mapper.Map<SubCategoryDto>(dto);
+
         }
 
         public IEnumerable<SubCategoryDto> AddRange(IEnumerable<SubCategoryDto> dtos)
         {
-            throw new NotImplementedException();
+            dtos.ThrowIfNull("", CustomException.ParameterValueNullException);
+
+            foreach (var dto in dtos)
+                CustomValidator(dto);
+
+            var entities = _mapper.Map<IEnumerable<SubCategory>>(dtos);
+            _repository.AddRange(entities);
+            _repository.SaveChanges();
+
+            return _mapper.Map<IEnumerable<SubCategoryDto>>(entities);
+
         }
 
-        public Task<IEnumerable<SubCategoryDto>> AddRangeAsync(IEnumerable<SubCategoryDto> dtos)
+        public async Task<IEnumerable<SubCategoryDto>> AddRangeAsync(IEnumerable<SubCategoryDto> dtos)
         {
-            throw new NotImplementedException();
+            dtos.ThrowIfNull("", CustomException.ParameterValueNullException);
+
+            foreach (var dto in dtos)
+                CustomValidator(dto);
+
+            var entities = _mapper.Map<IEnumerable<SubCategory>>(dtos);
+            await _repository.AddRangeAsync(entities);
+            await _repository.SaveChangesAsync();
+
+            return _mapper.Map<IEnumerable<SubCategoryDto>>(entities);
         }
 
         public SubCategoryDto Delete(long id)
         {
-            throw new NotImplementedException();
+            var entity = _repository.GetById(false, id);
+
+            entity.ThrowIfNull("", CustomException.EntityNotFoundException);
+
+            _repository.Delete(entity);
+            _repository.SaveChanges();
+
+            return _mapper.Map<SubCategoryDto>(entity);
         }
 
-        public SubCategoryDto Delete(SubCategoryDto dtos)
+        public SubCategoryDto Delete(SubCategoryDto dto)
         {
-            throw new NotImplementedException();
+            var entity = _repository.GetById(false, dto.Id);
+
+            entity.ThrowIfNull("", CustomException.EntityNotFoundException);
+            _repository.Delete(entity);
+            _repository.SaveChanges();
+
+            return _mapper.Map<SubCategoryDto>(entity);
+
         }
 
-        public Task<SubCategoryDto> DeleteAsync(long id)
+        public async Task<SubCategoryDto> DeleteAsync(long id)
         {
-            throw new NotImplementedException();
+            var entity = await _repository.GetByIdAsync(false, id);
+
+            entity.ThrowIfNull("", CustomException.EntityNotFoundException);
+
+            _repository.Delete(entity);
+            _repository.SaveChanges();
+
+            return _mapper.Map<SubCategoryDto>(entity);
+
         }
 
-        public IEnumerable<SubCategoryDto> DeleteRange(IEnumerable<SubCategoryDto> dtos)
+        public void DeleteRange(IEnumerable<SubCategoryDto> dtos)
         {
-            throw new NotImplementedException();
+
+            dtos.ThrowIfNull("", CustomException.ParameterValueNullException);
+
+            foreach (var dto in dtos)
+                CustomValidator(dto);
+
+            var entities = _mapper.Map<IEnumerable<SubCategory>>(dtos);
+            _repository.DeleteRange(entities);
+            _repository.SaveChanges();
+
         }
 
-        public IEnumerable<SubCategoryDto> DeleteRange(Expression<Func<SubCategory, bool>> predicate)
+        public void DeleteRange(Expression<Func<SubCategory, bool>> predicate)
         {
-            throw new NotImplementedException();
+            predicate.ThrowIfNull("", CustomException.ParameterValueNullException);
+
+            _repository.DeleteRange(predicate);
+            _repository.SaveChanges();
         }
 
         public IEnumerable<SubCategoryDto> GetAll(PaginationModel paginationModel, bool tracking = false)
         {
-            throw new NotImplementedException();
+            var entities = _repository.GetAll(paginationModel, tracking);
+            entities.ThrowIfNull("", CustomException.EntityNotFoundException);
+
+            return _mapper.Map<IEnumerable<SubCategoryDto>>(entities);
         }
 
         public IEnumerable<SubCategoryDto> GetAll(PaginationModel paginationModel, Expression<Func<SubCategory, bool>> predicate, Expression<Func<SubCategory, long>> orderByKeySelector, OrderByDirection direction, bool tracking = false, params Expression<Func<SubCategory, long>>[] thenByKeySelector)
         {
-            throw new NotImplementedException();
+            var entities = _repository.GetAll(paginationModel, predicate, orderByKeySelector, direction, tracking, thenByKeySelector);
+            entities.ThrowIfNull("", CustomException.EntityNotFoundException);
+
+            return _mapper.Map<IEnumerable<SubCategoryDto>>(entities);
         }
 
-        public Task<IEnumerable<SubCategoryDto>> GetAllAsync(PaginationModel paginationModel, Expression<Func<SubCategory, bool>> predicate, Expression<Func<SubCategory, long>> orderByKeySelector, OrderByDirection direction, bool tracking = false, params Expression<Func<SubCategory, long>>[] thenByKeySelector)
+        public async Task<IEnumerable<SubCategoryDto>> GetAllAsync(PaginationModel paginationModel, Expression<Func<SubCategory, bool>> predicate, Expression<Func<SubCategory, long>> orderByKeySelector, OrderByDirection direction, bool tracking = false, params Expression<Func<SubCategory, long>>[] thenByKeySelector)
         {
-            throw new NotImplementedException();
+            var entities = await _repository.GetAllAsync(paginationModel, predicate, orderByKeySelector, direction, tracking, thenByKeySelector);
+            entities.ThrowIfNull("", CustomException.EntityNotFoundException);
+
+            return _mapper.Map<IEnumerable<SubCategoryDto>>(entities);
         }
 
         public SubCategoryDto GetById(bool tracking = false, params object[] keyValues)
         {
-            throw new NotImplementedException();
+            var entity = _repository.GetById(false, keyValues);
+            entity.ThrowIfNull("", CustomException.ParameterValueNullException);
+
+            return _mapper.Map<SubCategoryDto>(entity);
         }
 
-        public Task<SubCategoryDto> GetByIdAsync(bool tracking = false, params object[] keyValues)
+        public async Task<SubCategoryDto> GetByIdAsync(bool tracking = false, params object[] keyValues)
         {
-            throw new NotImplementedException();
+            var entity = await _repository.GetByIdAsync(false, keyValues);
+            entity.ThrowIfNull("", CustomException.ParameterValueNullException);
+
+            return _mapper.Map<SubCategoryDto>(entity);
         }
 
         public SubCategoryDto GetFirstOrDefault(Expression<Func<SubCategory, bool>> predicate, bool tracking = false)
         {
-            throw new NotImplementedException();
+            var entity = _repository.GetFirstOrDefault(predicate, tracking);
+            entity.ThrowIfNull("", CustomException.EntityNotFoundException);
+
+            return _mapper.Map<SubCategoryDto>(entity);
         }
 
-        public Task<SubCategoryDto> GetFirstOrDefaultAsync(Expression<Func<SubCategory, bool>> predicate, bool tracking = false)
+        public async Task<SubCategoryDto> GetFirstOrDefaultAsync(Expression<Func<SubCategory, bool>> predicate, bool tracking = false)
         {
-            throw new NotImplementedException();
+            var entity = await _repository.GetFirstOrDefaultAsync(predicate, tracking);
+            entity.ThrowIfNull("", CustomException.EntityNotFoundException);
+
+            return _mapper.Map<SubCategoryDto>(entity);
         }
 
-        public (SubCategoryDto, SubCategoryDto) Update(SubCategoryDto dtos)
+        public (SubCategoryDto, SubCategoryDto) Update(SubCategoryDto dto)
         {
-            throw new NotImplementedException();
+            dto.ThrowIfNull("", CustomException.ParameterValueNullException);
+
+            var foundedEntity = _repository.GetById(false, dto.Id);
+            foundedEntity.ThrowIfNull("", CustomException.EntityNotFoundException);
+
+            var oldEntity = _mapper.Map<SubCategoryDto>(foundedEntity);
+            var newEntity = _mapper.Map<SubCategory>(dto);
+
+            _repository.Update(newEntity);
+            _repository.SaveChanges();
+
+            return (oldEntity, dto);
         }
     }
 

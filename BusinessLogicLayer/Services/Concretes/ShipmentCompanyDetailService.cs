@@ -1,97 +1,226 @@
-﻿using BusinessLogicLayer.Services.Abstracts;
+﻿using AutoMapper;
+using BusinessLogicLayer.Extensions;
+using BusinessLogicLayer.Services.Abstracts;
 using CoreLayer.DTOs;
 using CoreLayer.Enums;
 using CoreLayer.Model;
 using DataAccessLayer.Entities;
+using DataAccessLayer.Repositories.Abstracts;
 using System.Linq.Expressions;
 
 namespace BusinessLogicLayer.Services.Concretes
 {
     public class ShipmentCompanyDetailService : IShipmentCompanyDetailService
     {
-        public ShipmentCompanyDetailDto Add(ShipmentCompanyDetailDto dto)
+        IMapper _mapper;
+        IShipmentCompanyDetailRepository _repository;
+
+        public ShipmentCompanyDetailService(IMapper mapper, IShipmentCompanyDetailRepository repository)
         {
-            throw new NotImplementedException();
+            _mapper = mapper;
+            _repository = repository;
         }
 
-        public Task<ShipmentCompanyDetailDto> AddAsync(ShipmentCompanyDetailDto dto)
+        void CustomValidator(ShipmentCompanyDetailDto dto)
         {
-            throw new NotImplementedException();
+            dto.ThrowIfNull("", CustomException.ParameterValueNullException);
+
+            if (dto.ShipmentCompanyId is null or 0)
+                dto.ThrowIfNull("", CustomException.ForeignKeyOrNavigationPropertyNullException);
+
+        }
+
+        public ShipmentCompanyDetailDto Add(ShipmentCompanyDetailDto dto)
+        {
+            CustomValidator(dto);
+
+            var entity = _mapper.Map<ShipmentCompanyDetail>(dto);
+            _repository.Add(entity);
+            _repository.SaveChanges();
+
+            return _mapper.Map<ShipmentCompanyDetailDto>(entity);
+        }
+
+        public async Task<ShipmentCompanyDetailDto> AddAsync(ShipmentCompanyDetailDto dto)
+        {
+
+            CustomValidator(dto);
+
+            var entity = _mapper.Map<ShipmentCompanyDetail>(dto);
+            await _repository.AddAsync(entity);
+            await _repository.SaveChangesAsync();
+
+            return _mapper.Map<ShipmentCompanyDetailDto>(entity);
         }
 
         public IEnumerable<ShipmentCompanyDetailDto> AddRange(IEnumerable<ShipmentCompanyDetailDto> dtos)
         {
-            throw new NotImplementedException();
+            dtos.ThrowIfNull("", CustomException.ParameterValueNullException);
+
+            foreach (var dto in dtos)
+                CustomValidator(dto);
+
+            var entities = _mapper.Map<IEnumerable<ShipmentCompanyDetail>>(dtos);
+            _repository.AddRange(entities);
+            _repository.SaveChanges();
+
+            return _mapper.Map<IEnumerable<ShipmentCompanyDetailDto>>(entities);
         }
 
-        public Task<IEnumerable<ShipmentCompanyDetailDto>> AddRangeAsync(IEnumerable<ShipmentCompanyDetailDto> dtos)
+        public async Task<IEnumerable<ShipmentCompanyDetailDto>> AddRangeAsync(IEnumerable<ShipmentCompanyDetailDto> dtos)
         {
-            throw new NotImplementedException();
+            dtos.ThrowIfNull("", CustomException.ParameterValueNullException);
+
+            foreach (var dto in dtos)
+                CustomValidator(dto);
+
+            var entities = _mapper.Map<IEnumerable<ShipmentCompanyDetail>>(dtos);
+            await _repository.AddRangeAsync(entities);
+            await _repository.SaveChangesAsync();
+
+            return _mapper.Map<IEnumerable<ShipmentCompanyDetailDto>>(entities);
         }
 
         public ShipmentCompanyDetailDto Delete(long id)
         {
-            throw new NotImplementedException();
+            var entity = _repository.GetById(false, id);
+
+            entity.ThrowIfNull("", CustomException.EntityNotFoundException);
+
+            _repository.Delete(entity);
+            _repository.SaveChanges();
+
+            return _mapper.Map<ShipmentCompanyDetailDto>(entity);
+
         }
 
-        public ShipmentCompanyDetailDto Delete(ShipmentCompanyDetailDto dtos)
+        public ShipmentCompanyDetailDto Delete(ShipmentCompanyDetailDto dto)
         {
-            throw new NotImplementedException();
+            var entity = _repository.GetById(false, dto.Id);
+
+            entity.ThrowIfNull("", CustomException.EntityNotFoundException);
+
+            _repository.Delete(entity);
+            _repository.SaveChanges();
+
+            return _mapper.Map<ShipmentCompanyDetailDto>(entity);
         }
 
-        public Task<ShipmentCompanyDetailDto> DeleteAsync(long id)
+        public async Task<ShipmentCompanyDetailDto> DeleteAsync(long id)
         {
-            throw new NotImplementedException();
+            var entity = await _repository.GetByIdAsync(false, id);
+
+            entity.ThrowIfNull("", CustomException.EntityNotFoundException);
+
+            _repository.Delete(entity);
+            _repository.SaveChanges();
+
+            return _mapper.Map<ShipmentCompanyDetailDto>(entity);
         }
 
-        public IEnumerable<ShipmentCompanyDetailDto> DeleteRange(IEnumerable<ShipmentCompanyDetailDto> dtos)
+        public void DeleteRange(IEnumerable<ShipmentCompanyDetailDto> dtos)
         {
-            throw new NotImplementedException();
+
+            dtos.ThrowIfNull("", CustomException.ParameterValueNullException);
+
+            foreach (var dto in dtos)
+                CustomValidator(dto);
+
+            var entities = _mapper.Map<IEnumerable<ShipmentCompanyDetail>>(dtos);
+            _repository.DeleteRange(entities);
+            _repository.SaveChanges();
         }
 
-        public IEnumerable<ShipmentCompanyDetailDto> DeleteRange(Expression<Func<ShipmentCompanyDetail, bool>> predicate)
+        public void DeleteRange(Expression<Func<ShipmentCompanyDetail, bool>> predicate)
         {
-            throw new NotImplementedException();
+
+            _repository.DeleteRange(predicate);
+            _repository.SaveChanges();
         }
 
         public IEnumerable<ShipmentCompanyDetailDto> GetAll(PaginationModel paginationModel, bool tracking = false)
         {
-            throw new NotImplementedException();
+            var entities = _repository.GetAll(paginationModel, tracking);
+
+            entities.ThrowIfNull("", CustomException.EntityNotFoundException);
+
+            return _mapper.Map<IEnumerable<ShipmentCompanyDetailDto>>(entities);
+
         }
 
         public IEnumerable<ShipmentCompanyDetailDto> GetAll(PaginationModel paginationModel, Expression<Func<ShipmentCompanyDetail, bool>> predicate, Expression<Func<ShipmentCompanyDetail, long>> orderByKeySelector, OrderByDirection direction, bool tracking = false, params Expression<Func<ShipmentCompanyDetail, long>>[] thenByKeySelector)
         {
-            throw new NotImplementedException();
+            var entities = _repository.GetAll(paginationModel, predicate, orderByKeySelector, direction, tracking, thenByKeySelector);
+
+            entities.ThrowIfNull("", CustomException.EntityNotFoundException);
+
+            return _mapper.Map<IEnumerable<ShipmentCompanyDetailDto>>(entities);
         }
 
-        public Task<IEnumerable<ShipmentCompanyDetailDto>> GetAllAsync(PaginationModel paginationModel, Expression<Func<ShipmentCompanyDetail, bool>> predicate, Expression<Func<ShipmentCompanyDetail, long>> orderByKeySelector, OrderByDirection direction, bool tracking = false, params Expression<Func<ShipmentCompanyDetail, long>>[] thenByKeySelector)
+        public async Task<IEnumerable<ShipmentCompanyDetailDto>> GetAllAsync(PaginationModel paginationModel, Expression<Func<ShipmentCompanyDetail, bool>> predicate, Expression<Func<ShipmentCompanyDetail, long>> orderByKeySelector, OrderByDirection direction, bool tracking = false, params Expression<Func<ShipmentCompanyDetail, long>>[] thenByKeySelector)
         {
-            throw new NotImplementedException();
+            var entities = await _repository.GetAllAsync(paginationModel, predicate, orderByKeySelector, direction, tracking, thenByKeySelector);
+
+            entities.ThrowIfNull("", CustomException.EntityNotFoundException);
+
+            return _mapper.Map<IEnumerable<ShipmentCompanyDetailDto>>(entities);
         }
 
         public ShipmentCompanyDetailDto GetById(bool tracking = false, params object[] keyValues)
         {
-            throw new NotImplementedException();
+            var entity = _repository.GetById(tracking, keyValues);
+
+            entity.ThrowIfNull("", CustomException.EntityNotFoundException);
+
+            return _mapper.Map<ShipmentCompanyDetailDto>(entity);
+
         }
 
-        public Task<ShipmentCompanyDetailDto> GetByIdAsync(bool tracking = false, params object[] keyValues)
+        public async Task<ShipmentCompanyDetailDto> GetByIdAsync(bool tracking = false, params object[] keyValues)
         {
-            throw new NotImplementedException();
+            var entity = await _repository.GetByIdAsync(tracking, keyValues);
+
+            entity.ThrowIfNull("", CustomException.EntityNotFoundException);
+
+            return _mapper.Map<ShipmentCompanyDetailDto>(entity);
+
         }
 
         public ShipmentCompanyDetailDto GetFirstOrDefault(Expression<Func<ShipmentCompanyDetail, bool>> predicate, bool tracking = false)
         {
-            throw new NotImplementedException();
+            var entity = _repository.GetFirstOrDefault(predicate, tracking);
+
+            entity.ThrowIfNull("", CustomException.EntityNotFoundException);
+
+            return _mapper.Map<ShipmentCompanyDetailDto>(entity);
+
         }
 
-        public Task<ShipmentCompanyDetailDto> GetFirstOrDefaultAsync(Expression<Func<ShipmentCompanyDetail, bool>> predicate, bool tracking = false)
+        public async Task<ShipmentCompanyDetailDto> GetFirstOrDefaultAsync(Expression<Func<ShipmentCompanyDetail, bool>> predicate, bool tracking = false)
         {
-            throw new NotImplementedException();
+            var entity = await _repository.GetFirstOrDefaultAsync(predicate, tracking);
+
+            entity.ThrowIfNull("", CustomException.EntityNotFoundException);
+
+            return _mapper.Map<ShipmentCompanyDetailDto>(entity);
         }
 
-        public (ShipmentCompanyDetailDto, ShipmentCompanyDetailDto) Update(ShipmentCompanyDetailDto dtos)
+        public (ShipmentCompanyDetailDto, ShipmentCompanyDetailDto) Update(ShipmentCompanyDetailDto dto)
         {
-            throw new NotImplementedException();
+            dto.ThrowIfNull("", CustomException.ParameterValueNullException);
+
+            var foundedEntity = _repository.GetById(false, dto.Id);
+
+            foundedEntity.ThrowIfNull("", CustomException.EntityNotFoundException);
+
+            var oldEntity = _mapper.Map<ShipmentCompanyDetailDto>(foundedEntity);
+            var newEntity = _mapper.Map<ShipmentCompanyDetail>(dto);
+
+            _repository.Update(newEntity);
+            _repository.SaveChanges();
+
+            return (oldEntity, dto);
+
         }
     }
 

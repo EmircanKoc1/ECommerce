@@ -27,7 +27,6 @@ namespace CoreLayer.DTOs
         public ICollection<CommentDto> Comments { get; set; }
         public ICollection<ProductFeatureDto> Features { get; set; }
         public ICollection<ProductImageDto> Images { get; set; }
-
         public ICollection<TagDto> Tags { get; set; }
 
 
