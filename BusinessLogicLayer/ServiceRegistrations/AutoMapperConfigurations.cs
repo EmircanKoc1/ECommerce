@@ -10,7 +10,6 @@ namespace BusinessLogicLayer.ServiceRegistrations
 {
     public static class AutoMapperConfiguration
     {
-
         public static IServiceCollection AutoMapperConfig(this IServiceCollection services)
             => services.AddAutoMapper(Assembly.GetExecutingAssembly());
     }

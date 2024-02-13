@@ -29,6 +29,8 @@ namespace DataAccessLayer.Extensions
                         entity.CreatedDate = now;
                         entity.Status = true;
                         break;
+                    default:
+                        break;
                 }
             }
 
