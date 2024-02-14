@@ -118,7 +118,7 @@ namespace BusinessLogicLayer.Services.Concretes
             return _mapper.Map<ClaimDto>(entity);
         }
 
-        public IEnumerable<ClaimDto> DeleteRange(IEnumerable<ClaimDto> dtos)
+        public void DeleteRange(IEnumerable<ClaimDto> dtos)
         {
             if (dtos is null)
                 throw new ParameterValueNullException(nameof(Claim));
@@ -127,18 +127,16 @@ namespace BusinessLogicLayer.Services.Concretes
             _repository.DeleteRange(entities);
             _repository.SaveChanges();
 
-            return _mapper.Map<IEnumerable<ClaimDto>>(entities);
+
 
         }
 
-        public IEnumerable<ClaimDto> DeleteRange(Expression<Func<Claim, bool>> predicate)
+        public void DeleteRange(Expression<Func<Claim, bool>> predicate)
         {
             var entities = _repository.GetAll(false).Where(predicate).AsEnumerable();
 
             _repository.DeleteRange(entities);
             _repository.SaveChanges();
-
-            return _mapper.Map<IEnumerable<ClaimDto>>(entities);
         }
 
         public IEnumerable<ClaimDto> GetAll(PaginationModel paginationModel, bool tracking = false)

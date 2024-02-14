@@ -134,7 +134,7 @@ namespace BusinessLogicLayer.Services.Concretes
 
         }
 
-        public IEnumerable<CategoryDto> DeleteRange(IEnumerable<CategoryDto> dtos)
+        public void  DeleteRange(IEnumerable<CategoryDto> dtos)
         {
             if (dtos is null)
                 throw new ParameterValueNullException(nameof(Category));
@@ -144,10 +144,10 @@ namespace BusinessLogicLayer.Services.Concretes
             _repository.DeleteRange(entities);
             _repository.SaveChanges();
 
-            return _mapper.Map<IEnumerable<CategoryDto>>(entities);
+          
         }
 
-        public IEnumerable<CategoryDto> DeleteRange(Expression<Func<Category, bool>> predicate)
+        public void DeleteRange(Expression<Func<Category, bool>> predicate)
         {
             var entities = _repository.GetAll().Where(predicate);
 
@@ -158,7 +158,7 @@ namespace BusinessLogicLayer.Services.Concretes
                 _repository.Delete(entity);
             _repository.SaveChanges();
 
-            return _mapper.Map<IEnumerable<CategoryDto>>(entities);
+          
 
         }
 

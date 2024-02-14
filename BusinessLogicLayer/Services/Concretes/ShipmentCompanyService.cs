@@ -137,10 +137,10 @@ namespace BusinessLogicLayer.Services.Concretes
 
         public IEnumerable<ShipmentCompanyDto> GetAll(PaginationModel paginationModel, bool tracking = false)
         {
-            var entites = _repository.GetAll(paginationModel, tracking);
+            var entities = _repository.GetAll(paginationModel, tracking);
             entities.ThrowIfNull("", CustomException.EntityNotFoundException);
 
-            return _mapper.Map<IEnumerable<ShipmentCompanyDto>>(entites);
+            return _mapper.Map<IEnumerable<ShipmentCompanyDto>>(entities);
         }
 
         public IEnumerable<ShipmentCompanyDto> GetAll(PaginationModel paginationModel, Expression<Func<ShipmentCompany, bool>> predicate, Expression<Func<ShipmentCompany, long>> orderByKeySelector, OrderByDirection direction, bool tracking = false, params Expression<Func<ShipmentCompany, long>>[] thenByKeySelector)

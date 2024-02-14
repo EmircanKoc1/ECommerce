@@ -134,7 +134,7 @@ namespace BusinessLogicLayer.Services.Concretes
             return _mapper.Map<BrandDto>(entity);
         }
 
-        public IEnumerable<BrandDto> DeleteRange(IEnumerable<BrandDto> dtos)
+        public void  DeleteRange(IEnumerable<BrandDto> dtos)
         {
             if (dtos is null)
                 throw new ParameterValueNullException(nameof(Brand));
@@ -143,11 +143,11 @@ namespace BusinessLogicLayer.Services.Concretes
             _repository.DeleteRange(entities);
             _repository.SaveChanges();
 
-            return _mapper.Map<IEnumerable<BrandDto>>(entities);
+        
 
         }
 
-        public IEnumerable<BrandDto> DeleteRange(Expression<Func<Brand, bool>> predicate)
+        public void DeleteRange(Expression<Func<Brand, bool>> predicate)
         {
             var entities = _repository.GetAll().Where(predicate);
 
@@ -160,7 +160,7 @@ namespace BusinessLogicLayer.Services.Concretes
 
             _repository.SaveChanges();
 
-            return _mapper.Map<IEnumerable<BrandDto>>(entities);
+      
         }
 
         public IEnumerable<BrandDto> GetAll(PaginationModel paginationModel, bool tracking = false)

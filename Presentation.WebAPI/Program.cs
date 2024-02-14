@@ -1,5 +1,6 @@
 using BusinessLogicLayer.ServiceRegistrations;
-using Microsoft.AspNetCore.Mvc;
+using BusinessLogicLayer.Services.Abstracts;
+using BusinessLogicLayer.Services.Concretes;
 using Presentation.WebAPI.Extensions.ServiceRegistrations;
 namespace Presentation.WebAPI
 {
@@ -23,6 +24,9 @@ namespace Presentation.WebAPI
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddScoped<IHashService, HashService>();
+
 
             var app = builder.Build();
 

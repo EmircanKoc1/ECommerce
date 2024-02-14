@@ -27,6 +27,7 @@ namespace BusinessLogicLayer.ServiceRegistrations
              .AddScoped<ISubCategoryService, SubCategoryService>()
              .AddScoped<ITagService, TagService>()
              .AddScoped<ITokenService, TokenService>()
+             .AddTransient<IHashService, HashService>()
              .AddScoped<IUserService, UserService>();
 
     }

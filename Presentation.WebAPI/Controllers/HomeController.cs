@@ -3,7 +3,6 @@ using BusinessLogicLayer.Services.Abstracts;
 using CoreLayer.DTOs;
 using DataAccessLayer.Repositories.Abstracts;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Presentation.WebAPI.Controllers
 {
@@ -14,12 +13,14 @@ namespace Presentation.WebAPI.Controllers
         private readonly IAddressService _addressService;
         private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
+        private readonly IHashService _hashService;
 
-        public HomeController(IAddressService addressService, IUserRepository userRepository, IMapper mapper)
+        public HomeController(IAddressService addressService, IUserRepository userRepository, IMapper mapper, IHashService hashService)
         {
             _addressService = addressService;
             _userRepository = userRepository;
             _mapper = mapper;
+            _hashService = hashService;
         }
 
         [HttpPost]
@@ -39,6 +40,14 @@ namespace Presentation.WebAPI.Controllers
             _userRepository.Add(entity);
             _userRepository.SaveChanges();
             return Ok(entity);
+        }
+
+        [HttpPost]
+        [Route("/hash")]
+        public IActionResult hash(string password)
+        {
+
+            return Ok(_hashService.HashPassword(password));
         }
 
     }
