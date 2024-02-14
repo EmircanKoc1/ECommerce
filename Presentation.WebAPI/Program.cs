@@ -16,16 +16,18 @@ namespace Presentation.WebAPI
 
             builder.Services.AutoMapperConfig();
             builder.Services.AddValidationRules();
-
             builder.Services.AddBllServices();
+
             builder.Services.RepositoriesConfig();
 
+          
 
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            builder.Services.AddScoped<IHashService, HashService>();
+            builder.Services.ConfigureAuthenticatonJwt(builder.Configuration);
+
 
 
             var app = builder.Build();

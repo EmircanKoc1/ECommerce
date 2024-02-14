@@ -6,18 +6,29 @@ using CoreLayer.Enums;
 using CoreLayer.Model;
 using DataAccessLayer.Entities;
 using DataAccessLayer.Repositories.Abstracts;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq.Expressions;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace BusinessLogicLayer.Services.Concretes
 {
     public class TokenService : ITokenService
     {
         ITokenRepository _repository;
+        IConfiguration _configuration;
+        IUserService _userService;
+        IClaimService _claimService;
         IMapper _mapper;
 
-        public TokenService(ITokenRepository repository, IMapper mapper)
+        public TokenService(ITokenRepository repository, IConfiguration configuration, IUserService userService, IClaimService claimService, IMapper mapper)
         {
             _repository = repository;
+            _configuration = configuration;
+            _userService = userService;
+            _claimService = claimService;
             _mapper = mapper;
         }
 
@@ -216,6 +227,58 @@ namespace BusinessLogicLayer.Services.Concretes
             _repository.SaveChanges();
 
             return (oldEntity, dto);
+
+        }
+
+        public string CreateAccessToken(UserDto userDto)
+        {
+
+            userDto.ThrowIfNull("", CustomException.ParameterValueNullException);
+
+
+            // var claims = _mapper.Map<IEnumerable<System.Security.Claims.Claim>>(_claimService.GetUserClaims(userDto));
+
+            var claims = new List<System.Security.Claims.Claim> { new System.Security.Claims.Claim("role", "admin") };
+
+            var symmetricSecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["jwt:key"]));
+
+            var signingCredentials = new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256);
+
+            var securityToken = new JwtSecurityToken(
+                issuer: _configuration["jwt:issuer"],
+                audience: _configuration["jwt:audience"],
+                expires: DateTime.Now.AddHours(1),
+                notBefore: DateTime.Now,
+                signingCredentials: signingCredentials,
+                claims: claims
+                );
+
+            var jwtSecurityTokenHandler = new JwtSecurityTokenHandler();
+
+            return jwtSecurityTokenHandler.WriteToken(securityToken);
+
+        }
+
+        public string CreateRefreshToken()
+        {
+            var number = new byte[32];
+
+            using var random = RandomNumberGenerator.Create();
+
+            random.GetBytes(number);
+
+            return Convert.ToBase64String(number);
+        }
+
+        public TokenReponseDto GenerateTokenModel(UserDto userDto)
+        {
+            return new TokenReponseDto
+            {
+                AccessToken = CreateAccessToken(userDto),
+                RefreshToken = CreateRefreshToken(),
+                TokenExpireDate = DateTime.Now.AddHours(1)
+            };
+
 
         }
     }

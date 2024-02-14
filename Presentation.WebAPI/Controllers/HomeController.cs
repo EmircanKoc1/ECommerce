@@ -3,6 +3,7 @@ using BusinessLogicLayer.Services.Abstracts;
 using CoreLayer.DTOs;
 using DataAccessLayer.Repositories.Abstracts;
 using Microsoft.AspNetCore.Mvc;
+using System.Text;
 
 namespace Presentation.WebAPI.Controllers
 {
@@ -14,13 +15,14 @@ namespace Presentation.WebAPI.Controllers
         private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
         private readonly IHashService _hashService;
-
-        public HomeController(IAddressService addressService, IUserRepository userRepository, IMapper mapper, IHashService hashService)
+        private readonly ITokenService tokenService;
+        public HomeController(IAddressService addressService, IUserRepository userRepository, IMapper mapper, IHashService hashService, ITokenService tokenService)
         {
             _addressService = addressService;
             _userRepository = userRepository;
             _mapper = mapper;
             _hashService = hashService;
+            this.tokenService = tokenService;
         }
 
         [HttpPost]
@@ -44,10 +46,11 @@ namespace Presentation.WebAPI.Controllers
 
         [HttpPost]
         [Route("/hash")]
-        public IActionResult hash(string password)
+        public IActionResult hash(string x)
         {
 
-            return Ok(_hashService.HashPassword(password));
+            var model =tokenService.GenerateTokenModel(new UserDto());
+            return Ok(model);
         }
 
     }

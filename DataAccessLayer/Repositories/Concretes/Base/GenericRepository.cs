@@ -12,8 +12,8 @@ namespace DataAccessLayer.Repositories.Concretes.Base
     public abstract class GenericRepository<T> : IGenericRepository<T>
     where T : BaseEntity
     {
-        ECommerceDbContext _context;
-        DbSet<T> _table => _context.Set<T>();
+        protected ECommerceDbContext _context;
+        protected DbSet<T> _table => _context.Set<T>();
         public GenericRepository(ECommerceDbContext context)
             => _context = context ?? throw new DbContextNotRegisteredException(nameof(ECommerceDbContext));
         //todo Add methods

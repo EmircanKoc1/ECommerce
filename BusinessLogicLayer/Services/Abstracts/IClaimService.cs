@@ -6,5 +6,8 @@ namespace BusinessLogicLayer.Services.Abstracts
 {
     public interface IClaimService : IBaseReadService<ClaimDto, Claim>, IBaseWriteService<ClaimDto, Claim>
     {
+
+        IEnumerable<ClaimDto> GetUserClaims(UserDto dto);
+
     }
 }

@@ -201,6 +201,16 @@ namespace BusinessLogicLayer.Services.Concretes
             return _mapper.Map<ClaimDto>(entity);
         }
 
+        public IEnumerable<ClaimDto> GetUserClaims(UserDto dto)
+        {
+            var entity = _mapper.Map<User>(dto);
+
+            return _mapper.Map<IEnumerable<ClaimDto>>(_repository.GetUserClaims(entity));
+
+        }
+
+
+
         public (ClaimDto, ClaimDto) Update(ClaimDto dto)
         {
 
