@@ -1,9 +1,12 @@
 ﻿using AutoMapper;
+using BusinessLogicLayer.CQRS.Commands.Requests.Address;
+using BusinessLogicLayer.CQRS.Commands.Responses.Address;
 using BusinessLogicLayer.Services.Abstracts;
 using CoreLayer.DTOs;
+using CoreLayer.Model;
 using DataAccessLayer.Repositories.Abstracts;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using System.Text;
 
 namespace Presentation.WebAPI.Controllers
 {
@@ -15,14 +18,17 @@ namespace Presentation.WebAPI.Controllers
         private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
         private readonly IHashService _hashService;
-        private readonly ITokenService tokenService;
-        public HomeController(IAddressService addressService, IUserRepository userRepository, IMapper mapper, IHashService hashService, ITokenService tokenService)
+        private readonly ITokenService _tokenService;
+        private readonly IMediator _mediator;
+
+        public HomeController(IAddressService addressService, IUserRepository userRepository, IMapper mapper, IHashService hashService, ITokenService tokenService, IMediator mediator)
         {
             _addressService = addressService;
             _userRepository = userRepository;
             _mapper = mapper;
             _hashService = hashService;
-            this.tokenService = tokenService;
+            _tokenService = tokenService;
+            _mediator = mediator;
         }
 
         [HttpPost]
@@ -33,6 +39,11 @@ namespace Presentation.WebAPI.Controllers
 
             return Ok(dto);
         }
+
+        [HttpPost]
+        [Route("/modelcheck")]
+        public IActionResult Get(PaginationModel model) => Ok(model);
+
 
         [HttpPost]
         [Route("/user")]
@@ -49,9 +60,13 @@ namespace Presentation.WebAPI.Controllers
         public IActionResult hash(string x)
         {
 
-            var model =tokenService.GenerateTokenModel(new UserDto());
+            var model = _tokenService.GenerateTokenModel(new UserDto());
             return Ok(model);
         }
 
+        [HttpPost]
+        [Route("/mediatr")]
+        public IActionResult MediatR(CreateAddressCommandRequest param)
+            => Ok(_mediator.Send<CreateAddressCommandResponse>(param));
     }
 }

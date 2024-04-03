@@ -1,10 +1,16 @@
-﻿namespace CoreLayer.Model
+﻿using System.Net;
+
+namespace CoreLayer.Model
 {
-    public class ApiResponseModel<T>
+    public record ApiResponseModel<T>
     {
         public bool IsFailed { get; set; }
-        public Dictionary<string, string[]> Errors { get; set; }
-        public T Result { get; set; }
+        public HttpStatusCode StatusCode { get; set; } = HttpStatusCode.OK;
+        public Dictionary<string, string[]> Errors { get; set; } = new();
+        public T Data { get; set; }
 
+        public int PageNumber {  get; set; }   
+        public int PageSize { get; set; }
+        public int TotalItemCount { get; set; }
     }
 }

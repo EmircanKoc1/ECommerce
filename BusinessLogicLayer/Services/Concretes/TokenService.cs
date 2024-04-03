@@ -235,8 +235,9 @@ namespace BusinessLogicLayer.Services.Concretes
 
             userDto.ThrowIfNull("", CustomException.ParameterValueNullException);
 
+            //var userClaims = _claimService.GetUserClaims(userDto);
 
-            // var claims = _mapper.Map<IEnumerable<System.Security.Claims.Claim>>(_claimService.GetUserClaims(userDto));
+            // var claims = _mapper.Map<IEnumerable<System.Security.Claims.Claim>>(userClaims);
 
             var claims = new List<System.Security.Claims.Claim> { new System.Security.Claims.Claim("role", "admin") };
 

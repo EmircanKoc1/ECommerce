@@ -7,12 +7,91 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="CQRS\Commands\Requests\Token\" />
+    <Folder Include="CQRS\Commands\Responses\Token\" />
+    <Folder Include="CQRS\Handlers\CommandHandlers\BrandDetail\" />
+    <Folder Include="CQRS\Handlers\CommandHandlers\Brand\" />
+    <Folder Include="CQRS\Handlers\CommandHandlers\Category\" />
+    <Folder Include="CQRS\Handlers\CommandHandlers\Claim\" />
+    <Folder Include="CQRS\Handlers\CommandHandlers\Comment\" />
+    <Folder Include="CQRS\Handlers\CommandHandlers\Coupon\" />
+    <Folder Include="CQRS\Handlers\CommandHandlers\OrderItem\" />
+    <Folder Include="CQRS\Handlers\CommandHandlers\OrderStatus\" />
+    <Folder Include="CQRS\Handlers\CommandHandlers\Order\" />
+    <Folder Include="CQRS\Handlers\CommandHandlers\PaymentCard\" />
+    <Folder Include="CQRS\Handlers\CommandHandlers\ProductFeature\" />
+    <Folder Include="CQRS\Handlers\CommandHandlers\ProductImage\" />
+    <Folder Include="CQRS\Handlers\CommandHandlers\Product\" />
+    <Folder Include="CQRS\Handlers\CommandHandlers\ShipmentCompanyDetail\" />
+    <Folder Include="CQRS\Handlers\CommandHandlers\SubCategory\" />
+    <Folder Include="CQRS\Handlers\CommandHandlers\Tag\" />
+    <Folder Include="CQRS\Handlers\CommandHandlers\Token\" />
+    <Folder Include="CQRS\Handlers\CommandHandlers\User\" />
+    <Folder Include="CQRS\Handlers\QueryHandlers\Address\" />
+    <Folder Include="CQRS\Handlers\QueryHandlers\BrandDetail\" />
+    <Folder Include="CQRS\Handlers\QueryHandlers\Brand\" />
+    <Folder Include="CQRS\Handlers\QueryHandlers\Category\" />
+    <Folder Include="CQRS\Handlers\QueryHandlers\Claim\" />
+    <Folder Include="CQRS\Handlers\QueryHandlers\Comment\" />
+    <Folder Include="CQRS\Handlers\QueryHandlers\Coupon\" />
+    <Folder Include="CQRS\Handlers\QueryHandlers\OrderItem\" />
+    <Folder Include="CQRS\Handlers\QueryHandlers\OrderStatus\" />
+    <Folder Include="CQRS\Handlers\QueryHandlers\Order\" />
+    <Folder Include="CQRS\Handlers\QueryHandlers\PaymentCard\" />
+    <Folder Include="CQRS\Handlers\QueryHandlers\ProductFeature\" />
+    <Folder Include="CQRS\Handlers\QueryHandlers\ProductImage\" />
+    <Folder Include="CQRS\Handlers\QueryHandlers\Product\" />
+    <Folder Include="CQRS\Handlers\QueryHandlers\ShipmentCompanyDetail\" />
+    <Folder Include="CQRS\Handlers\QueryHandlers\SubCategory\" />
+    <Folder Include="CQRS\Handlers\QueryHandlers\Tag\" />
+    <Folder Include="CQRS\Handlers\QueryHandlers\Token\" />
+    <Folder Include="CQRS\Handlers\QueryHandlers\User\" />
+    <Folder Include="CQRS\Queries\Requests\Address\" />
+    <Folder Include="CQRS\Queries\Requests\BrandDetail\" />
+    <Folder Include="CQRS\Queries\Requests\Brand\" />
+    <Folder Include="CQRS\Queries\Requests\Category\" />
+    <Folder Include="CQRS\Queries\Requests\Claim\" />
+    <Folder Include="CQRS\Queries\Requests\Comment\" />
+    <Folder Include="CQRS\Queries\Requests\Coupon\" />
+    <Folder Include="CQRS\Queries\Requests\OrderItem\" />
+    <Folder Include="CQRS\Queries\Requests\OrderStatus\" />
+    <Folder Include="CQRS\Queries\Requests\Order\" />
+    <Folder Include="CQRS\Queries\Requests\PaymentCard\" />
+    <Folder Include="CQRS\Queries\Requests\ProductFeature\" />
+    <Folder Include="CQRS\Queries\Requests\ProductImage\" />
+    <Folder Include="CQRS\Queries\Requests\Product\" />
+    <Folder Include="CQRS\Queries\Requests\ShipmentCompanyDetail\" />
+    <Folder Include="CQRS\Queries\Requests\SubCategory\" />
+    <Folder Include="CQRS\Queries\Requests\Tag\" />
+    <Folder Include="CQRS\Queries\Requests\Token\" />
+    <Folder Include="CQRS\Queries\Requests\User\" />
+    <Folder Include="CQRS\Queries\Responses\Address\" />
+    <Folder Include="CQRS\Queries\Responses\BrandDetail\" />
+    <Folder Include="CQRS\Queries\Responses\Brand\" />
+    <Folder Include="CQRS\Queries\Responses\Category\" />
+    <Folder Include="CQRS\Queries\Responses\Claim\" />
+    <Folder Include="CQRS\Queries\Responses\Comment\" />
+    <Folder Include="CQRS\Queries\Responses\Coupon\" />
+    <Folder Include="CQRS\Queries\Responses\Token\" />
+    <Folder Include="CQRS\Queries\Responses\Tag\" />
+    <Folder Include="CQRS\Queries\Responses\SubCategory\" />
+    <Folder Include="CQRS\Queries\Responses\ShipmentCompany\" />
+    <Folder Include="CQRS\Queries\Responses\ShipmentCompanyDetail\" />
+    <Folder Include="CQRS\Queries\Responses\Product\" />
+    <Folder Include="CQRS\Queries\Responses\ProductImage\" />
+    <Folder Include="CQRS\Queries\Responses\OrderItem\" />
+    <Folder Include="CQRS\Queries\Responses\OrderStatus\" />
+    <Folder Include="CQRS\Queries\Responses\Order\" />
+    <Folder Include="CQRS\Queries\Responses\PaymentCard\" />
+    <Folder Include="CQRS\Queries\Responses\ProductFeature\" />
+    <Folder Include="CQRS\Queries\Responses\User\" />
     <Folder Include="Services\Concretes\Base\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="13.0.1" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
+    <PackageReference Include="MediatR" Version="12.2.0" />
   </ItemGroup>
 
   <ItemGroup>

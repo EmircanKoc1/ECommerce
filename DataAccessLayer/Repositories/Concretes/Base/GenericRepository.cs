@@ -146,9 +146,6 @@ namespace DataAccessLayer.Repositories.Concretes.Base
             if (predicate is not null)
                 query = query.Where(predicate);
 
-            query = query
-               .Take(paginationModel.PageSize)
-               .Skip((paginationModel.PageNumber - 1) * paginationModel.PageSize);
 
             if (orderByKeySelector is not null)
             {
@@ -163,14 +160,24 @@ namespace DataAccessLayer.Repositories.Concretes.Base
                     orderedQueryable = orderedQueryable.ThenBy(keySelector);
 
 
-                return orderedQueryable.AsEnumerable();
+                return orderedQueryable
+                             .Take(paginationModel.PageSize)
+                             .Skip((paginationModel.PageNumber - 1) * paginationModel.PageSize).AsEnumerable();
             }
 
-            return query.AsEnumerable();
+            return query
+               .Take(paginationModel.PageSize)
+               .Skip((paginationModel.PageNumber - 1) * paginationModel.PageSize)
+               .AsEnumerable();
 
         }
 
-        public async Task<IEnumerable<T>> GetAllAsync(PaginationModel paginationModel, Expression<Func<T, bool>> predicate, Expression<Func<T, long>> orderByKeySelector, OrderByDirection direction, bool tracking = false, params Expression<Func<T, long>>[] thenByKeySelector)
+        public async Task<IEnumerable<T>> GetAllAsync(
+            PaginationModel paginationModel,
+            Expression<Func<T, bool>> predicate, Expression<Func<T, long>> orderByKeySelector,
+            OrderByDirection direction,
+            bool tracking = false,
+            params Expression<Func<T, long>>[] thenByKeySelector)
         {
             IOrderedQueryable<T> orderedQueryable;
 
@@ -179,27 +186,30 @@ namespace DataAccessLayer.Repositories.Concretes.Base
             if (predicate is not null)
                 query = query.Where(predicate);
 
-            query = query
-               .Take(paginationModel.PageSize)
-               .Skip((paginationModel.PageNumber - 1) * paginationModel.PageSize);
 
             if (orderByKeySelector is not null)
             {
-                orderedQueryable = direction switch
+                orderedQueryable = (direction switch
                 {
                     OrderByDirection.Ascending => query.OrderBy(orderByKeySelector),
                     OrderByDirection.Descending => query.OrderByDescending(orderByKeySelector),
                     _ => query.OrderBy(orderByKeySelector)
-                };
+                })
+                ;
 
                 foreach (var keySelector in thenByKeySelector)
                     orderedQueryable = orderedQueryable.ThenBy(keySelector);
 
-
-                return await orderedQueryable.ToListAsync();
+                return await orderedQueryable
+                              .Take(paginationModel.PageSize)
+                              .Skip((paginationModel.PageNumber - 1) * paginationModel.PageSize)
+                              .ToListAsync();
             }
 
-            return await query.ToListAsync();
+            return await query
+                             .Take(paginationModel.PageSize)
+                             .Skip((paginationModel.PageNumber - 1) * paginationModel.PageSize)
+                             .ToListAsync();
         }
         public Task<T> GetByWithIncludesAsync(long id, bool tracking = false, params Expression<Func<T, object>>[] includes)
         {

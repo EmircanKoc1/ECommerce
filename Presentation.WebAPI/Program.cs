@@ -1,6 +1,4 @@
 using BusinessLogicLayer.ServiceRegistrations;
-using BusinessLogicLayer.Services.Abstracts;
-using BusinessLogicLayer.Services.Concretes;
 using Presentation.WebAPI.Extensions.ServiceRegistrations;
 namespace Presentation.WebAPI
 {
@@ -20,7 +18,8 @@ namespace Presentation.WebAPI
 
             builder.Services.RepositoriesConfig();
 
-          
+            builder.Services.AddMediatRConfig();
+
 
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();

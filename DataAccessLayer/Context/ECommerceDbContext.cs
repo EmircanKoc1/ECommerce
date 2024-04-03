@@ -8,7 +8,7 @@ namespace DataAccessLayer.Context
     {
         public ECommerceDbContext(DbContextOptions<ECommerceDbContext> options) : base(options)
         {
-            if (options == null) throw new DbContextNotRegisteredException(nameof(ECommerceDbContext));
+            if (options is null) throw new DbContextNotRegisteredException(nameof(ECommerceDbContext));
         }
 
 

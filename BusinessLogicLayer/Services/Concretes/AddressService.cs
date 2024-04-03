@@ -8,6 +8,7 @@ using CoreLayer.Model;
 using DataAccessLayer.Entities;
 using DataAccessLayer.Repositories.Abstracts;
 using System.Linq.Expressions;
+using System.Runtime.InteropServices;
 
 namespace BusinessLogicLayer.Services.Concretes
 {
@@ -23,6 +24,8 @@ namespace BusinessLogicLayer.Services.Concretes
 
         public AddressDto Add(AddressDto dto)
         {
+
+            
 
             if (dto.User is null)
                 if (dto.UserId is null)
@@ -189,7 +192,7 @@ namespace BusinessLogicLayer.Services.Concretes
             var entities = _repository.GetAll(paginationModel, predicate, orderByKeySelector, direction, tracking, thenByKeySelector);
 
             return _mapper.Map<IEnumerable<AddressDto>>(entities);
-
+            
         }
 
         public async Task<IEnumerable<AddressDto>> GetAllAsync(PaginationModel paginationModel, Expression<Func<Address, bool>> predicate, Expression<Func<Address, long>> orderByKeySelector, OrderByDirection direction, bool tracking = false, params Expression<Func<Address, long>>[] thenByKeySelector)

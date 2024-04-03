@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text.Json.Serialization;
 
 namespace CoreLayer.DTOs
 {
@@ -13,7 +9,9 @@ namespace CoreLayer.DTOs
         public string Zipcode { get; set; }
         public string AdressDescription { get; set; }
         public long? UserId { get; set; }
+        
         public UserDto User { get; set; }
+      
         public ICollection<OrderDto> Orders { get; set; }
     }
 }

@@ -11,7 +11,6 @@ namespace DataAccessLayer.Context
         }
         public override int SaveChanges(bool acceptAllChangesOnSuccess)
         {
-
             ChangeTracker.Entries().UseCustomInterceptor();
             return base.SaveChanges(acceptAllChangesOnSuccess);
         }
