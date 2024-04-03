@@ -9,24 +9,8 @@
   <ItemGroup>
     <Folder Include="CQRS\Commands\Requests\Token\" />
     <Folder Include="CQRS\Commands\Responses\Token\" />
-    <Folder Include="CQRS\Handlers\CommandHandlers\BrandDetail\" />
-    <Folder Include="CQRS\Handlers\CommandHandlers\Brand\" />
-    <Folder Include="CQRS\Handlers\CommandHandlers\Category\" />
-    <Folder Include="CQRS\Handlers\CommandHandlers\Claim\" />
-    <Folder Include="CQRS\Handlers\CommandHandlers\Comment\" />
-    <Folder Include="CQRS\Handlers\CommandHandlers\Coupon\" />
     <Folder Include="CQRS\Handlers\CommandHandlers\OrderItem\" />
-    <Folder Include="CQRS\Handlers\CommandHandlers\OrderStatus\" />
-    <Folder Include="CQRS\Handlers\CommandHandlers\Order\" />
-    <Folder Include="CQRS\Handlers\CommandHandlers\PaymentCard\" />
-    <Folder Include="CQRS\Handlers\CommandHandlers\ProductFeature\" />
-    <Folder Include="CQRS\Handlers\CommandHandlers\ProductImage\" />
-    <Folder Include="CQRS\Handlers\CommandHandlers\Product\" />
-    <Folder Include="CQRS\Handlers\CommandHandlers\ShipmentCompanyDetail\" />
-    <Folder Include="CQRS\Handlers\CommandHandlers\SubCategory\" />
-    <Folder Include="CQRS\Handlers\CommandHandlers\Tag\" />
     <Folder Include="CQRS\Handlers\CommandHandlers\Token\" />
-    <Folder Include="CQRS\Handlers\CommandHandlers\User\" />
     <Folder Include="CQRS\Handlers\QueryHandlers\Address\" />
     <Folder Include="CQRS\Handlers\QueryHandlers\BrandDetail\" />
     <Folder Include="CQRS\Handlers\QueryHandlers\Brand\" />

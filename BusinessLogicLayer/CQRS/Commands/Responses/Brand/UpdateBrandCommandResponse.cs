@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace BusinessLogicLayer.CQRS.Commands.Responses.Brand
 {
-    internal class UpdateBrandCommandResponse
+    public class UpdateBrandCommandResponse
     {
+        public long Id { get; set; }
+        public string Name { get; set; }
     }
 }
