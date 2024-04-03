@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BusinessLogicLayer.CQRS.Commands.Responses.OrderStatus;
+using MediatR;
 
 namespace BusinessLogicLayer.CQRS.Commands.Requests.OrderStatus
 {
-    internal class UpdateOrderStatusCommandRequest
+    public class UpdateOrderStatusCommandRequest : IRequest<(UpdateOrderStatusCommandResponse, UpdateOrderStatusCommandResponse)>
     {
     }
 }

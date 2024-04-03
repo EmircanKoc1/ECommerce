@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BusinessLogicLayer.CQRS.Commands.Responses.Claim;
+using MediatR;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLogicLayer.CQRS.Commands.Requests.Claim
 {
-    internal class CreateClaimCommandRequest
+    public class CreateClaimCommandRequest : IRequest<CreateClaimCommandResponse>
     {
     }
 }

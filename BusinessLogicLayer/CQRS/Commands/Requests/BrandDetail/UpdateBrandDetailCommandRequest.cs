@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MediatR;
 
 namespace BusinessLogicLayer.CQRS.Commands.Requests.BrandDetail
 {
-    internal class UpdateBrandDetailCommandRequest
+    public class UpdateBrandDetailCommandRequest : IRequest<(UpdateBrandDetailCommandRequest, UpdateBrandDetailCommandRequest)>
     {
+
     }
 }

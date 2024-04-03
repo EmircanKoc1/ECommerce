@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BusinessLogicLayer.CQRS.Commands.Responses.Address;
+using BusinessLogicLayer.CQRS.Commands.Responses.SubCategory;
+using MediatR;
 
 namespace BusinessLogicLayer.CQRS.Commands.Requests.SubCategory
 {
-    internal class UpdateSubCategoryCommandRequest
+    public class UpdateSubCategoryCommandRequest : IRequest<(UpdateSubCategoryCommandResponse, UpdateSubCategoryCommandResponse)>
     {
     }
 }

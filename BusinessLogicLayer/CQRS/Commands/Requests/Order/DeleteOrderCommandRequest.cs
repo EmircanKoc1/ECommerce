@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BusinessLogicLayer.CQRS.Commands.Responses.Order;
+using MediatR;
 
 namespace BusinessLogicLayer.CQRS.Commands.Requests.Order
 {
-    internal class DeleteOrderCommandRequest
+    public class DeleteOrderCommandRequest : IRequest<DeleteOrderCommandResponse>
     {
     }
 }

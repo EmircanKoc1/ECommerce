@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BusinessLogicLayer.CQRS.Commands.Responses.ProductFeature;
+using MediatR;
 
 namespace BusinessLogicLayer.CQRS.Commands.Requests.ProductFeature
 {
-    internal class DeleteProductFeatureCommandRequest
+    public class DeleteProductFeatureCommandRequest : IRequest<DeleteProductFeatureCommandResponse>
     {
     }
 }

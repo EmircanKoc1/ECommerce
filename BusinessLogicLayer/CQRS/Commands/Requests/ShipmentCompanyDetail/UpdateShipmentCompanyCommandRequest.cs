@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BusinessLogicLayer.CQRS.Commands.Responses.ShipmentCompany;
+using MediatR;
 
 namespace BusinessLogicLayer.CQRS.Commands.Requests.ShipmentCompanyDetail
 {
-    internal class UpdateShipmentCompanyCommandRequest
+    public class UpdateShipmentCompanyCommandRequest : IRequest<(UpdateShipmentCompanyCommandResponse, UpdateShipmentCompanyCommandResponse)>
     {
     }
 }

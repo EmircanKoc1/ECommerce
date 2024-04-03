@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BusinessLogicLayer.CQRS.Commands.Responses.Address;
+using BusinessLogicLayer.CQRS.Commands.Responses.OrderItem;
+using MediatR;
 
 namespace BusinessLogicLayer.CQRS.Commands.Requests.OrderItem
 {
-    internal class CreateOrderItemCommandRequest
+    public class CreateOrderItemCommandRequest : IRequest<CreateOrderItemCommandResponse>
     {
     }
 }

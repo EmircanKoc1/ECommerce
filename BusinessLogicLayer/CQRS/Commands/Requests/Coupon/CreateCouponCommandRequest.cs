@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BusinessLogicLayer.CQRS.Commands.Responses.Address;
+using MediatR;
 
 namespace BusinessLogicLayer.CQRS.Commands.Requests.Coupon
 {
-    internal class CreateCouponCommandRequest
+    public class CreateCouponCommandRequest : IRequest<CreateAddressCommandResponse>
     {
     }
 }

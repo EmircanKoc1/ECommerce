@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BusinessLogicLayer.CQRS.Commands.Responses.Product;
+using MediatR;
 
 namespace BusinessLogicLayer.CQRS.Commands.Requests.Product
 {
-    internal class UpdateProductCommandRequest
+    public class UpdateProductCommandRequest : IRequest<(UpdateProductCommandResponse, UpdateProductCommandResponse)>
     {
     }
 }

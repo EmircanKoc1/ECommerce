@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BusinessLogicLayer.CQRS.Commands.Responses.Claim;
+using MediatR;
 
 namespace BusinessLogicLayer.CQRS.Commands.Requests.Claim
 {
-    internal class UpdateClaimCommandRequest
+    public class UpdateClaimCommandRequest : IRequest<(UpdateClaimCommandResponse, UpdateClaimCommandResponse)>
     {
     }
 }
