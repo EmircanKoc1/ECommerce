@@ -9,5 +9,6 @@ namespace BusinessLogicLayer.CQRS.Commands.Requests.BrandDetail
 {
     public class DeleteBrandDetailCommandRequest : IRequest<DeleteBrandDetailCommandRequest>
     {
+        public long Id { get; set; }
     }
 }

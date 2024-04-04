@@ -8,7 +8,6 @@
         public string PersonSurname { get; set; }
         public DateTime? ExpireDate { get; set; }
         public string CCV { get; set; }
-
         public long? UserId { get; set; }
         public UserDto User { get; set; }
 

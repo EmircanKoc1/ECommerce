@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BusinessLogicLayer.CQRS.Commands.Requests.Base;
+using BusinessLogicLayer.CQRS.Commands.Responses.Tag;
+using MediatR;
 
 namespace BusinessLogicLayer.CQRS.Commands.Requests.Tag
 {
-    internal class UpdateTagCommandRequest
+    public class UpdateTagCommandRequest : BaseRequest, IRequest<(UpdateTagCommandResponse, UpdateTagCommandResponse)>
     {
+        public string Name { get; set; }
+        public string Description { get; set; }
     }
 }

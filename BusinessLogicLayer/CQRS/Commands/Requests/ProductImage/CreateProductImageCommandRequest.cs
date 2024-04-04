@@ -10,5 +10,8 @@ namespace BusinessLogicLayer.CQRS.Commands.Requests.ProductImage
 {
     public class CreateProductImageCommandRequest : IRequest<CreateProductImageCommandResponse>
     {
+        public string ImagePath { get; set; }
+        public long? ProductId { get; set; }
+
     }
 }

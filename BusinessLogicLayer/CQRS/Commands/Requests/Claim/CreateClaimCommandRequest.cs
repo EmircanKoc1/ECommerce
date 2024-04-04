@@ -10,5 +10,7 @@ namespace BusinessLogicLayer.CQRS.Commands.Requests.Claim
 {
     public class CreateClaimCommandRequest : IRequest<CreateClaimCommandResponse>
     {
+        public string ClaimType { get; set; }
+        public string ClaimName { get; set; }
     }
 }

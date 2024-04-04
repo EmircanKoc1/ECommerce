@@ -14,9 +14,6 @@ namespace CoreLayer.DTOs
         public DateTime? BirthDate { get; set; }
         public string Password { get; set; }
         public bool EmailConfirmed { get; set; }
-
-
-
         public TokenDto Token { get; set; }
         public ICollection<PaymentCardDto> PaymentCards { get; set; }
         public ICollection<AddressDto> Address { get; set; }

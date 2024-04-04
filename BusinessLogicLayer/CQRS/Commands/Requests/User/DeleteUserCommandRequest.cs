@@ -1,4 +1,5 @@
-﻿using BusinessLogicLayer.CQRS.Commands.Responses.User;
+﻿using BusinessLogicLayer.CQRS.Commands.Requests.Base;
+using BusinessLogicLayer.CQRS.Commands.Responses.User;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLogicLayer.CQRS.Commands.Requests.User
 {
-    public class DeleteUserCommandRequest : IRequest<DeleteUserCommandResponse>
+    public class DeleteUserCommandRequest : BaseRequest,IRequest<DeleteUserCommandResponse>
     {
     }
 }

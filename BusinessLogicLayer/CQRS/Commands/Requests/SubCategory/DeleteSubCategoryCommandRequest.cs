@@ -1,4 +1,5 @@
-﻿using BusinessLogicLayer.CQRS.Commands.Responses.SubCategory;
+﻿using BusinessLogicLayer.CQRS.Commands.Requests.Base;
+using BusinessLogicLayer.CQRS.Commands.Responses.SubCategory;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,8 @@ using System.Threading.Tasks;
 
 namespace BusinessLogicLayer.CQRS.Commands.Requests.SubCategory
 {
-    public class DeleteSubCategoryCommandRequest : IRequest<DeleteSubCategoryCommandResponse>
+    public class DeleteSubCategoryCommandRequest : BaseRequest,IRequest<DeleteSubCategoryCommandResponse>
     {
+
     }
 }

@@ -1,4 +1,5 @@
-﻿using BusinessLogicLayer.CQRS.Commands.Responses.Comment;
+﻿using BusinessLogicLayer.CQRS.Commands.Requests.Base;
+using BusinessLogicLayer.CQRS.Commands.Responses.Comment;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,13 @@ using System.Threading.Tasks;
 
 namespace BusinessLogicLayer.CQRS.Commands.Requests.Coupon
 {
-    public class UpdateCouponCommandRequest : IRequest<(UpdateCommentCommandResponse, UpdateCommentCommandResponse)>
+    public class UpdateCouponCommandRequest : BaseRequest,IRequest<(UpdateCommentCommandResponse, UpdateCommentCommandResponse)>
     {
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string Code { get; set; }
+        public float MinimumPrice { get; set; }
+        public float DiscountAmount { get; set; }
+        public DateTime? ExpirationDate { get; set; }
     }
 }

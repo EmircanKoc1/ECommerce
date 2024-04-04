@@ -9,7 +9,10 @@ namespace BusinessLogicLayer.CQRS.Commands.Requests.BrandDetail
 {
     public  class CreateBrandDetailCommandRequest : IRequest<CreateBrandDetailCommandRequest>
     {
-
+        public string Description { get; set; }
+        public string LogoPath { get; set; }
+        public DateTime? FoundedYear { get; set; }
+        public long? BrandId { get; set; }
 
     }
 }

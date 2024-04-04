@@ -1,4 +1,5 @@
-﻿using BusinessLogicLayer.CQRS.Commands.Responses.Tag;
+﻿using BusinessLogicLayer.CQRS.Commands.Requests.Base;
+using BusinessLogicLayer.CQRS.Commands.Responses.Tag;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLogicLayer.CQRS.Commands.Requests.Tag
 {
-    public class DeleteTagCommandRequest : IRequest<DeleteTagCommandResponse>
+    public class DeleteTagCommandRequest : BaseRequest,IRequest<DeleteTagCommandResponse>
     {
     }
 }
