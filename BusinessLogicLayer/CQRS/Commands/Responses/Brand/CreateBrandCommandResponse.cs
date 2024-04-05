@@ -1,9 +1,10 @@
-﻿namespace BusinessLogicLayer.CQRS.Commands.Responses.Brand
+﻿using BusinessLogicLayer.CQRS.Commands.Responses.Base;
+
+namespace BusinessLogicLayer.CQRS.Commands.Responses.Brand
 {
-    public class CreateBrandCommandResponse
+    public class CreateBrandCommandResponse : BaseBrandCommandResponse
     {
-        public long Id { get; set; }
-        public string Name { get; set; }
+      
     }
 
 }

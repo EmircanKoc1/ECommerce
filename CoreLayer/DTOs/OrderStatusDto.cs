@@ -2,7 +2,6 @@
 {
     public class OrderStatusDto : BaseDto
     {
-
         public long? OrderId { get; set; }
         public OrderDto Order { get; set; }
         public string Description { get; set; }

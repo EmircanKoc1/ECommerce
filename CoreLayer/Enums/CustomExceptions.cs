@@ -1,11 +1,10 @@
-﻿namespace CoreLayer.Enums
+﻿namespace CoreLayer.Enums;
+
+public enum CustomException
 {
-    public enum CustomException
-    {
-        ParameterValueNullException,
-        EntityNotFoundException,
-        EntityAlreadyExistsException,
-        ForeignKeyOrNavigationPropertyNullException,
-        DefaultException,
-    }
+    ParameterValueNullException,
+    EntityNotFoundException,
+    EntityAlreadyExistsException,
+    ForeignKeyOrNavigationPropertyNullException,
+    DefaultException,
 }

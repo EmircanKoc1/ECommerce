@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLogicLayer.CQRS.Commands.Requests.User
 {
-    public class DeleteUserCommandRequest : BaseRequest,IRequest<DeleteUserCommandResponse>
+    public class DeleteUserCommandRequest :BaseRequest,IRequest<DeleteUserCommandResponse>
     {
     }
 }

@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BusinessLogicLayer.CQRS.Commands.Responses.Base;
 
 namespace BusinessLogicLayer.CQRS.Commands.Responses.ShipmentCompanyDetail
 {
-    internal class UpdateShipmentCompanyDetailCommandResponse
+    public class UpdateShipmentCompanyDetailCommandResponse : BaseShipmentCompanyDetailCommandResponse
     {
     }
 }

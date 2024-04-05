@@ -1,18 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BusinessLogicLayer.CQRS.Commands.Responses.Base;
 
 namespace BusinessLogicLayer.CQRS.Commands.Responses.Address
 {
-    public record CreateAddressCommandResponse
+    public class CreateAddressCommandResponse : BaseAddressCommandResponse
     {
-        public string City { get; set; }
-        public string Street { get; set; }
-        public string Zipcode { get; set; }
-        public string AdressDescription { get; set; }
-        public long? UserId { get; set; }
-
     }
 }

@@ -18,8 +18,6 @@
   <ItemGroup>
     <Folder Include="CustomMiddlewares\" />
     <Folder Include="CustomActionFilters\" />
-    <Folder Include="Models\ResponseModels\" />
-    <Folder Include="Models\RequestModels\" />
   </ItemGroup>
 
   <ItemGroup>

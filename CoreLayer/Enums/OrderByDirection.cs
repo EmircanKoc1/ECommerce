@@ -1,8 +1,7 @@
-﻿namespace CoreLayer.Enums
+﻿namespace CoreLayer.Enums;
+
+public enum OrderByDirection
 {
-    public enum OrderByDirection
-    {
-        Ascending,
-        Descending
-    }
+    Ascending,
+    Descending
 }

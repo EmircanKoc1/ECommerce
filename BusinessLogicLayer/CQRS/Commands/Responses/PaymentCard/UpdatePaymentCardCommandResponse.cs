@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLogicLayer.CQRS.Commands.Responses.PaymentCard
 {
-    internal class UpdatePaymentCardCommandResponse
+    public class UpdatePaymentCardCommandResponse : 
     {
     }
 }
