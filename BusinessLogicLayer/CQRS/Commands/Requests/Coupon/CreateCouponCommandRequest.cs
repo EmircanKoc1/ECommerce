@@ -1,9 +1,10 @@
 ﻿using BusinessLogicLayer.CQRS.Commands.Responses.Address;
+using BusinessLogicLayer.CQRS.Commands.Responses.Coupon;
 using MediatR;
 
 namespace BusinessLogicLayer.CQRS.Commands.Requests.Coupon
 {
-    public class CreateCouponCommandRequest : IRequest<CreateAddressCommandResponse>
+    public class CreateCouponCommandRequest : IRequest<CreateCouponCommandResponse>
     {
         public string Name { get; set; }
         public string Description { get; set; }

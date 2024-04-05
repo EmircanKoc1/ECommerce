@@ -1,28 +1,23 @@
 ﻿using BusinessLogicLayer.CQRS.Commands.Requests.Base;
 using BusinessLogicLayer.CQRS.Commands.Responses.Order;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace BusinessLogicLayer.CQRS.Commands.Requests.Order
+namespace BusinessLogicLayer.CQRS.Commands.Requests.Order;
+
+public class UpdateOrderCommandRequest : BaseRequest, IRequest<(UpdateOrderCommandResponse, UpdateOrderCommandResponse)>
 {
-    public  class UpdateOrderCommandRequest :BaseRequest, IRequest<(UpdateOrderCommandResponse, UpdateOrderCommandResponse)>
-    {
-        public DateTime OrderDate { get; set; }
-        public float TotalAmount { get; set; }
-        public float DiscountAmount { get; set; }
-        public float FinalAmount { get; set; }
-        public long? UserId { get; set; }
-        public long? AddressId { get; set; }
-        public AddressModel Address { get; set; }
-        public ICollection<OrderItemModel> OrderItems { get; set; }
-        public long? CouponId { get; set; }
-        public long? ShipmentCompanyId { get; set; }
+    public DateTime OrderDate { get; set; }
+    public float TotalAmount { get; set; }
+    public float DiscountAmount { get; set; }
+    public float FinalAmount { get; set; }
+    public long? UserId { get; set; }
+    public long? AddressId { get; set; }
+    public AddressModel Address { get; set; }
+    public ICollection<OrderItemModel> OrderItems { get; set; }
+    public long? CouponId { get; set; }
+    public long? ShipmentCompanyId { get; set; }
 
-    }
+
     public class AddressModel
     {
         public string City { get; set; }
@@ -38,6 +33,5 @@ namespace BusinessLogicLayer.CQRS.Commands.Requests.Order
         public long? OrderId { get; set; }
         public long? ProductId { get; set; }
     }
-
-
 }
+

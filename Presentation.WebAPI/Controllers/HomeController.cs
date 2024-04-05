@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BusinessLogicLayer.CQRS.Commands.Requests.Address;
+using BusinessLogicLayer.CQRS.Commands.Requests.Coupon;
 using BusinessLogicLayer.CQRS.Commands.Responses.Address;
 using BusinessLogicLayer.Services.Abstracts;
 using CoreLayer.DTOs;
@@ -64,8 +65,14 @@ namespace Presentation.WebAPI.Controllers
             return Ok(model);
         }
 
+        [HttpPost, Route("/mediatrCreateCouponCommand")]
+        public IActionResult sender(CreateCouponCommandRequest request) 
+            => Ok(_mediator.Send(request));
+
+
+
         [HttpPost]
-        [Route("/mediatr")]
+        [Route("/mediatrCreateAddressCommand")]
         public IActionResult MediatR(CreateAddressCommandRequest param)
             => Ok(_mediator.Send<CreateAddressCommandResponse>(param));
     }

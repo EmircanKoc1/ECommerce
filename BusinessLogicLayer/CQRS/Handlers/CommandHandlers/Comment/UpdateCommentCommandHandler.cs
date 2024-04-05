@@ -21,15 +21,21 @@ namespace BusinessLogicLayer.CQRS.Handlers.CommandHandlers.Comment
             _commentService = commentService;
         }
 
-        public Task<(UpdateCommentCommandResponse, UpdateCommentCommandResponse)> Handle(UpdateCommentCommandRequest request, CancellationToken cancellationToken)
+        public async Task<(UpdateCommentCommandResponse, UpdateCommentCommandResponse)> Handle(UpdateCommentCommandRequest request, CancellationToken cancellationToken)
         {
-      
+
             var dto = _mapper.Map<CommentDto>(request);
 
-            var validationResult = _validator.Validate(dto);
+            var validationResult = await _validator.ValidateAsync(dto);
 
+            if (!validationResult.IsValid)
+                return (null, null);
 
+            var tupleDto = _commentService.Update(dto);
+            var old = _mapper.Map<UpdateCommentCommandResponse>(tupleDto.Item1);
+            var @new = _mapper.Map<UpdateCommentCommandResponse>(tupleDto.Item2);
 
+            return (old, @new);
 
         }
     }
