@@ -13,7 +13,7 @@ namespace BusinessLogicLayer.CQRS.Handlers.CommandHandlers.Brand
         IMapper _mapper;
         IValidator<BrandDto> _validator;
         IBrandService _brandService;
-
+        
         public CreateBrandCommandHandler(IMapper mapper, IValidator<BrandDto> validator, IBrandService brandService)
         {
             _mapper = mapper;

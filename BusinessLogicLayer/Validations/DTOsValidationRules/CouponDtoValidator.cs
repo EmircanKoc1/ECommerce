@@ -49,7 +49,7 @@ namespace BusinessLogicLayer.Validations.DTOsValidationRules
 
 
             RuleFor(x => x.ExpirationDate)
-                .Must(date => date <= DateTime.Now)
+                .Must(date => date  <= DateTime.Now)
                 .WithMessage("Kupon artık geçerli değil");
 
         }

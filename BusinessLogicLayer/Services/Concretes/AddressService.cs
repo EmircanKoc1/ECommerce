@@ -138,6 +138,7 @@ namespace BusinessLogicLayer.Services.Concretes
             if (entity is null)
                 throw new EntityNotFoundException(nameof(Address));
 
+            
 
             _repository.Delete(entity);
             await _repository.SaveChangesAsync();

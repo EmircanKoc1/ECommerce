@@ -2,7 +2,7 @@
 
 namespace BusinessLogicLayer.CQRS.Commands.Responses.BrandDetail
 {
-    public class DeleteBramdDetailCommandResponse : BaseBrandDetailCommandResponse
+    public class DeleteBrandDetailCommandResponse : BaseBrandDetailCommandResponse
     {
        
     }
