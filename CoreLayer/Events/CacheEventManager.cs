@@ -1,8 +1,9 @@
 ﻿using CoreLayer.Delegates;
+using CoreLayer.Events.Abstract;
 
 namespace CoreLayer.Events;
 
-public class CacheEventManager
+public class CacheEventManager : ICacheEventManager
 {
 
     public CacheEventManager()

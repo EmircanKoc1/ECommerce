@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLogicLayer.CQRS.Commands.Responses.ShipmentCompanyDetail
 {
-    public class CreatedShipmentCompanyDetailCommandResponse : BaseShipmentCompanyDetailCommandResponse
+    public class CreateShipmentCompanyDetailCommandResponse : BaseShipmentCompanyDetailCommandResponse
     {
     }
 }

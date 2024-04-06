@@ -137,7 +137,12 @@ namespace DataAccessLayer.Repositories.Concretes.Base
 
         }
 
-        public IEnumerable<T> GetAll(PaginationModel paginationModel, Expression<Func<T, bool>> predicate, Expression<Func<T, long>> orderByKeySelector, OrderByDirection direction, bool tracking = false, params Expression<Func<T, long>>[] thenByKeySelector)
+        public IEnumerable<T> GetAll(PaginationModel paginationModel,
+            Expression<Func<T, bool>> predicate,
+            Expression<Func<T, long>> orderByKeySelector,
+            OrderByDirection direction,
+            bool tracking = false,
+            params Expression<Func<T, long>>[] thenByKeySelector)
         {
             IOrderedQueryable<T> orderedQueryable;
 
@@ -162,7 +167,8 @@ namespace DataAccessLayer.Repositories.Concretes.Base
 
                 return orderedQueryable
                              .Take(paginationModel.PageSize)
-                             .Skip((paginationModel.PageNumber - 1) * paginationModel.PageSize).AsEnumerable();
+                             .Skip((paginationModel.PageNumber - 1) * paginationModel.PageSize)
+                             .AsEnumerable();
             }
 
             return query
