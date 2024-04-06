@@ -21,12 +21,18 @@ namespace BusinessLogicLayer.CQRS.Handlers.CommandHandlers.SubCategory
             _validator = validator;
         }
 
-        public Task<CreateSubCategoryCommandResponse> Handle(CreateSubCategoryCommandRequest request, CancellationToken cancellationToken)
+        public async Task<CreateSubCategoryCommandResponse> Handle(CreateSubCategoryCommandRequest request, CancellationToken cancellationToken)
         {
             var dto = _mapper.Map<SubCategoryDto>(request);
-            
 
+            var validationResult = await _validator.ValidateAsync(dto);
 
+            if (!validationResult.IsValid)
+                return null;
+
+            var responseDto = _subCategoryService.AddAsync(dto);
+
+            return _mapper.Map<CreateSubCategoryCommandResponse>(responseDto);
         }
     }
 }

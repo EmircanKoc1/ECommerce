@@ -18,6 +18,7 @@
   <ItemGroup>
     <Folder Include="CustomMiddlewares\" />
     <Folder Include="CustomActionFilters\" />
+    <Folder Include="Extensions\" />
   </ItemGroup>
 
   <ItemGroup>
