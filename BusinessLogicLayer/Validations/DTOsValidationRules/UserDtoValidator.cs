@@ -83,11 +83,12 @@ namespace BusinessLogicLayer.Validations.DTOsValidationRules
              .MaximumLength(UserDtoValidationMessages.PASSWORD_MAXIMUM_LENGTH_VALUE)
              .WithMessage(UserDtoValidationMessages.PASSWORD_MAXIMUM_LENGTH_MESSAGE);
         }
-     
 
 
-           
 
-        }
+
+
     }
 }
+
+

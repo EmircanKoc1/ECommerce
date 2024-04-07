@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Presentation.WebAPI.Controllers
@@ -7,5 +7,11 @@ namespace Presentation.WebAPI.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
+        private readonly IMediator _mediator;
+
+        public UserController(IMediator mediator)
+        {
+            _mediator = mediator;
+        }
     }
 }

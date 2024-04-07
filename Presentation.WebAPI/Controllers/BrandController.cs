@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Presentation.WebAPI.Controllers
@@ -7,5 +8,12 @@ namespace Presentation.WebAPI.Controllers
     [ApiController]
     public class BrandController : ControllerBase
     {
+        private readonly IMediator _mediator;
+
+        public BrandController(IMediator mediator)
+        {
+            _mediator = mediator;
+        }
     }
+
 }

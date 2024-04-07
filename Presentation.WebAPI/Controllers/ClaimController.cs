@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Presentation.WebAPI.Controllers
@@ -7,5 +8,11 @@ namespace Presentation.WebAPI.Controllers
     [ApiController]
     public class ClaimController : ControllerBase
     {
+        private readonly IMediator _mediator;
+
+        public ClaimController(IMediator mediator)
+        {
+            _mediator = mediator;
+        }
     }
 }

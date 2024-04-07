@@ -1,4 +1,5 @@
 using BusinessLogicLayer.ServiceRegistrations;
+using DataAccessLayer.ServiceRegistrations;
 using Presentation.WebAPI.Extensions.ServiceRegistrations;
 namespace Presentation.WebAPI
 {
@@ -10,13 +11,13 @@ namespace Presentation.WebAPI
 
             builder.Services.ConfigModelState();
 
-            builder.Services.DbContextConfig(builder.Configuration);
+            builder.Services.ConfigureDbContext(builder.Configuration);
 
             builder.Services.AutoMapperConfig();
             builder.Services.AddValidationRules();
             builder.Services.AddBllServices();
 
-            builder.Services.RepositoriesConfig();
+            builder.Services.AddRepositories();
 
             builder.Services.AddMediatRConfig();
 

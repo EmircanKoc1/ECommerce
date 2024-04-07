@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Presentation.WebAPI.Controllers
@@ -6,6 +7,13 @@ namespace Presentation.WebAPI.Controllers
     [Route("api/[controller]")]
     [ApiController]
     public class ProductFeatureController : ControllerBase
+
     {
+        private readonly IMediator _mediator;
+
+        public ProductFeatureController(IMediator mediator)
+        {
+            _mediator = mediator;
+        }
     }
 }
