@@ -1,4 +1,5 @@
 ﻿using BusinessLogicLayer.Validations.DTOsValidationRules.Base;
+using CoreLayer.Constants.ValidationMessagesConstants;
 using CoreLayer.DTOs;
 using FluentValidation;
 
@@ -10,44 +11,43 @@ namespace BusinessLogicLayer.Validations.DTOsValidationRules
         {
             RuleFor(x => x.City)
                 .NotEmpty()
-                .WithMessage("Sehir adı boş bırakılamaz")
+                .WithMessage(AddressValidationMessages.CITY_NOT_EMPTY_MESSAGE)
                 .NotNull()
-                .WithMessage("Sehir adı boş bırakılamaz")
-                .MinimumLength(3)
-                .WithMessage("Sehir adı en az 3 karakter olmalıdır")
-                .MaximumLength(100)
-                .WithMessage("Sehir adı en fazla 100 karakter olmalıdır");
+                .WithMessage(AddressValidationMessages.CITY_NOT_NULL_MESSAGE)
+                .MinimumLength(AddressValidationMessages.CITY_MINIMUM_LENGTH_VALUE)
+                .WithMessage(AddressValidationMessages.CITY_MINUMUM_LENGTH_MESSAGE)
+                .MaximumLength(AddressValidationMessages.CITY_MAXIMUM_LENGTH_VALUE)
+                .WithMessage(AddressValidationMessages.CITY_MAXIMUM_LENGTH_MESSAGE);
 
             RuleFor(x => x.Street)
                 .NotEmpty()
-                .WithMessage("Sokak adı bırakılamaz")
+                .WithMessage(AddressValidationMessages.STREET_NOT_EMPTY_MESSAGE)
                 .NotNull()
-                .WithMessage("Sokak adı boş bırakılamaz")
-                .MinimumLength(3)
-                .WithMessage("Sokak adı en az 3 karakter olmalıdır")
-                .MaximumLength(100)
-                .WithMessage("Sokak adı en fazla 100 karakter olmalıdır");
-
+                .WithMessage(AddressValidationMessages.STREET_NOT_NULL_MESSAGE)
+                .MinimumLength(AddressValidationMessages.STREET_MINIMUM_LENGTH_VALUE)
+                .WithMessage(AddressValidationMessages.STREET_MINIMUM_LENGTH_MESSAGE)
+                .MaximumLength(AddressValidationMessages.STREET_MAXIMUM_LENGTH_VALUE)
+                .WithMessage(AddressValidationMessages.STREET_MAXIMUM_LENGTH_MESSAGE);
 
             RuleFor(x => x.Zipcode)
                 .NotEmpty()
-                .WithMessage("Posta Kodu bırakılamaz")
+                .WithMessage(AddressValidationMessages.ZIPCODE_NOT_EMPTY_MESSAGE)
                 .NotNull()
-                .WithMessage("Posta Kodu boş bırakılamaz")
-                .MinimumLength(3)
-                .WithMessage("Posta Kodu en az 3 karakter olmalıdır")
-                .MaximumLength(100)
-                .WithMessage("Posta Kodu en fazla 100 karakter olmalıdır");
+                .WithMessage(AddressValidationMessages.ZIPCODE_NOT_NULL_MESSAGE)
+                .MinimumLength(AddressValidationMessages.ZIPCODE_MINIMUM_LENGTH_VALUE)
+                .WithMessage(AddressValidationMessages.ZIPCODE_MINUMUM_LENGTH_MESSAGE)
+                .MaximumLength(AddressValidationMessages.ZIPCODE_MAXIMUM_LENGTH_VALUE)
+                .WithMessage(AddressValidationMessages.ZIPCODE_MAXİMUM_LENGTH_MESSAGE);
 
             RuleFor(x => x.AdressDescription)
                .NotEmpty()
-               .WithMessage("Address açıklaması boş bırakılamaz")
+               .WithMessage(AddressValidationMessages.ADDRESSDESCRIPTION_NOT_EMPTY_MESSAGE)
                .NotNull()
-               .WithMessage("Address açıklaması boş bırakılamaz")
-               .MinimumLength(3)
-               .WithMessage("Address açıklaması en az 3 karakter olmalıdır")
-               .MaximumLength(100)
-               .WithMessage("Address açıklaması en fazla 100 karakter olmalıdır");
+               .WithMessage(AddressValidationMessages.ADDRESSDESCRIPTION_NOT_NULL_MESSAGE)
+               .MinimumLength(AddressValidationMessages.ADDRESSDESCRIPTION_MINIMUM_LENGTH_VALUE)
+               .WithMessage(AddressValidationMessages.ADDRESSDESCRIPTION_MINIMUM_LENGTH_MESSAGE)
+               .MaximumLength(AddressValidationMessages.ADDRESSDESCRIPTION_MAXIMUM_LENGTH_VALUE)
+               .WithMessage(AddressValidationMessages.ADDRESSDESCRIPTION_MAXİMUM_LENGTH_MESSAGE);
 
         }
     }

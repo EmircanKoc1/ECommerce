@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BusinessLogicLayer.CQRS.Commands.Responses.Tag
+namespace CoreLayer.Constants.ModelConstants
 {
-    public class DeleteTagCommandResponse 
+    public static class PaginationConstants
     {
+        public const int Max_Page_Size = 100;
     }
 }

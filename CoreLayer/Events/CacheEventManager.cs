@@ -9,7 +9,7 @@ public class CacheEventManager : ICacheEventManager
     public CacheEventManager()
     => CacheRefreshEvent += () =>
         {
-            //ilgili kodu buraya yazarım
+           
         };
 
     private static object locker = new();

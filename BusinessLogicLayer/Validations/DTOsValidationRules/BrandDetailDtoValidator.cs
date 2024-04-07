@@ -1,4 +1,5 @@
 ﻿using BusinessLogicLayer.Validations.DTOsValidationRules.Base;
+using CoreLayer.Constants.ValidationMessagesConstants;
 using CoreLayer.DTOs;
 using FluentValidation;
 
@@ -10,31 +11,31 @@ namespace BusinessLogicLayer.Validations.DTOsValidationRules
         {
             RuleFor(x => x.Description)
               .NotNull()
-              .WithMessage("Marka açıklaması boş bırakılamaz")
+              .WithMessage(BrandDetailDtoValidationMessages.DESCRIPTION_NOT_NULL_MESSAGE)
               .NotEmpty()
-              .WithMessage("Marka açıklaması boş bırakılamaz")
-              .MinimumLength(3)
-              .WithMessage("Marka açıklaması en az 3 karakter olmalıdır")
-              .MaximumLength(100)
-              .WithMessage("Marka açıklaması en fazla 100 karakter olmalıdır");
+              .WithMessage(BrandDetailDtoValidationMessages.DESCRIPTION_NOT_EMPTY_MESSAGE)
+              .MinimumLength(BrandDetailDtoValidationMessages.DESCRIPTON_MINIMUM_LENGTH_VALUE)
+              .WithMessage(BrandDetailDtoValidationMessages.DESCRIPTION_MINIMUM_LENGTH_MESSAGE)
+              .MaximumLength(BrandDetailDtoValidationMessages.DESCRIPTON_MAXIMUM_LENGTH_VALUE)
+              .WithMessage(BrandDetailDtoValidationMessages.DESCRIPTION_MAXIMUM_LENGTH_MESSAGE);
 
             RuleFor(x => x.LogoPath)
              .NotNull()
-             .WithMessage("Logo linki boş bırakılamaz")
+             .WithMessage(BrandDetailDtoValidationMessages.LOGOPATH_NOT_NULL_MESSAGE)
              .NotEmpty()
-             .WithMessage("Logo linki boş bırakılamaz")
-             .MinimumLength(3)
-             .WithMessage("Logo linki en az 3 karakter olmalıdır")
-             .MaximumLength(100)
-             .WithMessage("Logo linki en fazla 100 karakter olmalıdır");
+             .WithMessage(BrandDetailDtoValidationMessages.LOGOPATH_NOT_EMPTY_MESSAGE)
+             .MinimumLength(BrandDetailDtoValidationMessages.LOGOPATH_MINIMUM_LENGTH_VALUE)
+             .WithMessage(BrandDetailDtoValidationMessages.LOGOPATH_MINIMUM_LENGTH_MESSAGE)
+             .MaximumLength(BrandDetailDtoValidationMessages.LOGOPATH_MAXIMUM_LENGTH_VALUE)
+             .WithMessage(BrandDetailDtoValidationMessages.LOGOPATH_MAXIMUM_LENGTH_MESSAGE);
 
             RuleFor(x => x.FoundedYear)
              .NotNull()
-             .WithMessage("Logo linki boş bırakılamaz")
+             .WithMessage(BrandDetailDtoValidationMessages.FOUNDEDYEAR_NOT_NULL_MESSAGE)
              .NotEmpty()
-             .WithMessage("Logo linki boş bırakılamaz")
+             .WithMessage(BrandDetailDtoValidationMessages.FOUNDEDYEAR_NOT_EMPTY_MESSAGE)
              .Must(date => date > DateTime.Now || date < DateTime.MinValue)
-             .WithMessage("Lütfen geçerli bir kuruluş tarihi giriniz");
+             .WithMessage(BrandDetailDtoValidationMessages.FOUNDEDYEAR_MUST_MESSAGE);
 
 
 
