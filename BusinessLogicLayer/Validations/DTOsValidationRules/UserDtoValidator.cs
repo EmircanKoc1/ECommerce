@@ -1,4 +1,5 @@
 ﻿using BusinessLogicLayer.Validations.DTOsValidationRules.Base;
+using CoreLayer.Constants.ValidationMessagesConstants;
 using CoreLayer.DTOs;
 using FluentValidation;
 
@@ -9,79 +10,83 @@ namespace BusinessLogicLayer.Validations.DTOsValidationRules
         public UserDtoValidator()
         {
             RuleFor(x => x.Username)
-                .NotNull()
-                .WithMessage("Kullanıcı adı boş olamaz")
-                .NotEmpty()
-                .WithMessage("kullanıcı adı boş olamaz")
-                .MaximumLength(100)
-                .WithMessage("Kullanıcı adı en fazla 100 karakter olabilir")
-                .MinimumLength(3)
-                .WithMessage("Kullanıcı adı en az 100 karakter olabililr");
+               .NotNull()
+               .WithMessage(UserDtoValidationMessages.USERNAME_NOT_NULL_MESSAGE)
+               .NotEmpty()
+               .WithMessage(UserDtoValidationMessages.USERNAME_NOT_EMPTY_MESSAGE)
+               .MaximumLength(UserDtoValidationMessages.USERNAME_MAXIMUM_LENGTH_VALUE)
+               .WithMessage(UserDtoValidationMessages.USERNAME_MAXIMUM_LENGTH_MESSAGE)
+               .MinimumLength(UserDtoValidationMessages.USERNAME_MINIMUM_LENGTH_VALUE)
+               .WithMessage(UserDtoValidationMessages.USERNAME_MINIMUM_LENGTH_MESSAGE);
 
 
             RuleFor(x => x.Name)
                 .NotNull()
-                .WithMessage("Kullanıcının adı boş olamaz")
+                .WithMessage(UserDtoValidationMessages.NAME_NOT_NULL_MESSAGE)
                 .NotEmpty()
-                .WithMessage("Kullanıcının adı boş olamaz")
-                .MinimumLength(2)
-                .WithMessage("Kullanıcının adı en az 2 karakter olabilir")
-                .MaximumLength(30)
-                .WithMessage("Kullanıcının adı en fazla 30 karakter olabilir");
+                .WithMessage(UserDtoValidationMessages.NAME_NOT_EMPTY_MESSAGE)
+                .MinimumLength(UserDtoValidationMessages.NAME_MINIMUM_LENGTH_VALUE)
+                .WithMessage(UserDtoValidationMessages.NAME_MINIMUM_LENGTH_MESSAGE)
+                .MaximumLength(UserDtoValidationMessages.NAME_MAXIMUM_LENGTH_VALUE)
+                .WithMessage(UserDtoValidationMessages.NAME_MAXIMUM_LENGTH_MESSAGE);
 
             RuleFor(x => x.Surname)
                 .NotNull()
-                .WithMessage("Kullanıcının soyadı boş olamaz")
+                .WithMessage(UserDtoValidationMessages.SURNAME_NOT_NULL_MESSAGE)
                 .NotEmpty()
-                .WithMessage("Kullanıcının soyadı boş olamaz")
-                .MinimumLength(2)
-                .WithMessage("Kullanıcının soyadı en az 2 karakter olabilir")
-                .MaximumLength(30)
-                .WithMessage("Kullanıcının soyadı en fazla 30 karakter olabilir");
+                .WithMessage(UserDtoValidationMessages.SURNAME_NOT_EMPTY_MESSAGE)
+                .MinimumLength(UserDtoValidationMessages.SURNAME_MINIMUM_LENGTH_VALUE)
+                .WithMessage(UserDtoValidationMessages.SURNAME_MINIMUM_LENGTH_MESSAGE)
+                .MaximumLength(UserDtoValidationMessages.SURNAME_MAXIMUM_LENGTH_VALUE)
+                .WithMessage(UserDtoValidationMessages.SURNAME_MAXIMUM_LENGTH_MESSAGE);
 
 
             RuleFor(x => x.Email)
                .NotNull()
-               .WithMessage("Kullanıcının adı boş olamaz")
+               .WithMessage(UserDtoValidationMessages.EMAIL_NOT_NULL_MESSAGE)
                .NotEmpty()
-               .WithMessage("Kullanıcının adı boş olamaz")
+               .WithMessage(UserDtoValidationMessages.EMAIL_NOT_EMPTY_MESSAGE)
                .EmailAddress()
-               .WithMessage("Email adresi geçersiz")
-               .MinimumLength(5)
-               .WithMessage("Kullanıcının email adresi en az 5 karakter olabilir")
-               .MaximumLength(50)
-               .WithMessage("Kullanıcının email adresi  en fazla 50 karakter olabilir");
+               .WithMessage(UserDtoValidationMessages.EMAIL_INVALID_MESSAGE)
+               .MinimumLength(UserDtoValidationMessages.EMAIL_MINIMUM_LENGTH_VALUE)
+               .WithMessage(UserDtoValidationMessages.EMAIL_MINIMUM_LENGTH_MESSAGE)
+               .MaximumLength(UserDtoValidationMessages.EMAIL_MAXIMUM_LENGTH_VALUE)
+               .WithMessage(UserDtoValidationMessages.EMAIL_MAXIMUM_LENGTH_MESSAGE);
 
 
             RuleFor(x => x.PhoneNumber)
               .NotNull()
-              .WithMessage("Kullanıcının telefon numarası boş olamaz")
+              .WithMessage(UserDtoValidationMessages.PHONENUMBER_NOT_NULL_MESSAGE)
               .NotEmpty()
-              .WithMessage("Kullanıcının telefon numarası boş olamaz")
-              .MinimumLength(11)
-              .WithMessage("Kullanıcının telefon numarası en az 11 karakter olabilir")
-              .MaximumLength(11)
-              .WithMessage("Kullanıcının telefon numarası en fazla 11 karakter olabilir");
+              .WithMessage(UserDtoValidationMessages.PHONENUMBER_NOT_EMPTY_MESSAGE)
+              .MinimumLength(UserDtoValidationMessages.PHONENUMBER_MINIMUM_LENGTH_VALUE)
+              .WithMessage(UserDtoValidationMessages.PHONENUMBER_MINIMUM_LENGTH_MESSAGE)
+              .MaximumLength(UserDtoValidationMessages.PHONENUMBER_MAXIMUM_LENGTH_VALUE)
+              .WithMessage(UserDtoValidationMessages.PHONENUMBER_MAXIMUM_LENGTH_MESSAGE);
 
             RuleFor(x => x.BirthDate)
               .NotNull()
-              .WithMessage("Doğum tarihi boş bırakılamaz")
+              .WithMessage(UserDtoValidationMessages.BIRTHDATE_NOT_NULL_MESSAGE)
               .NotEmpty()
-              .WithMessage("Doğum tarihi boş bırakılamaz")
+              .WithMessage(UserDtoValidationMessages.BIRTHDATE_NOT_EMPTY_MESSAGE)
               .Must(date => date > DateTime.Now)
-              .WithMessage("Lütfen geçerli bir tarih girin");
+              .WithMessage(UserDtoValidationMessages.BIRTHDATE_INVALID_MESSAGE);
 
 
             RuleFor(x => x.Password)
              .NotNull()
-             .WithMessage("Kullanıcının şifresi  boş olamaz")
+             .WithMessage(UserDtoValidationMessages.PASSWORD_NOT_NULL_MESSAGE)
              .NotEmpty()
-             .WithMessage("Kullanıcının şifresi  boş olamaz")
-             .MinimumLength(8)
-             .WithMessage("Kullanıcının şifresi  en az 8 karakter olabilir")
-             .MaximumLength(16)
-             .WithMessage("Kullanıcının şifresi  en fazla 16 karakter olabilir");
+             .WithMessage(UserDtoValidationMessages.PASSWORD_NOT_EMPTY_MESSAGE)
+             .MinimumLength(UserDtoValidationMessages.PASSWORD_MINIMUM_LENGTH_VALUE)
+             .WithMessage(UserDtoValidationMessages.PASSWORD_MINIMUM_LENGTH_MESSAGE)
+             .MaximumLength(UserDtoValidationMessages.PASSWORD_MAXIMUM_LENGTH_VALUE)
+             .WithMessage(UserDtoValidationMessages.PASSWORD_MAXIMUM_LENGTH_MESSAGE);
+        }
+     
 
+
+           
 
         }
     }

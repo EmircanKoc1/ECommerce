@@ -1,4 +1,5 @@
 ﻿using BusinessLogicLayer.Validations.DTOsValidationRules.Base;
+using CoreLayer.Constants.ValidationMessagesConstants;
 using CoreLayer.DTOs;
 using FluentValidation;
 
@@ -10,13 +11,13 @@ namespace BusinessLogicLayer.Validations.DTOsValidationRules
         {
             RuleFor(x => x.Name)
                 .NotEmpty()
-                .WithMessage("Kargo firması ismi boş olamaz")
+                .WithMessage(ShipmentCompanyDtoValidationMessages.NAME_NOT_EMPTY_MESSAGE)
                 .NotNull()
-                .WithMessage("Kargo firması ismi boş olamaz")
-                .MinimumLength(3)
-                .WithMessage("Kargo firması ismi en az 3 karakter olmalıdır")
-                .MaximumLength(100)
-                .WithMessage("Kargo firması ismi en fazla 100 karakter olmalıdır");
+                .WithMessage(ShipmentCompanyDtoValidationMessages.NAME_NOT_NULL_MESSAGE)
+                .MinimumLength(ShipmentCompanyDtoValidationMessages.NAME_MINIMUM_LENGTH_VALUE)
+                .WithMessage(ShipmentCompanyDtoValidationMessages.NAME_MINIMUM_LENGTH_MESSAGE)
+                .MaximumLength(ShipmentCompanyDtoValidationMessages.NAME_MAXIMUM_LENGTH_VALUE)
+                .WithMessage(ShipmentCompanyDtoValidationMessages.NAME_MAXIMUM_LENGTH_MESSAGE);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using BusinessLogicLayer.Validations.DTOsValidationRules.Base;
+using CoreLayer.Constants.ValidationMessagesConstants;
 using CoreLayer.DTOs;
 using FluentValidation;
 
@@ -10,23 +11,23 @@ namespace BusinessLogicLayer.Validations.DTOsValidationRules
         {
             RuleFor(x => x.Name)
                 .NotEmpty()
-                .WithMessage("Etiket adı boş olamaz")
+                .WithMessage(TagDtoValidationMessages.DESCRIPTION_NOT_EMPTY_MESSAGE)
                 .NotNull()
-                .WithMessage("Etiket adı boş olamaz")
-                .MaximumLength(100)
-                .WithMessage("Etiket adı en fazla 100 karakter olabilir")
-                .MinimumLength(3)
-                .WithMessage("Etiket adı en az 3 karakter olabilir");
+                .WithMessage(TagDtoValidationMessages.DESCRIPTION_NOT_NULL_MESSAGE)
+                .MaximumLength(TagDtoValidationMessages.NAME_MAXIMUM_LENGTH_VALUE)
+                .WithMessage(TagDtoValidationMessages.NAME_MAXIMUM_LENGTH_MESSAGE)
+                .MinimumLength(TagDtoValidationMessages.NAME_MINIMUM_LENGTH_VALUE)
+                .WithMessage(TagDtoValidationMessages.NAME_MINIMUM_LENGTH_MESSAGE);
 
             RuleFor(x => x.Description)
                .NotEmpty()
-               .WithMessage("Etiket açıklaması boş olamaz")
+               .WithMessage(TagDtoValidationMessages.DESCRIPTION_NOT_EMPTY_MESSAGE)
                .NotNull()
-               .WithMessage("Etiket açıklaması boş olamaz")
-               .MaximumLength(100)
-               .WithMessage("Etiket açıklaması en fazla 100 karakter olabilir")
-               .MinimumLength(3)
-               .WithMessage("Etiket açıklaması en az 3 karakter olabilir");
+               .WithMessage(TagDtoValidationMessages.DESCRIPTION_NOT_NULL_MESSAGE)
+               .MaximumLength(TagDtoValidationMessages.DESCRIPTION_MAXIMUM_LENGTH_VALUE)
+               .WithMessage(TagDtoValidationMessages.DESCRIPTION_MAXIMUM_LENGTH_MESSAGE)
+               .MinimumLength(TagDtoValidationMessages.DESCRIPTION_MINIMUM_LENGTH_VALUE)
+               .WithMessage(TagDtoValidationMessages.DESCRIPTION_MINIMUM_LENGTH_MESSAGE);
 
         }
     }

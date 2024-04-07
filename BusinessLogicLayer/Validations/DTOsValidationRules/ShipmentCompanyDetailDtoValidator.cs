@@ -1,4 +1,5 @@
 ﻿using BusinessLogicLayer.Validations.DTOsValidationRules.Base;
+using CoreLayer.Constants.ValidationMessagesConstants;
 using CoreLayer.DTOs;
 using FluentValidation;
 
@@ -10,34 +11,34 @@ namespace BusinessLogicLayer.Validations.DTOsValidationRules
         {
             RuleFor(x => x.Description)
                 .NotEmpty()
-                .WithMessage("Kargo firması açıklaması boş olamaz")
+                .WithMessage(ShipmentCompanyDetailDtoValidationMessages.DESCRIPTON_NOT_EMPTY_MESSAGE)
                 .NotNull()
-                .WithMessage("Kargo firması açıklaması boş olamaz")
-                .MaximumLength(300)
-                .WithMessage("Kargo firması açıklaması en fazla 300 karakter olabilir")
-                .MinimumLength(3)
-                .WithMessage("Kargo firması açıklaması en az 3 karakter olabilir");
+                .WithMessage(ShipmentCompanyDetailDtoValidationMessages.DESCRIPTON_NOT_NULL_MESSAGE)
+                .MaximumLength(ShipmentCompanyDetailDtoValidationMessages.DESCRIPTION_MAXIMUM_LENGTH_VALUE)
+                .WithMessage(ShipmentCompanyDetailDtoValidationMessages.DESCRIPTON_MINUMUM_LENGTH_MESSAGE)
+                .MinimumLength(ShipmentCompanyDetailDtoValidationMessages.DESCRIPTION_MINIMUM_LENGTH_VALUE)
+                .WithMessage(ShipmentCompanyDetailDtoValidationMessages.DESCRIPTON_MINUMUM_LENGTH_MESSAGE);
 
 
             RuleFor(x => x.TotalShipmentCount)
                 .Must(count => count >= 0)
-                .WithMessage("Toplam kargo sayısı en az 0 olabilir");
+                .WithMessage(ShipmentCompanyDetailDtoValidationMessages.TOTALSHIPMENTCOUNT_MESSAGE);
 
             RuleFor(x => x.TotalSuccessfulShipmentCount)
                 .Must(count => count >= 0)
-                .WithMessage("Toplam başarılı kargo sayısı en az 0 olabilir");
+                .WithMessage(ShipmentCompanyDetailDtoValidationMessages.TOTALSUCCESFULSHIPMENTCOUNT_MESSAGE);
 
             RuleFor(x => x.TotalFailedShipmentCount)
                 .Must(count => count >= 0)
-                .WithMessage("Toplam başarısız kargo sayısı en az 0 olabilir");
+                .WithMessage(ShipmentCompanyDetailDtoValidationMessages.TOTALFAILEDSHIPMENTCOUNT_MESSAGE);
 
             RuleFor(x => x.FoundedYear)
                 .NotNull()
-                .WithMessage("Kuruluş yılı boş olamaz")
+                .WithMessage(ShipmentCompanyDetailDtoValidationMessages.FOUNDEDYEAR_NOT_NULL_MESSAGE)
                 .NotEmpty()
-                .WithMessage("Kuruluş yılı boş olamaz")
+                .WithMessage(ShipmentCompanyDetailDtoValidationMessages.FOUNDEDYEAR_NOT_EMPTY_MESSAGE)
                 .Must(date => date <= DateTime.Now)
-                .WithMessage("Geçerli bir kuruluş tarihi girilmelidir");
+                .WithMessage(ShipmentCompanyDetailDtoValidationMessages.FOUNDEDYEAR_MESSAGE);
                 
         }
     }
