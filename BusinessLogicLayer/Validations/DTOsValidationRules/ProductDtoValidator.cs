@@ -1,4 +1,5 @@
 ﻿using BusinessLogicLayer.Validations.DTOsValidationRules.Base;
+using CoreLayer.Constants.ValidationMessagesConstants;
 using CoreLayer.DTOs;
 using FluentValidation;
 
@@ -10,32 +11,32 @@ namespace BusinessLogicLayer.Validations.DTOsValidationRules
         {
             RuleFor(x => x.Name)
              .NotEmpty()
-             .WithMessage("Ürün ismi boş olamaz")
+             .WithMessage(ProductDtoValidationMessages.NAME_NOT_EMPTY_MESSAGE)
              .NotNull()
-             .WithMessage("Ürün ismi boş olamaz")
-             .MaximumLength(100)
-             .WithMessage("Ürün ismi en fazla 100 karakter olabilir")
-             .MinimumLength(2)
-             .WithMessage("Ürün ismi en az 2 karakter olabilir");
+             .WithMessage(ProductDtoValidationMessages.NAME_NOT_NULL_MESSAGE)
+             .MaximumLength(ProductDtoValidationMessages.NAME_MAXIMUM_LENGTH_VALUE)
+             .WithMessage(ProductDtoValidationMessages.NAME_MAXIMUM_LENGTH_MESSAGE)
+             .MinimumLength(ProductDtoValidationMessages.NAME_MINIMUM_LENGTH_VALUE)
+             .WithMessage(ProductDtoValidationMessages.NAME_MINUMUM_LENGTH_MESSAGE);
 
             RuleFor(x => x.Description)
              .NotEmpty()
-             .WithMessage("Ürün açıklaması boş olamaz")
+             .WithMessage(ProductDtoValidationMessages.DESCRIPTION_NOT_EMPTY_MESSAGE)
              .NotNull()
-             .WithMessage("Ürün açıklaması boş olamaz")
-             .MaximumLength(100)
-             .WithMessage("Ürün açıklaması en fazla 100 karakter olabilir")
-             .MinimumLength(2)
-             .WithMessage("Ürün açıklaması en az 2 karakter olabilir");
+             .WithMessage(ProductDtoValidationMessages.DESCRIPTION_NOT_NULL_MESSAGE)
+             .MaximumLength(ProductDtoValidationMessages.DESCRIPTION_MAXIMUM_LENGTH_VALUE)
+             .WithMessage(ProductDtoValidationMessages.DESCRIPTION_MAXIMUM_LENGTH_MESSAGE)
+             .MinimumLength(ProductDtoValidationMessages.DESCRIPTION_MINIMUM_LENGTH_VALUE)
+             .WithMessage(ProductDtoValidationMessages.DESCRIPTION_MINUMUM_LENGTH_MESSAGE);
 
 
             RuleFor(x => x.Price)
-                .Must(price => price >= 0)
-                .WithMessage("Ürün fiyatı en az 0 olabilir ");
+                .Must(price => price >= ProductDtoValidationMessages.PRICE_VALUE)
+                .WithMessage(ProductDtoValidationMessages.PRICE_MESSAGE);
 
             RuleFor(x => x.StockQuantity)
-                .Must(quantity => quantity >= 0)
-                .WithMessage("Ürün stok miktarı en az 0 olabilir");
+                .Must(quantity => quantity >= ProductDtoValidationMessages.STOCKQUANTITY_VALUE)
+                .WithMessage(ProductDtoValidationMessages.STOCKQUANTITY_MESSAGE);
 
         }
     }

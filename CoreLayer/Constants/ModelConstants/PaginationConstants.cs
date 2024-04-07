@@ -8,6 +8,6 @@ namespace CoreLayer.Constants.ModelConstants
 {
     public static class PaginationConstants
     {
-        public const int Max_Page_Size = 100;
+        public const int MAX_PAGE_SIZE = 100;
     }
 }

@@ -7,7 +7,7 @@ namespace CoreLayer.Model
         public int PageSize
         {
             get => pageSize;
-            set => pageSize = value >= PaginationConstants.Max_Page_Size ? PaginationConstants.Max_Page_Size : (value <= 0 ? 1 : value);
+            set => pageSize = value >= PaginationConstants.MAX_PAGE_SIZE ? PaginationConstants.MAX_PAGE_SIZE : (value <= 0 ? 1 : value);
         }
         public int PageNumber
         {

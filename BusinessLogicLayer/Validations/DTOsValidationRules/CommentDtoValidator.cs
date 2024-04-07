@@ -1,4 +1,5 @@
 ﻿using BusinessLogicLayer.Validations.DTOsValidationRules.Base;
+using CoreLayer.Constants.ValidationMessagesConstants;
 using CoreLayer.DTOs;
 using FluentValidation;
 
@@ -10,26 +11,26 @@ namespace BusinessLogicLayer.Validations.DTOsValidationRules
         {
             RuleFor(x => x.Title)
              .NotNull()
-             .WithMessage("Başlık alanı boş bırakılamaz")
+             .WithMessage(CommentDtoValidationMessages.TITLE_NOT_NULL_MESSAGE)
              .NotEmpty()
-             .WithMessage("Başlık alanı boş bırakılamaz")
-             .MinimumLength(3)
-             .WithMessage("Başlık alanı en az 3 karakter olmalıdır")
-             .MaximumLength(100)
-             .WithMessage("Başlık alanı en fazla 100 karakter olmalıdır");
+             .WithMessage(CommentDtoValidationMessages.TITLE_NOT_EMPTY_MESSAGE)
+             .MinimumLength(CommentDtoValidationMessages.TITLE_MINIMUM_LENGTH_VALUE)
+             .WithMessage(CommentDtoValidationMessages.TITLE_MINIMUM_LENGTH_MESSAGE)
+             .MaximumLength(CommentDtoValidationMessages.TITLE_MAXIMUM_LENGTH_VALUE)
+             .WithMessage(CommentDtoValidationMessages.TITLE_MAXIMUM_LENGTH_MESSAGE);
 
             RuleFor(x => x.Text)
              .NotNull()
-             .WithMessage("Yorum  boş bırakılamaz")
+             .WithMessage(CommentDtoValidationMessages.TEXT_NOT_NULL_MESSAGE)
              .NotEmpty()
-             .WithMessage("Yorum  boş bırakılamaz")
-             .MinimumLength(3)
-             .WithMessage("Yorum  en az 3 karakter olmalıdır")
-             .MaximumLength(100)
-             .WithMessage("Yorum  en fazla 100 karakter olmalıdır");
+             .WithMessage(CommentDtoValidationMessages.TEXT_NOT_EMPTY_MESSAGE)
+             .MinimumLength(CommentDtoValidationMessages.TEXT_MINIMUM_LENGTH_VALUE)
+             .WithMessage(CommentDtoValidationMessages.TEXT_MINIMUM_LENGTH_MESSAGE)
+             .MaximumLength(CommentDtoValidationMessages.TEXT_MAXIMUM_LENGTH_VALUE)
+             .WithMessage(CommentDtoValidationMessages.TEXT_MAXIMUM_LENGTH_MESSAGE);
 
             RuleFor(x => x.Score)
-              .Must(score => score < 0 || score > 10)
+              .Must(score => CommentDtoValidationMessages.SCORE_MINIMUM_VALUE < 0 || CommentDtoValidationMessages.SCORE_MAXIMUM_VALUE> 5)
               .WithMessage("Puan 0 - 5 arasında olmalıdır");
 
         }

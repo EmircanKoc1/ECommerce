@@ -1,4 +1,5 @@
 ﻿using BusinessLogicLayer.Validations.DTOsValidationRules.Base;
+using CoreLayer.Constants.ValidationMessagesConstants;
 using CoreLayer.DTOs;
 using FluentValidation;
 
@@ -10,9 +11,9 @@ namespace BusinessLogicLayer.Validations.DTOsValidationRules
         {
             RuleFor(x => x.ImagePath)
                 .NotNull()
-                .WithMessage("Resim yolu boş olamaz")
+                .WithMessage(ProductImageDtoValidationMessages.IMAGEPATH_NOT_NULL_MESSAGE)
                 .NotEmpty()
-                .WithMessage("Resim yolu boş olamaz");
+                .WithMessage(ProductImageDtoValidationMessages.IMAGEPATH_NOT_EMPTY_MESSAGE);
 
         }
     }

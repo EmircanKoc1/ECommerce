@@ -1,4 +1,5 @@
 ﻿using BusinessLogicLayer.Validations.DTOsValidationRules.Base;
+using CoreLayer.Constants.ValidationMessagesConstants;
 using CoreLayer.DTOs;
 using FluentValidation;
 
@@ -10,62 +11,62 @@ namespace BusinessLogicLayer.Validations.DTOsValidationRules
         {
             RuleFor(x => x.Company)
               .NotEmpty()
-              .WithMessage("Kuruluş ismi boş olamaz")
+              .WithMessage(PaymentCardDtoValidationMessages.COMPANY_NOT_EMPTY_MESSAGE)
               .NotNull()
-              .WithMessage("Kuruluş ismi boş olamaz")
-              .MaximumLength(100)
-              .WithMessage("Kuruluş ismi en fazla 100 karakter olabilir")
-              .MinimumLength(2)
-              .WithMessage("Kuruluş ismi en az 2 karakter olabilir");
+              .WithMessage(PaymentCardDtoValidationMessages.COMPANY_NOT_NULL_MESSAGE)
+              .MaximumLength(PaymentCardDtoValidationMessages.COMPANY_MAXIMUM_LENGTH_VALUE)
+              .WithMessage(PaymentCardDtoValidationMessages.COMPANY_MAXIMUM_LENGTH_MESSAGE)
+              .MinimumLength(PaymentCardDtoValidationMessages.COMPANY_MINIMUM_LENGTH_VALUE)
+              .WithMessage(PaymentCardDtoValidationMessages.COMPANY_MAXIMUM_LENGTH_MESSAGE);
 
             RuleFor(x => x.Number)
               .NotEmpty()
-              .WithMessage("Kart numarası boş olamaz")
+              .WithMessage(PaymentCardDtoValidationMessages.NUMBER_NOT_EMPTY_MESSAGE)
               .NotNull()
-              .WithMessage("Kart numarası boş olamaz")
-              .MaximumLength(100)
-              .WithMessage("Kart numarası en fazla 100 karakter olabilir")
-              .MinimumLength(2)
-              .WithMessage("Kart numarası en az 10 karakter olabilir");
+              .WithMessage(PaymentCardDtoValidationMessages.NUMBER_NOT_NULL_MESSAGE)
+              .MaximumLength(PaymentCardDtoValidationMessages.NUMBER_MAXIMUM_LENGTH_VALUE)
+              .WithMessage(PaymentCardDtoValidationMessages.NUMBER_MAXIMUM_LENGTH_MESSAGE)
+              .MinimumLength(PaymentCardDtoValidationMessages.NUMBER_MINIMUM_LENGTH_VALUE)
+              .WithMessage(PaymentCardDtoValidationMessages.NUMBER_MINUMUM_LENGTH_MESSAGE);
 
 
             RuleFor(x => x.PersonName)
               .NotEmpty()
-              .WithMessage("Kart sahibi adı boş olamaz")
+              .WithMessage(PaymentCardDtoValidationMessages.PERSONNAME_NOT_EMPTY_MESSAGE)
               .NotNull()
-              .WithMessage("Kart sahibi adıboş olamaz")
-              .MaximumLength(100)
-              .WithMessage("Kart sahibi adı en fazla 100 karakter olabilir")
-              .MinimumLength(2)
-              .WithMessage("Kart sahibi adı en az 10 karakter olabilir");
+              .WithMessage(PaymentCardDtoValidationMessages.PERSONNAME_NOT_NULL_MESSAGE)
+              .MaximumLength(PaymentCardDtoValidationMessages.PERSONNAME_MAXIMUM_LENGTH_VALUE)
+              .WithMessage(PaymentCardDtoValidationMessages.PERSONNAME_MAXIMUM_LENGTH_MESSAGE)
+              .MinimumLength(PaymentCardDtoValidationMessages.PERSONNAME_MINIMUM_LENGTH_VALUE)
+              .WithMessage(PaymentCardDtoValidationMessages.PERSONNAME_MAXIMUM_LENGTH_MESSAGE);
 
             RuleFor(x => x.PersonSurname)
               .NotEmpty()
-              .WithMessage("Kart sahibi soyadı boş olamaz")
+              .WithMessage(PaymentCardDtoValidationMessages.PERSONSURNAME_NOT_EMPTY_MESSAGE)
               .NotNull()
-              .WithMessage("Kart sahibi soyadı boş olamaz")
-              .MaximumLength(100)
-              .WithMessage("Kart sahibi soyadı en fazla 100 karakter olabilir")
-              .MinimumLength(2)
-              .WithMessage("Kart sahibi soyaadı en az 10 karakter olabilir");
+              .WithMessage(PaymentCardDtoValidationMessages.PERSONSURNAME_NOT_NULL_MESSAGE)
+              .MaximumLength(PaymentCardDtoValidationMessages.PERSONSURNAME_MAXIMUM_LENGTH_VALUE)
+              .WithMessage(PaymentCardDtoValidationMessages.PERSONSURNAME_MAXIMUM_LENGTH_MESSAGE)
+              .MinimumLength(PaymentCardDtoValidationMessages.PERSONSURNAME_MINIMUM_LENGTH_VALUE)
+              .WithMessage(PaymentCardDtoValidationMessages.PERSONSURNAME_MINUMUM_LENGTH_MESSAGE);
 
             RuleFor(x => x.ExpireDate)
               .NotNull()
-              .WithMessage("Kartın son kullanma tarihi boş olamaz")
+              .WithMessage(PaymentCardDtoValidationMessages.EXPIREDATE_NOT_NULL_MESSAGE)
               .NotEmpty()
-              .WithMessage("Kartın son kullanma tarihi boş olamaz")
+              .WithMessage(PaymentCardDtoValidationMessages.EXPIREDATE_NOT_EMPTY_MESSAGE)
               .Must(date => date > DateTime.Now)
-              .WithMessage("Son kullanma tarihi geçerli olan bir kart girilmeli");
+              .WithMessage(PaymentCardDtoValidationMessages.EXPIREDATE_MESSAGE);
 
             RuleFor(x => x.CCV)
               .NotEmpty()
-              .WithMessage("CCV boş olamaz")
+              .WithMessage(PaymentCardDtoValidationMessages.CCV_NOT_EMPTY_MESSAGE)
               .NotNull()
-              .WithMessage("CCV boş olamaz")
-              .MinimumLength(3)
-              .WithMessage("CCV en az 3 karakter olabilir")
-              .MaximumLength(3)
-              .WithMessage("CCV en fazla 3 karakter olabilir");
+              .WithMessage(PaymentCardDtoValidationMessages.CCV_NOT_NULL_MESSAGE)
+              .MinimumLength(PaymentCardDtoValidationMessages.CCV_MINIMUM_LENGTH_VALUE)
+              .WithMessage(PaymentCardDtoValidationMessages.CCV_MINUMUM_LENGTH_MESSAGE)
+              .MaximumLength(PaymentCardDtoValidationMessages.CCV_MAXIMUM_LENGTH_VALUE)
+              .WithMessage(PaymentCardDtoValidationMessages.CCV_MAXIMUM_LENGTH_MESSAGE);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using BusinessLogicLayer.Validations.DTOsValidationRules.Base;
+using CoreLayer.Constants.ValidationMessagesConstants;
 using CoreLayer.DTOs;
 using FluentValidation;
 
@@ -10,25 +11,25 @@ namespace BusinessLogicLayer.Validations.DTOsValidationRules
         public ClaimDtoValidator()
         {
 
-            RuleFor(x => x.ClaimType)
-             .NotNull()
-             .WithMessage("Claim türü boş bırakılamaz")
-             .NotEmpty()
-             .WithMessage("Claim türü boş bırakılamaz")
-             .MinimumLength(3)
-             .WithMessage("Claim türü  en az 3 karakter olmalıdır")
-             .MaximumLength(100)
-             .WithMessage("Claim türü en fazla 100 karakter olmalıdır");
-
             RuleFor(x => x.ClaimName)
              .NotNull()
-             .WithMessage("Claim adı boş bırakılamaz")
+             .WithMessage(ClaimDtoValidationMessages.CLAIMNAME_NOT_NULL_MESSAGE)
              .NotEmpty()
-             .WithMessage("Claim adı boş bırakılamaz")
-             .MinimumLength(3)
-             .WithMessage("Claim adı  en az 3 karakter olmalıdır")
-             .MaximumLength(100)
-             .WithMessage("Claim adı en fazla 100 karakter olmalıdır");
+             .WithMessage(ClaimDtoValidationMessages.CLAIMNAME_NOT_EMPTY_MESSAGE)
+             .MinimumLength(ClaimDtoValidationMessages.CLAIMNAME_MINIMUM_LENGTH_VALUE)
+             .WithMessage(ClaimDtoValidationMessages.CLAIMNAME_MINIMUM_LENGTH_MESSAGE)
+             .MaximumLength(ClaimDtoValidationMessages.CLAIMNAME_MAXIMUM_LENGTH_VALUE)
+             .WithMessage(ClaimDtoValidationMessages.CLAIMNAME_MAXIMUM_LENGTH_MESSAGE);
+
+            RuleFor(x => x.ClaimType)
+             .NotNull()
+             .WithMessage(ClaimDtoValidationMessages.CLAIMTYPE_NOT_NULL_MESSAGE)
+             .NotEmpty()
+             .WithMessage(ClaimDtoValidationMessages.CLAIMTYPE_NOT_EMPTY_MESSAGE)
+             .MinimumLength(ClaimDtoValidationMessages.CLAIMTYPE_MINIMUM_LENGTH_VALUE)
+             .WithMessage(ClaimDtoValidationMessages.CLAIMTYPE_MINIMUM_LENGTH_MESSAGE)
+             .MaximumLength(ClaimDtoValidationMessages.CLAIMTYPE_MAXIMUM_LENGTH_VALUE)
+             .WithMessage(ClaimDtoValidationMessages.CLAIMTYPE_MAXIMUM_LENGTH_MESSAGE);
 
 
         }

@@ -7,9 +7,8 @@ namespace DataAccessLayer.Context
     public partial class ECommerceDbContext : DbContext
     {
         public ECommerceDbContext(DbContextOptions<ECommerceDbContext> options) : base(options)
-        {
-            if (options is null) throw new DbContextNotRegisteredException(nameof(ECommerceDbContext));
-        }
+            => _ = options ?? throw new DbContextNotRegisteredException();
+
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

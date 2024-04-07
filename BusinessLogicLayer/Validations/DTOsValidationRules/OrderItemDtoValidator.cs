@@ -1,4 +1,5 @@
 ﻿using BusinessLogicLayer.Validations.DTOsValidationRules.Base;
+using CoreLayer.Constants.ValidationMessagesConstants;
 using CoreLayer.DTOs;
 using FluentValidation;
 
@@ -9,16 +10,16 @@ namespace BusinessLogicLayer.Validations.DTOsValidationRules
         public OrderItemDtoValidator()
         {
             RuleFor(x => x.Price)
-                .Must(price => price >= 0)
-                .WithMessage("Ürün fiyatı en az 0 olabilir");
+                .Must(price => price >= OrderItemDtoValidatationMessages.PRICE_MINIMUM_VALUE)
+                .WithMessage(OrderItemDtoValidatationMessages.PRICE_MINIMUM_MESSAGE);
 
             RuleFor(x => x.Quantity)
-                .Must(quantity => quantity >= 1)
-                .WithMessage("Alınan ürün miktarı en az 1 olmalıdır");
+                .Must(quantity => quantity >= OrderItemDtoValidatationMessages.QUANTITY_MINIMUM_VALUE)
+                .WithMessage(OrderItemDtoValidatationMessages.QUANTITY_MINIMUM_MESSAGE);
 
             RuleFor(x => x.TotalPrice)
-                .Must(totalPrice => totalPrice >= 0)
-                .WithMessage("Toplam tutar en az 0 olabilir");
+                .Must(totalPrice => totalPrice >= OrderItemDtoValidatationMessages.TOTALPRICE_MINIMUM_VALUE)
+                .WithMessage(OrderItemDtoValidatationMessages.TOTALPRICE_MINIMUM_MESSAGE);
 
         }
     }

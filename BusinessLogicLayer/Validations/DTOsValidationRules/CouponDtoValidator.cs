@@ -1,7 +1,7 @@
 ﻿using BusinessLogicLayer.Validations.DTOsValidationRules.Base;
+using CoreLayer.Constants.ValidationMessagesConstants;
 using CoreLayer.DTOs;
 using FluentValidation;
-using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace BusinessLogicLayer.Validations.DTOsValidationRules
 {
@@ -9,48 +9,50 @@ namespace BusinessLogicLayer.Validations.DTOsValidationRules
     {
         public CouponDtoValidator()
         {
+
             RuleFor(x => x.Name)
               .NotNull()
-              .WithMessage("Kupon Adı boş bırakılamaz")
+              .WithMessage(CouponDtoValidationMessages.NAME_NOT_NULL_MESSAGE)
               .NotEmpty()
-              .WithMessage("Kupon Adı boş bırakılamaz")
-              .MinimumLength(3)
-              .WithMessage("Kupon Adı en az 3 karakter olmalıdır")
-              .MaximumLength(100)
-              .WithMessage("Kupon adı en fazla 100 karakter olmalıdır");
+              .WithMessage(CouponDtoValidationMessages.NAME_NOT_EMPTY_MESSAGE)
+              .MinimumLength(CouponDtoValidationMessages.NAME_MINIMUM_LENGTH_VALUE)
+              .WithMessage(CouponDtoValidationMessages.NAME_MINIMUM_LENGTH_MESSAGE)
+              .MaximumLength(CouponDtoValidationMessages.NAME_MAXIMUM_LENGTH_VALUE)
+              .WithMessage(CouponDtoValidationMessages.NAME_MAXIMUM_LENGTH_MESSAGE);
 
             RuleFor(x => x.Description)
               .NotNull()
-              .WithMessage("Kupon açıklaması boş bırakılamaz")
+              .WithMessage(CouponDtoValidationMessages.DESCRIPTION_NOT_NULL_MESSAGE)
               .NotEmpty()
-              .WithMessage("Kupon açıklaması boş bırakılamaz")
-              .MinimumLength(3)
-              .WithMessage("Kupon açıklaması en az 3 karakter olmalıdır")
-              .MaximumLength(100)
-              .WithMessage("Kupon açıklaması en fazla 100 karakter olmalıdır");
+              .WithMessage(CouponDtoValidationMessages.DESCRIPTION_NOT_EMPTY_MESSAGE)
+              .MinimumLength(CouponDtoValidationMessages.DESCRIPTION_MINIMUM_LENGTH_VALUE)
+              .WithMessage(CouponDtoValidationMessages.DESCRIPTION_MINIMUM_LENGTH_MESSAGE)
+              .MaximumLength(CouponDtoValidationMessages.DESCRIPTION_MAXIMUM_LENGTH_VALUE)
+              .WithMessage(CouponDtoValidationMessages.DESCRIPTION_MAXIMUM_LENGTH_MESSAGE);
+
 
             RuleFor(x => x.Code)
               .NotNull()
-              .WithMessage("Kupon kodu boş bırakılamaz")
+              .WithMessage(CouponDtoValidationMessages.CODE_NOT_NULL_MESSAGE)
               .NotEmpty()
-              .WithMessage("Kupon kodu boş bırakılamaz")
-              .MinimumLength(3)
-              .WithMessage("Kupon kodu en az 3 karakter olmalıdır")
-              .MaximumLength(100)
-              .WithMessage("Kupon kodu en fazla 100 karakter olmalıdır");
+              .WithMessage(CouponDtoValidationMessages.CODE_NOT_EMPTY_MESSAGE)
+              .MinimumLength(CouponDtoValidationMessages.CODE_MINIMUM_LENGTH_VALUE)
+              .WithMessage(CouponDtoValidationMessages.CODE_MINIMUM_LENGTH_MESSAGE)
+              .MaximumLength(CouponDtoValidationMessages.CODE_MAXIMUM_LENGTH_VALUE)
+              .WithMessage(CouponDtoValidationMessages.DESCRIPTION_MAXIMUM_LENGTH_MESSAGE);
 
             RuleFor(x => x.MinimumPrice)
-              .Must(price => price >= 0)
-              .WithMessage("Kupon için gereken minimum tutar en az 0 olmalıdır");
+              .Must(price => price >= CouponDtoValidationMessages.MINIMUMPRICE)
+              .WithMessage(CouponDtoValidationMessages.MINIMUMPRICE_MESSAGE);
 
             RuleFor(x => x.DiscountAmount)
-              .Must(price => price > 0)
-              .WithMessage("Kupon indirim tutarı en az 1 olmalıdır");
+              .Must(price => price > CouponDtoValidationMessages.DISCOUNTAMOUNT)
+              .WithMessage(CouponDtoValidationMessages.DISCOUNTAMOUNT_MESSAGE);
 
 
             RuleFor(x => x.ExpirationDate)
-                .Must(date => date  <= DateTime.Now)
-                .WithMessage("Kupon artık geçerli değil");
+                .Must(date => date <= DateTime.Now)
+                .WithMessage(CouponDtoValidationMessages.EXPIRATIONDATE_MESSAGE);
 
         }
     }
