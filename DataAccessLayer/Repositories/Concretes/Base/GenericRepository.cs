@@ -180,7 +180,8 @@ namespace DataAccessLayer.Repositories.Concretes.Base
 
         public async Task<IEnumerable<T>> GetAllAsync(
             PaginationModel paginationModel,
-            Expression<Func<T, bool>> predicate, Expression<Func<T, long>> orderByKeySelector,
+            Expression<Func<T, bool>> predicate,
+            Expression<Func<T, long>> orderByKeySelector,
             OrderByDirection direction,
             bool tracking = false,
             params Expression<Func<T, long>>[] thenByKeySelector)

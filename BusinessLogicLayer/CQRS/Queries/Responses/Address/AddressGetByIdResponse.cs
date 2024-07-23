@@ -3,5 +3,8 @@
     public class AddressGetByIdResponse
     {
     }
+    public class AddressGetByIdQueryResponse
+    {
+    }
 }
 

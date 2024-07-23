@@ -12,5 +12,8 @@ namespace BusinessLogicLayer.CQRS.Queries.Requests.Address
     {
         public long Id { get; set; }
     }
-  
+    public class AddressGetAllRequest : IRequest<AddressGetByIdResponse>
+    {
+        public long Id { get; set; }
+    }
 }
