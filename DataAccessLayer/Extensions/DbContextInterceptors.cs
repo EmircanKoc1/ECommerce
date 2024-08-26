@@ -1,4 +1,4 @@
-﻿using DataAccessLayer.Entities.Base.Concretes;
+﻿using DataAccessLayer.Entities.Base;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 namespace DataAccessLayer.Extensions

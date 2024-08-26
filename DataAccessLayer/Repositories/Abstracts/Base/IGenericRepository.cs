@@ -1,4 +1,4 @@
-﻿using DataAccessLayer.Entities.Base.Concretes;
+﻿using DataAccessLayer.Entities.Base;
 
 namespace DataAccessLayer.Repositories.Abstracts.Base
 {

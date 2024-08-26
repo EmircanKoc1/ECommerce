@@ -1,7 +1,7 @@
 ﻿using CoreLayer.DTOs;
 using CoreLayer.Enums;
 using CoreLayer.Model;
-using DataAccessLayer.Entities.Base.Concretes;
+using DataAccessLayer.Entities.Base;
 using DataAccessLayer.Repositories.Abstracts.Base;
 using System.Linq.Expressions;
 

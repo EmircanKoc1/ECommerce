@@ -1,4 +1,4 @@
-﻿using DataAccessLayer.Entities.Base.Concretes;
+﻿using DataAccessLayer.Entities.Base;
 
 namespace DataAccessLayer.Entities
 {
@@ -9,7 +9,7 @@ namespace DataAccessLayer.Entities
         public string RefreshToken { get; set; }
         public DateTime? TokenExpireDate { get; set; }
 
-        public long? UserId { get; set; }
+        public Guid UserId { get; set; }
         public User User { get; set; }
 
     }

@@ -2,7 +2,7 @@
 using CoreLayer.Exceptions;
 using CoreLayer.Model;
 using DataAccessLayer.Context;
-using DataAccessLayer.Entities.Base.Concretes;
+using DataAccessLayer.Entities.Base;
 using DataAccessLayer.Repositories.Abstracts.Base;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;

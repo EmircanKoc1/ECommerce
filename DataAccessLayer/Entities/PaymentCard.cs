@@ -1,4 +1,4 @@
-﻿using DataAccessLayer.Entities.Base.Concretes;
+﻿using DataAccessLayer.Entities.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,4 +1,4 @@
-﻿using DataAccessLayer.Entities.Base.Concretes;
+﻿using DataAccessLayer.Entities.Base;
 
 namespace DataAccessLayer.Entities
 {
@@ -11,7 +11,7 @@ namespace DataAccessLayer.Entities
         public string Street { get; set; }
         public string Zipcode { get; set; }
         public string AdressDescription { get; set; }
-        public long? UserId { get; set; }
+        public Guid? UserId { get; set; }
         public User User { get; set; }
 
         public ICollection<Order> Orders { get; set; }

@@ -1,4 +1,4 @@
-﻿using DataAccessLayer.Entities.Base.Concretes;
+﻿using DataAccessLayer.Entities.Base;
 
 namespace DataAccessLayer.Entities
 {
@@ -12,10 +12,7 @@ namespace DataAccessLayer.Entities
             Orders = new HashSet<Order>();
             Comments = new HashSet<Comment>();
             Claims = new HashSet<Claim>();
-
         }
-
-
         public string Username { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
@@ -26,7 +23,6 @@ namespace DataAccessLayer.Entities
         public bool EmailConfirmed { get; set; }
 
         public Token Token { get; set; }
-
 
         public ICollection<PaymentCard> PaymentCards { get; set; }
         public ICollection<Address> Address { get; set; }
